@@ -1058,6 +1058,7 @@ function renderResult(){
       <div class="mantra-code">${mantraCode}</div>
       <div class="mantra-line">${mantraLine}</div>
       <div class="mantra-foot">逛街時想不起來，就對照這張卡——符合就買，不符就放下。</div>
+      <button class="btn btn-ghost" style="margin-top:12px;font-size:13px;width:100%" onclick="copyMantra(this)">複製心法卡文字</button>
     </div>
     <div class="block">
       <h3>風格靈感板 <span class="cnt">你的命定單品</span></h3>
@@ -1098,6 +1099,7 @@ function renderResult(){
       <p style="font-size:13px;color:var(--ink-soft);margin-bottom:14px">挑場合，直接抄一整套：</p>
       <div class="occ-tabs" id="formulaTabs">${Object.keys(FORMULA).map((k,i)=>`<div class="occ-tab ${i===0?'on':''}" data-fml="${k}">${OCCASIONS[k].name}</div>`).join("")}</div>
       <div id="formulaBody"></div>
+      <button class="btn btn-ghost" style="margin-top:12px;font-size:13px;width:100%" onclick="copyFormula(this)">複製造型公式文字</button>
     </div>
     <div class="block">
       <h3>購物清單 <span class="cnt">買對少踩雷</span></h3>
@@ -1238,6 +1240,50 @@ function bindItemFav(){
       el.classList.toggle('faved',f.items.includes(name));
     };
   });
+}
+
+/* ===== 複製功能 ===== */
+function _doCopy(text, btn, label){
+  navigator.clipboard.writeText(text).catch(()=>{
+    const ta=document.createElement('textarea');
+    ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+  const orig=btn.textContent;
+  btn.textContent='✓ 已複製！';
+  setTimeout(()=>{ btn.textContent=orig; },2000);
+}
+
+function copyMantra(btn){
+  const code=document.querySelector('.mantra-code');
+  const line=document.querySelector('.mantra-line');
+  if(!code) return;
+  const text=[
+    '✦ 個人風格心法卡',
+    '─────────────────',
+    code.textContent.trim(),
+    line?line.textContent.trim():'',
+    '',
+    '逛街時符合就買，不符就放下。',
+    'by 形・穿搭顧問 emmadecor.vercel.app'
+  ].join('\n');
+  _doCopy(text, btn, '複製心法卡文字');
+}
+
+function copyFormula(btn){
+  const body=document.getElementById('formulaBody');
+  if(!body) return;
+  const title=body.querySelector('[style*="rose-deep"],[style*="rose"]');
+  const lines=[...body.querySelectorAll('div,p,span')].map(el=>el.textContent.trim()).filter(Boolean);
+  const text=[
+    '✦ 今日造型公式',
+    '─────────────────',
+    ...lines,
+    '',
+    'by 形・穿搭顧問 emmadecor.vercel.app'
+  ].join('\n');
+  _doCopy(text, btn, '複製造型公式文字');
 }
 
 /* ===== 步驟切換 ===== */
