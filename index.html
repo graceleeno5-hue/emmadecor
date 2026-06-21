@@ -892,6 +892,17 @@ function renderResult(){
       <div class="occ-tabs" id="formulaTabs">${Object.keys(FORMULA).map((k,i)=>`<div class="occ-tab ${i===0?'on':''}" data-fml="${k}">${OCCASIONS[k].name}</div>`).join("")}</div>
       <div id="formulaBody"></div>
     </div>
+    <div class="block" id="weatherBlock">
+      <h3>今天穿什麼厚薄？ <span class="cnt">體感選擇</span></h3>
+      <p style="font-size:13px;color:var(--ink-soft);margin-bottom:14px">選今天的體感，幫你調整材質建議：</p>
+      <div class="occ-tabs" id="weatherTabs">
+        <div class="occ-tab on" data-w="hot">大熱</div>
+        <div class="occ-tab" data-w="mild">微涼</div>
+        <div class="occ-tab" data-w="cold">寒冷</div>
+        <div class="occ-tab" data-w="rain">雨天</div>
+      </div>
+      <div id="weatherBody"></div>
+    </div>
     <div class="block">
       <h3>購物清單 <span class="cnt">買對少踩雷</span></h3>
       <div class="catrow">
@@ -1001,6 +1012,76 @@ function renderResult(){
   showFormula(Object.keys(FORMULA)[0]);
   fmlTabs.querySelectorAll('.occ-tab').forEach(t=>{
     t.onclick=()=>{fmlTabs.querySelectorAll('.occ-tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');showFormula(t.dataset.fml);};
+  });
+
+  // 天氣連動
+  const WEATHER={
+    hot:{
+      label:"大熱天",
+      fabric:["棉麻、天絲、莫代爾","透氣針織、竹節棉","輕薄雪紡、絲質"],
+      avoid:["牛仔外套","厚針織","合成纖維（悶熱不透氣）"],
+      tips:[
+        {ic:"👗",tx:"選<span style='font-weight:500'>淺色、低飽和</span>色系，反射熱量、視覺清涼。"},
+        {ic:"🩴",tx:"涼鞋或無跟穆勒鞋，讓腳透氣。"},
+        {ic:"💡",tx:"寬褲＋無袖上衣是大熱天最安全的公式，舒適又顯比例。"}
+      ]
+    },
+    mild:{
+      label:"微涼天",
+      fabric:["輕磅針織、棉質長袖","薄牛仔外套、風衣","薄款雪紡外搭"],
+      avoid:["羽絨衣（太厚）","無袖單穿（太涼）"],
+      tips:[
+        {ic:"🧥",tx:"<span style='font-weight:500'>疊穿</span>是關鍵：薄內搭＋中層針織＋輕外套，早晚都OK。"},
+        {ic:"👟",tx:"樂福鞋、帆布鞋或踝靴，比涼鞋多一點保暖感。"},
+        {ic:"💡",tx:"微涼天最好駕馭，配色可以大膽一點，中間層選你的亮點色。"}
+      ]
+    },
+    cold:{
+      label:"寒冷天",
+      fabric:["羊毛、喀什米爾","厚針織、法蘭絨","羽絨、鋪棉材質"],
+      avoid:["雪紡、輕薄針織單穿","無里布的薄外套"],
+      tips:[
+        {ic:"🧣",tx:"<span style='font-weight:500'>圍巾是CP值最高的單品</span>，保暖又能成為整套的焦點色。"},
+        {ic:"👢",tx:"長靴或短靴，比球鞋多保暖，又拉長腿型比例。"},
+        {ic:"💡",tx:"寒冷天用<span style='font-weight:500'>深色為主、亮色點綴</span>，靠圍巾或包包帶出氣色。"}
+      ]
+    },
+    rain:{
+      label:"雨天",
+      fabric:["防水尼龍、防潑水材質","快乾布料","深色或印花（不怕水漬）"],
+      avoid:["淺色棉質（濕了透明）","麂皮材質","帆布包（吸水）"],
+      tips:[
+        {ic:"🌂",tx:"<span style='font-weight:500'>深色系</span>是雨天首選，水漬不明顯。"},
+        {ic:"👟",tx:"雨天避開麂皮和布面鞋，選皮革、橡膠底或雨靴。"},
+        {ic:"💡",tx:"整套深色時，用<span style='font-weight:500'>傘的顏色</span>當亮點，也是一種造型思維。"}
+      ]
+    }
+  };
+
+  function showWeather(k){
+    const w=WEATHER[k];
+    const fabHTML=w.fabric.map(x=>`<span class="pill">${x}</span>`).join("");
+    const avoidHTML=w.avoid.map(x=>`<span class="pill" style="background:#ece0db;border-color:var(--rose);color:#8a5848">${x}</span>`).join("");
+    const tipsHTML=w.tips.map(t=>`<div class="tip"><div class="ic">${t.ic}</div><div class="tx">${t.tx}</div></div>`).join("");
+    document.getElementById('weatherBody').innerHTML=`
+      <div style="margin-bottom:12px">
+        <div class="cat-label" style="color:var(--sage)">✓ 適合材質</div>
+        <div style="margin-top:6px">${fabHTML}</div>
+      </div>
+      <div style="margin-bottom:14px">
+        <div class="cat-label" style="color:var(--rose)">✕ 今天盡量避開</div>
+        <div style="margin-top:6px">${avoidHTML}</div>
+      </div>
+      ${tipsHTML}
+    `;
+  }
+  showWeather('hot');
+  document.getElementById('weatherTabs').querySelectorAll('.occ-tab').forEach(t=>{
+    t.onclick=()=>{
+      document.getElementById('weatherTabs').querySelectorAll('.occ-tab').forEach(x=>x.classList.remove('on'));
+      t.classList.add('on');
+      showWeather(t.dataset.w);
+    };
   });
 
   // 自動存檔本次結果（供下次直接開啟）
