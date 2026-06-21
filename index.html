@@ -1290,10 +1290,57 @@ function bindItemFav(){
     const name=el.dataset.fav;
     if(STORE.hasFavItem(name))el.classList.add('faved');
     el.onclick=()=>{
-      const f=STORE.toggleFavItem(name);
-      el.classList.toggle('faved',f.items.includes(name));
+      // 已收藏 → 直接取消，不跳核對
+      if(STORE.hasFavItem(name)){
+        const f=STORE.toggleFavItem(name);
+        el.classList.toggle('faved',f.items.includes(name));
+        return;
+      }
+      // 未收藏 → 跳心法核對
+      showMantraCheck(name, ()=>{
+        const f=STORE.toggleFavItem(name);
+        el.classList.toggle('faved',f.items.includes(name));
+      });
     };
   });
+}
+
+/* ===== 心法核對 ===== */
+function showMantraCheck(itemName, onConfirm){
+  // 取得心法卡文字
+  const codeEl=document.querySelector('.mantra-code');
+  const lineEl=document.querySelector('.mantra-line');
+  const code=codeEl?codeEl.textContent.trim():'你的風格公式';
+  const line=lineEl?lineEl.textContent.trim():'';
+
+  // 建立 overlay
+  const overlay=document.createElement('div');
+  overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px';
+  overlay.innerHTML=`
+    <div style="background:#fbf9f4;border-radius:10px;padding:28px 24px;max-width:340px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.18)">
+      <div style="font-size:11px;letter-spacing:.18em;color:#b08574;margin-bottom:12px">✦ 心法核對</div>
+      <div style="font-size:15px;font-weight:500;color:#2c2520;margin-bottom:6px">「${itemName}」</div>
+      <div style="font-size:13px;color:#5e5046;margin-bottom:16px">你打算加入待購清單。先對照你的風格公式：</div>
+      <div style="background:#f0e8df;border-radius:6px;padding:14px 16px;margin-bottom:20px">
+        <div style="font-size:11px;letter-spacing:.12em;color:#b08574;margin-bottom:6px">${code}</div>
+        <div style="font-size:12.5px;color:#5e5046;line-height:1.6">${line}</div>
+      </div>
+      <div style="font-size:13.5px;font-weight:500;color:#2c2520;margin-bottom:16px;text-align:center">這個單品符合你的公式嗎？</div>
+      <div style="display:flex;gap:10px">
+        <button id="mc-yes" style="flex:1;padding:10px;border-radius:5px;border:1px solid #b08574;background:#b08574;color:#fff;font-size:13.5px;cursor:pointer">✓ 符合，加入清單</button>
+        <button id="mc-skip" style="flex:1;padding:10px;border-radius:5px;border:1px solid #c9bdb5;background:transparent;color:#5e5046;font-size:13.5px;cursor:pointer">先放下這件</button>
+      </div>
+      <div style="text-align:center;margin-top:12px">
+        <button id="mc-anyway" style="background:none;border:none;font-size:12px;color:#9e9087;cursor:pointer;text-decoration:underline">不管，還是加入</button>
+      </div>
+    </div>`;
+
+  document.body.appendChild(overlay);
+
+  overlay.querySelector('#mc-yes').onclick=()=>{ document.body.removeChild(overlay); onConfirm(); };
+  overlay.querySelector('#mc-skip').onclick=()=>{ document.body.removeChild(overlay); };
+  overlay.querySelector('#mc-anyway').onclick=()=>{ document.body.removeChild(overlay); onConfirm(); };
+  overlay.onclick=(e)=>{ if(e.target===overlay) document.body.removeChild(overlay); };
 }
 
 /* ===== 眼鏡模組 ===== */
