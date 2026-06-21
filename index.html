@@ -1170,6 +1170,47 @@ function renderResult(){
       <div class="occ-tabs" id="occTabsWrap">${occTabs}</div>
       <div class="occ-body" id="occBody"></div>
     </div>
+    <div class="block" id="glassesBlock">
+      <h3>眼鏡框型建議 <span class="cnt">臉型×臉寬×鼻樑×風格</span></h3>
+      <p style="font-size:13px;color:var(--ink-soft);margin-bottom:16px">選你的臉部條件，即時推薦框型：</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+        <div>
+          <div class="cat-label" style="margin-bottom:8px">臉寬</div>
+          <div class="occ-tabs" id="glFaceWidth" style="flex-direction:column;gap:6px">
+            <div class="occ-tab on" data-gfw="narrow">窄臉</div>
+            <div class="occ-tab" data-gfw="medium">適中</div>
+            <div class="occ-tab" data-gfw="wide">寬臉</div>
+          </div>
+        </div>
+        <div>
+          <div class="cat-label" style="margin-bottom:8px">鼻樑</div>
+          <div class="occ-tabs" id="glNose" style="flex-direction:column;gap:6px">
+            <div class="occ-tab on" data-gnose="low">低平</div>
+            <div class="occ-tab" data-gnose="medium">適中</div>
+            <div class="occ-tab" data-gnose="high">高挺</div>
+          </div>
+        </div>
+      </div>
+      <div class="cat-label" style="margin-bottom:8px">風格偏好</div>
+      <div class="occ-tabs" id="glStyle" style="flex-wrap:wrap;margin-bottom:16px">
+        <div class="occ-tab on" data-gst="natural">自然低調</div>
+        <div class="occ-tab" data-gst="intellectual">知性文青</div>
+        <div class="occ-tab" data-gst="edgy">個性前衛</div>
+        <div class="occ-tab" data-gst="sweet">甜美可愛</div>
+      </div>
+      <div id="glassesResult"></div>
+    </div>
+    <div class="block" id="weatherBlock">
+      <h3>今天穿什麼厚薄？ <span class="cnt">體感選擇</span></h3>
+      <p style="font-size:13px;color:var(--ink-soft);margin-bottom:14px">選今天的體感，幫你調整材質建議：</p>
+      <div class="occ-tabs" id="weatherTabs">
+        <div class="occ-tab on" data-w="hot">大熱</div>
+        <div class="occ-tab" data-w="mild">微涼</div>
+        <div class="occ-tab" data-w="cold">寒冷</div>
+        <div class="occ-tab" data-w="rain">雨天</div>
+      </div>
+      <div id="weatherBody"></div>
+    </div>
   `;
 
   // 場合（吃身型 hint）
@@ -1241,6 +1282,110 @@ function bindItemFav(){
     };
   });
 }
+
+/* ===== 眼鏡模組 ===== */
+const GLASSES_FACE={
+  oval:   {good:["方框","幾何框","飛行員框","貓眼框"],avoid:["正圓框"],note:"鵝蛋臉最百搭，大膽挑你喜歡的。"},
+  round:  {good:["方框","矩形框","角框","幾何框"],avoid:["正圓框","小圓框"],note:"有稜角的框型能拉長視覺、修飾圓潤感。"},
+  square: {good:["圓框","橢圓框","貓眼框","無框"],avoid:["方框","角形框"],note:"圓弧框型柔化方正下顎，讓整體更柔和。"},
+  heart:  {good:["底部較寬的框","飛行員框","淡色框","無框"],avoid:["貓眼框","頂部裝飾重的框"],note:"重心往下移的框型能平衡上寬下窄。"},
+  long:   {good:["大框","圓框","方框","有裝飾上緣的框"],avoid:["細長窄框"],note:"大框或有高度的框型能縮短臉的縱向感。"},
+  diamond:{good:["貓眼框","橢圓框","無框","細邊框"],avoid:["窄框"],note:"柔和的框型能平衡突出的顴骨。"}
+};
+const GLASSES_WIDTH={
+  narrow:{tip:"臉窄適合中小框或細邊框，避免超出臉寬的大框。",prefer:"細框、小圓框、無框"},
+  medium:{tip:"臉寬適中，大中小框都好駕馭，以個人風格為主。",prefer:"各尺寸皆可"},
+  wide:  {tip:"臉寬建議選稍寬的框，框寬不超過臉寬為原則。",prefer:"寬框、大框、飛行員框"}
+};
+const GLASSES_NOSE={
+  low:   {tip:"鼻樑低平建議選可調節鼻托的款式，避免鏡片貼臉。",prefer:"矽膠鼻托可調式、輕量無托框"},
+  medium:{tip:"鼻樑適中，大多數框型都適合。",prefer:"無特別限制"},
+  high:  {tip:"鼻樑高挺可撐起各種框型，包含較重的粗框或厚板材。",prefer:"板材框、粗框、波士頓框"}
+};
+const GLASSES_STYLE={
+  natural:     {frames:["金屬細框","無框","透明框","淡色板材"],vibe:"低調輕盈，日常最好搭。"},
+  intellectual:{frames:["圓框","波士頓框","玳瑁色板材","細金屬方框"],vibe:"文青感十足，搭針織、西裝外套。"},
+  edgy:        {frames:["幾何框","不對稱框","黑色粗框","金屬感框"],vibe:"個性強烈，是整套的焦點單品。"},
+  sweet:       {frames:["貓眼框","粉色框","小圓框","透明彩色框"],vibe:"甜美可愛，搭碎花、粉色系、荷葉邊。"}
+};
+const glSt={fw:'narrow',nose:'low',style:'natural'};
+function renderGlasses(){
+  const fc=GLASSES_FACE[state.face]||GLASSES_FACE.oval;
+  const fw=GLASSES_WIDTH[glSt.fw];
+  const ns=GLASSES_NOSE[glSt.nose];
+  const st=GLASSES_STYLE[glSt.style];
+  const goodH=fc.good.map(x=>`<span class="pill" style="background:#e3e6db;border-color:#9aaa84;color:#5a6147">${x}</span>`).join('');
+  const avoidH=fc.avoid.map(x=>`<span class="pill" style="background:#ece0db;border-color:var(--rose);color:#8a5848">${x}</span>`).join('');
+  const frameH=st.frames.map(x=>`<span class="pill">${x}</span>`).join('');
+  const el=document.getElementById('glassesResult');
+  if(!el) return;
+  el.innerHTML=`
+    <div class="catrow" style="margin-bottom:12px">
+      <div class="cat-label" style="color:#9aaa84">✓ 依臉型適合</div>
+      <div style="margin-top:6px">${goodH}</div>
+      <p style="font-size:12.5px;color:var(--ink-soft);margin-top:6px">${fc.note}</p>
+    </div>
+    <div class="catrow" style="margin-bottom:12px">
+      <div class="cat-label" style="color:var(--rose)">✕ 盡量避開</div>
+      <div style="margin-top:6px">${avoidH}</div>
+    </div>
+    <div class="catrow" style="margin-bottom:12px">
+      <div class="cat-label">依臉寬</div>
+      <p style="font-size:13px;margin-top:4px">${fw.tip}</p>
+      <p style="font-size:12.5px;color:var(--ink-soft)">推薦：${fw.prefer}</p>
+    </div>
+    <div class="catrow" style="margin-bottom:12px">
+      <div class="cat-label">依鼻樑</div>
+      <p style="font-size:13px;margin-top:4px">${ns.tip}</p>
+      <p style="font-size:12.5px;color:var(--ink-soft)">推薦：${ns.prefer}</p>
+    </div>
+    <div class="catrow" style="margin-bottom:0">
+      <div class="cat-label">風格框型</div>
+      <div style="margin-top:6px">${frameH}</div>
+      <p style="font-size:12.5px;color:var(--ink-soft);margin-top:6px">${st.vibe}</p>
+    </div>`;
+}
+function bindGlTabs(id,key,attr){
+  const w=document.getElementById(id);
+  if(!w) return;
+  w.querySelectorAll('.occ-tab').forEach(t=>{
+    t.onclick=()=>{w.querySelectorAll('.occ-tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');glSt[key]=t.dataset[attr];renderGlasses();};
+  });
+}
+renderGlasses();
+bindGlTabs('glFaceWidth','fw','gfw');
+bindGlTabs('glNose','nose','gnose');
+bindGlTabs('glStyle','style','gst');
+
+/* ===== 天氣連動 ===== */
+const WEATHER={
+  hot: {fab:["棉麻、天絲、莫代爾","透氣針織、竹節棉","輕薄雪紡"],avoid:["牛仔外套","厚針織","合成纖維"],tips:["選淺色、低飽和色系，反射熱量。","涼鞋或無跟穆勒鞋讓腳透氣。","寬褲＋無袖是大熱天最安全公式。"]},
+  mild:{fab:["輕磅針織、棉質長袖","薄牛仔外套、風衣","薄款雪紡外搭"],avoid:["羽絨衣（太厚）","無袖單穿（太涼）"],tips:["疊穿是關鍵：薄內搭＋中層針織＋輕外套。","樂福鞋或踝靴，比涼鞋多一點保暖。","中間層選你的亮點色，大膽一點。"]},
+  cold:{fab:["羊毛、喀什米爾","厚針織、法蘭絨","羽絨、鋪棉材質"],avoid:["雪紡單穿","無里布薄外套"],tips:["圍巾是CP值最高的單品，保暖又成焦點。","長靴比球鞋多保暖，又拉長腿型比例。","深色為主、亮色點綴，靠圍巾帶出氣色。"]},
+  rain:{fab:["防水尼龍、防潑水材質","快乾布料","深色或印花"],avoid:["淺色棉質（濕了透明）","麂皮材質","帆布包"],tips:["深色系是雨天首選，水漬不明顯。","避開麂皮和布面鞋，選皮革或橡膠底。","用傘的顏色當亮點，也是一種造型思維。"]}
+};
+function showWeather(k){
+  const w=WEATHER[k];
+  const fabH=w.fab.map(x=>`<span class="pill" style="background:#e3e6db;border-color:#9aaa84;color:#5a6147">${x}</span>`).join('');
+  const avoidH=w.avoid.map(x=>`<span class="pill" style="background:#ece0db;border-color:var(--rose);color:#8a5848">${x}</span>`).join('');
+  const tipH=w.tips.map(t=>`<div class="tip"><div class="ic">💡</div><div class="tx">${t}</div></div>`).join('');
+  const el=document.getElementById('weatherBody');
+  if(!el) return;
+  el.innerHTML=`
+    <div style="margin-bottom:12px">
+      <div class="cat-label" style="color:#9aaa84">✓ 適合材質</div>
+      <div style="margin-top:6px">${fabH}</div>
+    </div>
+    <div style="margin-bottom:14px">
+      <div class="cat-label" style="color:var(--rose)">✕ 今天盡量避開</div>
+      <div style="margin-top:6px">${avoidH}</div>
+    </div>
+    ${tipH}`;
+}
+showWeather('hot');
+document.getElementById('weatherTabs').querySelectorAll('.occ-tab').forEach(t=>{
+  t.onclick=()=>{document.getElementById('weatherTabs').querySelectorAll('.occ-tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');showWeather(t.dataset.w);};
+});
 
 /* ===== 複製功能 ===== */
 function _doCopy(text, btn, label){
