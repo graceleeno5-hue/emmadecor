@@ -205,6 +205,7 @@
       <div id="result"></div>
       <div class="nav">
         <button class="btn btn-ghost" onclick="restart()">↺ 重新測一次</button>
+        <button class="btn btn-primary" id="copyResultBtn" onclick="copyResult(this)">複製結果</button>
         <button class="btn btn-primary" onclick="window.scrollTo({top:0,behavior:'smooth'})">回到頂部</button>
       </div>
     </div>
@@ -1017,6 +1018,53 @@ function bindItemFav(){
       const f=STORE.toggleFavItem(name);
       el.classList.toggle('faved',f.items.includes(name));
     };
+  });
+}
+
+/* ===== 複製結果 ===== */
+function copyResult(btn){
+  const s=state;
+  const SHAPE_LABEL={hourglass:'沙漏型',pear:'梨型',apple:'蘋果型',rectangle:'矩形',inverted:'倒三角型'};
+  const HEIGHT_LABEL={short:'嬌小',medium:'中等',tall:'高挑'};
+  const SKIN_LABEL={light:'淺膚色',medium:'中膚色',dark:'深膚色',warm:'暖調',cool:'冷調'};
+  const VIBE_LABEL={feminine:'女性優雅',natural:'自然清爽',edgy:'個性前衛',classic:'知性經典',romantic:'浪漫甜美'};
+  const FACE_LABEL={oval:'鵝蛋臉',round:'圓臉',square:'方臉',heart:'心型臉',long:'長臉'};
+
+  // 抓目前顯示的造型公式
+  const fmlEl=document.getElementById('formulaBody');
+  const titleEl=fmlEl?fmlEl.querySelector('[style*="rose"]'):null;
+  const lineEl=fmlEl?fmlEl.querySelectorAll('div')[1]:null;
+  const focusEl=fmlEl?fmlEl.querySelector('[style*="ink-soft"]'):null;
+  const fmlTitle=titleEl?titleEl.innerText:'';
+  const fmlLine=lineEl?lineEl.innerText:'';
+  const fmlFocus=focusEl?focusEl.innerText:'';
+
+  const lines=[
+    '✦ 形・穿搭顧問 造型結果',
+    '─────────────────',
+    `身型：${SHAPE_LABEL[s.shape]||s.shape}　身高：${HEIGHT_LABEL[s.height]||s.height}`,
+    `膚色：${SKIN_LABEL[s.skin]||s.skin}　氣質：${VIBE_LABEL[s.vibe]||s.vibe}`,
+    s.face?`臉型：${FACE_LABEL[s.face]||s.face}`:'',
+    '',
+    `【今日造型公式 — ${fmlTitle}】`,
+    fmlLine,
+    fmlFocus?`重點：${fmlFocus}`:'',
+    '',
+    '─────────────────',
+    '由 形・穿搭顧問 生成　emmadecor.vercel.app',
+  ].filter(l=>l!==null).join('\n');
+
+  navigator.clipboard.writeText(lines).then(()=>{
+    btn.textContent='已複製！';
+    btn.style.background='var(--sage)';
+    setTimeout(()=>{btn.textContent='複製結果';btn.style.background='';},2000);
+  }).catch(()=>{
+    const ta=document.createElement('textarea');
+    ta.value=lines;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent='已複製！';
+    setTimeout(()=>{btn.textContent='複製結果';},2000);
   });
 }
 
