@@ -1225,6 +1225,19 @@ function renderResult(){
     t.onclick=()=>{occWrap.querySelectorAll('.occ-tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');showOcc(t.dataset.occ);};
   });
 
+  // 眼鏡模組初始化
+  renderGlasses();
+  bindGlTabs('glFaceWidth','fw','gfw');
+  bindGlTabs('glNose','nose','gnose');
+  bindGlTabs('glStyle','style','gst');
+
+  // 天氣連動初始化
+  showWeather('hot');
+  const wtTabs=document.getElementById('weatherTabs');
+  if(wtTabs) wtTabs.querySelectorAll('.occ-tab').forEach(t=>{
+    t.onclick=()=>{wtTabs.querySelectorAll('.occ-tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');showWeather(t.dataset.w);};
+  });
+
   // 今日造型公式切換
   const fmlBody=document.getElementById('formulaBody');
   const fmlTabs=document.getElementById('formulaTabs');
@@ -1352,10 +1365,7 @@ function bindGlTabs(id,key,attr){
     t.onclick=()=>{w.querySelectorAll('.occ-tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');glSt[key]=t.dataset[attr];renderGlasses();};
   });
 }
-renderGlasses();
-bindGlTabs('glFaceWidth','fw','gfw');
-bindGlTabs('glNose','nose','gnose');
-bindGlTabs('glStyle','style','gst');
+// renderGlasses 與 bindGlTabs 在 renderResult 內呼叫
 
 /* ===== 天氣連動 ===== */
 const WEATHER={
@@ -1382,10 +1392,7 @@ function showWeather(k){
     </div>
     ${tipH}`;
 }
-showWeather('hot');
-document.getElementById('weatherTabs').querySelectorAll('.occ-tab').forEach(t=>{
-  t.onclick=()=>{document.getElementById('weatherTabs').querySelectorAll('.occ-tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');showWeather(t.dataset.w);};
-});
+// showWeather 與 weatherTabs 在 renderResult 內呼叫
 
 /* ===== 複製功能 ===== */
 function _doCopy(text, btn, label){
