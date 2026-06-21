@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>形・穿搭顧問</title>
+<meta name="description" content="個人造型顧問：依身型、膚色、氣質、臉型，給你可直接照做的穿搭、配色、髮型、妝容與購物建議。">
+<meta name="theme-color" content="#e8e2d6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="形・穿搭顧問">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%23b08574'/%3E%3Ctext x='90' y='120' font-size='90' text-anchor='middle' fill='%23fbf9f4' font-family='serif'%3E形%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23b08574'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23fbf9f4' font-family='serif'%3E形%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="/manifest.json">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+  :root{
+    /* 大地莫蘭迪（降飽和、灰階感）*/
+    --ink:#4a3f38;            /* 可可深棕，文字 */
+    --ink-soft:#8a7d70;       /* 次要文字 */
+    --paper:#e8e2d6;          /* 燕麥底（頁面）*/
+    --paper-soft:#e0d8ca;     /* 略深燕麥（小元素底）*/
+    --card:#fbf9f4;           /* 暖白卡片（調亮，色票文字更清楚）*/
+    --rose:#b08574;           /* 陶土玫瑰（主強調，取代原磚紅）*/
+    --rose-deep:#9a7060;      /* 深陶土 */
+    --sage:#8a9079;           /* 橄欖灰綠（次強調）*/
+    --gold:#c4a878;           /* 淡金（線條點綴）*/
+    --line:#d2c8b6;           /* 線色 */
+    --shadow:rgba(74,63,56,.10);
+    --skin:#e8cdbd; --hair:#5a4a40;
+    --serif:"Noto Serif TC","Songti TC",serif;
+    --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{font-family:var(--sans);font-weight:400;background:var(--paper);color:var(--ink);line-height:1.75;overflow-x:hidden;letter-spacing:.01em}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px}
+  header{padding:52px 0 26px;text-align:center}
+  .eyebrow{font-family:var(--sans);font-size:11px;letter-spacing:.5em;color:var(--rose);font-weight:500;margin-bottom:16px;padding-left:.5em}
+  h1{font-family:var(--serif);font-size:clamp(34px,8.5vw,50px);font-weight:900;letter-spacing:.04em;line-height:1.08;margin-bottom:14px}
+  h1 .stroke{color:var(--rose)}
+  .sub{font-family:var(--sans);font-size:14px;font-weight:300;color:var(--ink-soft);max-width:28em;margin:0 auto;line-height:1.8}
+  .rule{width:40px;height:2px;background:var(--gold);margin:22px auto 0}
+  .steps{display:flex;justify-content:center;gap:6px;margin:30px 0 4px;flex-wrap:wrap}
+  .step-dot{font-family:var(--sans);font-size:11.5px;font-weight:400;letter-spacing:.08em;color:var(--ink-soft);padding:6px 14px;border:1px solid var(--line);border-radius:2px;background:transparent;transition:.3s}
+  .step-dot.on{background:var(--rose);color:var(--card);border-color:var(--rose)}
+  .step-dot.done{background:transparent;color:var(--sage);border-color:var(--sage)}
+  section{padding:10px 0 30px}
+  .panel{display:none}
+  .panel.active{display:block;animation:fade .45s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .q-title{font-family:var(--serif);text-align:center;font-size:22px;font-weight:700;margin:16px 0 6px;letter-spacing:.04em;color:var(--ink)}
+  .q-hint{text-align:center;font-size:13px;font-weight:300;color:var(--ink-soft);margin-bottom:24px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:13px}
+  .grid.cols2{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+  .grid.cols3{grid-template-columns:repeat(3,1fr);gap:10px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px 12px 15px;cursor:pointer;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative}
+  .card:hover{transform:translateY(-2px);box-shadow:0 8px 22px var(--shadow);border-color:var(--rose)}
+  .card:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .card.sel{border-color:var(--rose);border-width:2px;background:#e4d5ca;box-shadow:0 6px 18px var(--shadow)}
+  .card.sel::after{content:"\2713";position:absolute;top:8px;right:10px;width:26px;height:26px;background:var(--rose);color:var(--card);border-radius:50%;font-size:16px;font-weight:700;line-height:26px}
+  .card svg{width:64px;height:92px;display:block;margin:0 auto 8px}
+  .card .name{font-family:var(--serif);font-weight:700;font-size:15px;letter-spacing:.04em;color:var(--ink)}
+  .card .tag{font-size:11.5px;font-weight:300;color:var(--ink-soft);margin-top:3px}
+  .card.mini{padding:14px 10px}
+  .card.mini .name{font-size:14px}
+  .card.multi.sel{border-color:var(--sage);background:#dde0d2}
+  .card.multi.sel::after{background:var(--sage)}
+  .card.multi .emoji{font-size:28px;display:block;margin:4px auto 8px;line-height:1}
+  .nav{display:flex;gap:12px;margin-top:30px;justify-content:center;flex-wrap:wrap}
+  .btn{font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:.1em;padding:13px 30px;border-radius:2px;cursor:pointer;border:none;transition:.2s}
+  .btn:disabled{opacity:.35;cursor:not-allowed}
+  .btn-primary{background:var(--rose);color:var(--card)}
+  .btn-primary:hover:not(:disabled){background:var(--rose-deep);transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--rose);color:var(--rose)}
+  .res-head{text-align:center;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:30px 22px;margin-bottom:8px}
+  .res-head svg{width:96px;height:138px;margin:0 auto 6px;display:block}
+  .res-head .rname{font-family:var(--serif);font-size:26px;font-weight:900;letter-spacing:.04em;color:var(--ink)}
+  .res-head .rprofile{font-size:12px;font-weight:400;color:var(--rose);margin-top:10px;letter-spacing:.12em}
+  .res-head .rdesc{font-size:13.5px;font-weight:300;color:var(--ink-soft);margin-top:12px;max-width:30em;margin-inline:auto;line-height:1.85}
+  .block{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:24px 20px;margin-top:16px}
+  .block h3{font-family:var(--sans);font-size:11px;letter-spacing:.28em;color:var(--rose);font-weight:500;margin-bottom:18px;display:flex;align-items:center;gap:10px;text-transform:uppercase}
+  .block h3::before{content:"";width:18px;height:1px;background:var(--gold);display:inline-block}
+  .block h3 .cnt{margin-left:auto;font-size:10px;color:var(--ink-soft);letter-spacing:.1em;font-weight:300}
+  .tip{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+  .tip:last-child{margin-bottom:0}
+  .tip .ic{flex-shrink:0;width:28px;height:28px;border-radius:4px;background:var(--paper);display:grid;place-items:center;font-size:14px;margin-top:1px}
+  .tip .tx{font-size:14px;font-weight:300;line-height:1.75}
+  .tip .tx span[style]{font-weight:500 !important}
+  .tip.no .ic{background:#e5d4ce}
+  .catrow{margin-bottom:20px}
+  .catrow:last-child{margin-bottom:0}
+  .cat-label{font-family:var(--sans);font-size:11.5px;font-weight:500;color:var(--sage);letter-spacing:.1em;margin-bottom:10px;padding-left:2px}
+  .palette{display:flex;flex-wrap:wrap;gap:11px}
+  .sw{text-align:center}
+  .sw .chip{width:50px;height:50px;border-radius:4px;border:1px solid rgba(74,63,56,.18);box-shadow:0 2px 6px var(--shadow)}
+  .sw .lab{font-size:10.5px;font-weight:300;color:var(--ink-soft);margin-top:6px}
+  .occ-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+  .occ-tab{font-family:var(--sans);font-size:13px;font-weight:400;padding:7px 16px;border-radius:2px;cursor:pointer;border:1px solid var(--line);background:transparent;transition:.2s;letter-spacing:.05em;color:var(--ink-soft)}
+  .occ-tab.on{background:var(--sage);color:var(--card);border-color:var(--sage)}
+  .occ-body{font-size:14px;font-weight:300;min-height:40px}
+  .occ-body .pill{display:inline-block;background:var(--paper);border:1px solid var(--line);border-radius:2px;padding:5px 12px;margin:0 6px 8px 0;font-size:12.5px}
+  .occ-body .shapehint{display:block;margin-top:8px;font-size:12.5px;color:var(--ink-soft)}
+  .pill{display:inline-block;background:var(--paper);border:1px solid var(--line);border-radius:2px;padding:5px 12px;margin:0 6px 8px 0;font-size:12.5px;font-weight:400}
+  .pill.buy{background:#e3e6db;border-color:var(--sage);color:#5a6147}
+  .pill.avoidbuy{background:#ece0db;border-color:var(--rose);color:#8a5848}
+  .pill.kw{background:var(--card);border-color:var(--gold);color:var(--ink);cursor:default}
+  .pill.key{background:var(--rose);border-color:var(--rose);color:var(--card);font-weight:500;letter-spacing:.04em}
+  .block.lazy{background:linear-gradient(165deg,#f3ece2,var(--card));border-color:var(--rose)}
+  .favbtn{position:absolute;top:12px;right:12px;background:none;border:none;font-size:22px;color:var(--rose);cursor:pointer;line-height:1;padding:2px 4px;transition:transform .15s}
+  .favbtn:hover{transform:scale(1.15)}
+  .favbtn.faved{color:var(--rose)}
+  .pill.buy{position:relative;padding-right:26px}
+  .pill.buy .favheart{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--sage);opacity:.55}
+  .pill.buy.faved{background:#d8e0cc;border-color:var(--sage)}
+  .pill.buy.faved .favheart{content:"♥";opacity:1}
+  .pill.buy.faved .favheart::before{content:"♥"}
+  .pill.buy.faved .favheart{font-size:0}
+  .pill.buy.faved .favheart::before{font-size:13px}
+  .fav-section{margin-bottom:22px}
+  .fav-empty{text-align:center;color:var(--ink-soft);font-size:14px;padding:30px 0}
+  footer{font-family:var(--sans);text-align:center;padding:34px 0 48px;color:var(--ink-soft);font-size:11px;font-weight:300;letter-spacing:.1em}
+  footer .v{color:var(--rose)}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">PERSONAL STYLE</div>
+    <h1>形<span class="stroke">・</span>穿搭顧問</h1>
+    <p class="sub">透過 5 個步驟，建立你的個人造型檔案。整合身型、比例、膚色、氣質與臉型，給你可直接照做的穿搭建議。</p>
+    <div class="rule"></div>
+    <div class="steps">
+      <span class="step-dot on" id="sd1">① 身型</span>
+      <span class="step-dot" id="sd2">② 身高比例</span>
+      <span class="step-dot" id="sd3">③ 局部</span>
+      <span class="step-dot" id="sd4">④ 膚色氣質</span>
+      <span class="step-dot" id="sd5">⑤ 臉型</span>
+      <span class="step-dot" id="sd6">⑥ 建議</span>
+    </div>
+    <div id="returning" style="display:none;margin-top:18px">
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-primary" id="btn-resume">繼續看上次的造型檔案</button>
+        <button class="btn btn-ghost" id="btn-favs">♥ 我的收藏</button>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div class="panel" id="pFav">
+      <div class="q-title">我的收藏</div>
+      <div class="q-hint">你存下來的造型公式與單品</div>
+      <div id="favContent"></div>
+      <div class="nav"><button class="btn btn-ghost" onclick="go(1)">← 回首頁</button></div>
+    </div>
+    <div class="panel active" id="p1">
+      <div class="q-title">你的身型比較接近哪一種？</div>
+      <div class="q-hint">不確定的話，選最接近的就好</div>
+      <div class="grid" id="grid-shape"></div>
+      <div class="nav"><button class="btn btn-primary" id="next1" disabled onclick="go(2)">下一步 →</button></div>
+    </div>
+    <div class="panel" id="p2">
+      <div class="q-title">你的身高與比例？</div>
+      <div class="q-hint">這會影響長度、腰線高低與顯高技巧</div>
+      <div class="cat-label" style="text-align:center;margin-top:4px">身高</div>
+      <div class="grid cols3" id="grid-height" style="margin-bottom:20px"></div>
+      <div class="cat-label" style="text-align:center">腿與身的比例</div>
+      <div class="grid cols3" id="grid-prop"></div>
+      <div class="nav">
+        <button class="btn btn-ghost" onclick="go(1)">← 上一步</button>
+        <button class="btn btn-primary" id="next2" disabled onclick="go(3)">下一步 →</button>
+      </div>
+    </div>
+    <div class="panel" id="p3">
+      <div class="q-title">有想特別修飾的部位嗎？</div>
+      <div class="q-hint" id="concern-hint">可複選最多 3 項，也可以都不選直接進下一步</div>
+      <div class="grid cols2" id="grid-concern"></div>
+      <div class="nav">
+        <button class="btn btn-ghost" onclick="go(2)">← 上一步</button>
+        <button class="btn btn-primary" onclick="go(4)">下一步 →</button>
+      </div>
+    </div>
+    <div class="panel" id="p4">
+      <div class="q-title">膚色與想呈現的氣質</div>
+      <div class="q-hint">這兩項決定你的專屬配色：膚色定色系、氣質定調性</div>
+      <div id="skin-quiz"></div>
+      <div class="cat-label" style="text-align:center;margin-top:24px">你想呈現的氣質？</div>
+      <div class="grid cols3" id="grid-vibe"></div>
+      <div class="nav">
+        <button class="btn btn-ghost" onclick="go(3)">← 上一步</button>
+        <button class="btn btn-primary" id="next4" disabled onclick="go(5)">下一步 →</button>
+      </div>
+    </div>
+    <div class="panel" id="p5">
+      <div class="q-title">你的臉型比較接近哪一種？</div>
+      <div class="q-hint">這決定髮型、瀏海、眼鏡與耳環的建議；不確定就選最接近的</div>
+      <div class="grid" id="grid-face"></div>
+      <div class="nav">
+        <button class="btn btn-ghost" onclick="go(4)">← 上一步</button>
+        <button class="btn btn-primary" id="next5" disabled onclick="go(6)">看我的建議 →</button>
+      </div>
+    </div>
+    <div class="panel" id="p6">
+      <div id="result"></div>
+      <div class="nav">
+        <button class="btn btn-ghost" onclick="restart()">↺ 重新測一次</button>
+        <button class="btn btn-primary" onclick="window.scrollTo({top:0,behavior:'smooth'})">回到頂部</button>
+      </div>
+    </div>
+  </section>
+  <footer>形・穿搭顧問 <span class="v">v1.0</span>　·　示意圖為程式繪製，後續可替換為插畫</footer>
+</div>
+<script>
+/* ===== 建議資料庫 ===== */
+const SHAPES={
+  pear:{name:"梨形",label:"梨形 (A型)",tag:"肩窄臀寬",desc:"肩線較窄、臀與大腿較豐潤，重心在下半身。核心策略是上半身做加法、下半身做減法，讓上下視覺平衡。",
+    tips:[{cat:"top",prio:9,text:"上衣選有設計感的領口、泡泡袖、橫紋或亮色，把視線往上半身帶。"},{cat:"bottom",prio:9,text:"下身用深色、直筒或微喇版型修飾大腿；A字裙最安全好搭。"},{cat:"outer",prio:7,text:"短版、有結構感或微墊肩的外套能拓寬肩線、平衡比例。"},{cat:"shoes",prio:5,text:"尖頭鞋、跟鞋拉長腿部線條，讓下半身更俐落。"},{cat:"overall",prio:6,text:"重點在平衡：上身吸睛、下身收斂，比例自然就順了。"}],
+    avoid:["緊身褲、淺色窄管褲會放大下半身。","長度剛好落在大腿最寬處的上衣或外套。"]},
+  apple:{name:"蘋果形",label:"蘋果形 (O型)",tag:"腰線不明顯",desc:"上圍與腰腹較圓潤、四肢相對纖細。核心策略是製造縱向線條、露出最細的手腳，把視覺重心拉長。",
+    tips:[{cat:"top",prio:9,text:"上衣選 V領、垂墜材質最顯瘦；長度過臀、不要紮太緊。"},{cat:"bottom",prio:8,text:"展現纖細的小腿，窄管褲、直筒褲都很適合。"},{cat:"outer",prio:8,text:"長版、開襟不扣的外套能形成俐落的直條視覺。"},{cat:"shoes",prio:6,text:"露腳踝的鞋款讓腿看起來更修長。"},{cat:"overall",prio:7,text:"重點在拉長：縱向線條與露出纖細處，最能顯瘦。"}],
+    avoid:["腰部抓皺、橫向剪裁會強調腰腹。","高領＋寬鬆上衣容易顯得厚重。"]},
+  hourglass:{name:"沙漏形",label:"沙漏形 (X型)",tag:"腰線明顯",desc:"肩與臀寬度相近、腰線明顯，是比例最均衡的身型。策略很單純：順著腰線、合身就好，不必刻意修飾。",
+    tips:[{cat:"top",prio:8,text:"合身、能展現腰線的剪裁最適合你。"},{cat:"bottom",prio:8,text:"高腰款式最能凸顯你的好比例。"},{cat:"outer",prio:7,text:"收腰、綁帶的大衣完美貼合身型。"},{cat:"shoes",prio:4,text:"各種鞋款都好搭，依場合選即可。"},{cat:"overall",prio:7,text:"重點在順勢：合身展現腰線，就是你最大的優勢。"}],
+    avoid:["過於寬鬆的 oversize 會藏住你最大的優勢。","低腰、不收腰的款式會弱化腰線。"]},
+  rectangle:{name:"矩形",label:"矩形 (H型)",tag:"上下較直",desc:"肩、腰、臀寬度相近，線條俐落清爽。策略是製造曲線與層次，用剪裁與配件創造腰身與律動感。",
+    tips:[{cat:"top",prio:8,text:"荷葉邊、抓皺、口袋等細節能增加上身層次。"},{cat:"bottom",prio:8,text:"褶裙、寬褲、A字裙都能營造出曲線。"},{cat:"outer",prio:8,text:"用腰帶或收腰款式幫你畫出腰線。"},{cat:"shoes",prio:4,text:"俐落的鞋型呼應你清爽的線條。"},{cat:"acc",prio:6,text:"腰帶是你的好朋友，能即時製造腰身。"},{cat:"overall",prio:7,text:"重點在造曲線：用細節與腰帶創造起伏。"}],
+    avoid:["完全筆直、無腰身的長版會更顯平板。","上下同寬的剪裁缺乏變化。"]},
+  inverted:{name:"倒三角",label:"倒三角 (V型)",tag:"肩寬臀窄",desc:"肩線或上圍較寬、臀部較窄，重心在上半身。策略與梨形相反：上半身做減法、下半身做加法。",
+    tips:[{cat:"top",prio:9,text:"上衣選素色、深色、V領，避免肩部裝飾以柔化肩線。"},{cat:"bottom",prio:9,text:"下身用淺色、寬褲、褶裙增加份量，平衡上寬下窄。"},{cat:"outer",prio:7,text:"避免墊肩；柔軟垂墜的材質較合適。"},{cat:"shoes",prio:5,text:"有份量的鞋款（如踝靴）能穩定下盤視覺。"},{cat:"overall",prio:6,text:"重點在下移重心：上收下放，比例就平衡了。"}],
+    avoid:["墊肩、泡泡袖、橫紋上衣會再放大肩線。","上寬下窄的緊身褲讓比例更頭重腳輕。"]}
+};
+const HEIGHT={
+  petite:{name:"嬌小",tag:"約160cm以下",tips:[{cat:"overall",prio:8,text:"全身盡量維持同色系或上下深淺相近，減少橫向切斷，看起來更高。"},{cat:"bottom",prio:9,text:"高腰是你的關鍵：把腰線往上提，腿的視覺長度立刻增加。"},{cat:"top",prio:6,text:"上衣紮進下身、或選短版，避免蓋住腰線拉低重心。"},{cat:"shoes",prio:6,text:"裸色、尖頭鞋與腿同色延伸，比厚底更顯高。"},{cat:"acc",prio:4,text:"配件選小巧款，過大的包與飾品會顯得身形更小。"}],avoid:["過長的長裙、長大衣容易把嬌小身形淹沒。","大面積橫向撞色會把身高切斷。"]},
+  standard:{name:"標準",tag:"約160–170cm",tips:[{cat:"overall",prio:4,text:"身高比例自由度高，重點放在身型與比例的修飾即可。"}],avoid:[]},
+  tall:{name:"高挑",tag:"約170cm以上",tips:[{cat:"overall",prio:7,text:"你能輕鬆駕馭長版、oversize、寬褲等多數人撐不起來的款式，大膽用。"},{cat:"top",prio:6,text:"可用橫向元素、層次穿搭、撞色分割，平衡修長的線條。"},{cat:"bottom",prio:5,text:"長裙、寬褲、九分到全長都好看，注意褲長要足夠。"},{cat:"acc",prio:4,text:"配件可選有份量的大款，比例上更協調。"}],avoid:["過短、版型偏小的單品容易顯得比例不對。"]}
+};
+const PROP={
+  longleg:{name:"長腿型",tag:"腿長於身",tips:[{cat:"overall",prio:6,text:"比例優勢在腿，低腰、落腰款式你也能輕鬆駕馭，不必死守高腰。"},{cat:"top",prio:5,text:"可選長版上衣、長版外套，平衡修長的下半身。"}],avoid:["全身過度強調高腰，反而可能讓比例失衡。"]},
+  shortleg:{name:"短腿型",tag:"身長於腿",tips:[{cat:"bottom",prio:9,text:"高腰是必備：盡量把腰線往上提，創造腿長的錯覺。"},{cat:"top",prio:7,text:"上衣務必紮進下身，或選短版，露出腰線位置。"},{cat:"shoes",prio:6,text:"鞋與褲同色、選尖頭，延伸腿部線條。"},{cat:"overall",prio:6,text:"避免在大腿、膝蓋處有明顯橫向分割線。"}],avoid:["低腰褲、落在大腿中段的長度會讓腿更短。","長版上衣蓋住腰線會壓低比例。"]},
+  balanced:{name:"上下均衡",tag:"比例協調",tips:[{cat:"overall",prio:3,text:"上下比例協調，穿搭自由度高，依身型與場合選擇即可。"}],avoid:[]}
+};
+const CONCERN={
+  waist:{name:"腰",icon:"🎀",tips:[{cat:"top",prio:8,text:"修飾腰部：選垂墜、不貼身的上衣，避免緊身包覆。"},{cat:"outer",prio:6,text:"開襟不扣的長版外套，能在腰側形成俐落直線。"},{cat:"overall",prio:5,text:"用 V領、長項鍊把視線往上引，淡化腰部存在感。"}],avoid:[]},
+  arm:{name:"手臂",icon:"💪",tips:[{cat:"top",prio:8,text:"修飾手臂：選五分袖、七分袖最顯瘦，剛好蓋過手臂最粗處。"},{cat:"top",prio:6,text:"微落肩、有點份量的袖型，比緊貼手臂的合身袖更修飾。"}],avoid:["無袖＋緊身、或袖口剛好卡在手臂最粗處的款式。"]},
+  belly:{name:"小腹",icon:"🌙",tips:[{cat:"top",prio:8,text:"修飾小腹：選腰腹處寬鬆、A字或傘狀的上衣與洋裝。"},{cat:"bottom",prio:7,text:"高腰款能托住並包覆小腹，比低腰更平整。"},{cat:"overall",prio:5,text:"避免在腹部有抓皺、口袋或亮色橫條等吸睛細節。"}],avoid:["緊身針織、貼身洋裝會凸顯腹部線條。"]},
+  hip:{name:"臀",icon:"🍑",tips:[{cat:"bottom",prio:8,text:"修飾臀部：選 A字裙、傘狀裙、寬鬆直筒褲帶過臀型。"},{cat:"top",prio:6,text:"上衣長度蓋過臀部最寬處，能柔化臀線。"},{cat:"overall",prio:5,text:"深色下身＋亮色上身，把視覺重心往上帶。"}],avoid:["緊身、淺色、有亮面的下身會放大臀部。"]},
+  shoulder:{name:"肩膀寬",icon:"📐",tips:[{cat:"top",prio:8,text:"修飾肩寬：選 V領、U領，避免一字領與墊肩，柔化肩線。"},{cat:"top",prio:6,text:"落肩、連肩袖比明顯的肩線剪裁更顯柔和。"},{cat:"overall",prio:5,text:"視覺重心往下帶，下身可多點份量平衡肩寬。"}],avoid:["墊肩、泡泡袖、一字領、橫條紋上衣會放大肩膀。"]},
+  thigh:{name:"大腿",icon:"🦵",tips:[{cat:"bottom",prio:8,text:"修飾大腿：選直筒、微寬、A字裙，從大腿最寬處順順帶下來。"},{cat:"bottom",prio:6,text:"深色、霧面材質的下身比淺色亮面更顯瘦。"},{cat:"top",prio:5,text:"上衣或外套長度蓋過大腿最寬處，修飾效果好。"}],avoid:["緊身窄管褲、淺色或亮面的包腿款會凸顯大腿。"]},
+  calf:{name:"小腿",icon:"🥿",tips:[{cat:"shoes",prio:8,text:"修飾小腿：裙長或褲長落在小腿最細處（膝下或腳踝），避開最粗處。"},{cat:"shoes",prio:6,text:"裸色、尖頭、與腿同色的鞋款延伸線條，顯腿細。"},{cat:"bottom",prio:5,text:"微寬的寬褲、長裙能自然帶過小腿線條。"}],avoid:["長度剛好切在小腿最粗處的裙褲、綁帶或踝靴會顯壯。"]},
+  neckShort:{name:"脖子偏短",icon:"🦢",tips:[{cat:"top",prio:8,text:"脖子偏短：選 V領、大開領、低圓領，露出鎖骨拉長頸部。"},{cat:"top",prio:6,text:"避免高領、立領、polo領，會把脖子包住顯更短。"},{cat:"acc",prio:6,text:"配飾選長條垂墜耳環、中長項鍊，製造 V 型縱向延伸。"},{cat:"overall",prio:4,text:"上衣領口越開、越往下，頸部視覺越修長。"}],avoid:["高領、Choker、圓鈕扣耳環會壓縮頸部視覺。"]},
+  neckLong:{name:"脖子偏長",icon:"🦒",tips:[{cat:"top",prio:7,text:"脖子偏長：高領、立領、船型領都很適合，能填補頸部空間。"},{cat:"acc",prio:6,text:"配飾選短項鍊、Choker、貼頸款，剛好點綴修長頸線。"},{cat:"overall",prio:4,text:"圍巾、領巾是你的好朋友，增添層次又好看。"}],avoid:["過深的大 V 領可能讓頸部顯得更空。"]}
+};
+const OCCASIONS={
+  work:{name:"上班",base:["合身西裝外套打底","素色上衣＋俐落褲裙","低跟尖頭鞋"]},
+  date:{name:"約會",base:["柔和顏色或小亮點單品","展現身型優勢的剪裁","精緻小配件"]},
+  casual:{name:"休閒",base:["舒適的棉麻材質","好搭的牛仔或卡其","小白鞋或帆布鞋"]},
+  sport:{name:"運動",base:["排汗透氣的機能材質","合身不卡動作的版型","俐落綁髮與輕量鞋"]}
+};
+const OCC_SHAPE_HINT={pear:"下身選深色俐落版型，上身可帶亮點。",apple:"用 V領與垂墜剪裁，維持俐落縱向感。",hourglass:"挑能展現腰線的合身款，最顯優勢。",rectangle:"加一條腰帶或收腰款，立刻有層次。",inverted:"上身收斂、下身增加份量，平衡比例。"};
+/* ===== 膚色：引導診斷題（答案帶冷暖傾向 cool/warm/neutral）===== */
+const SKIN_QUIZ=[
+  {q:"穿哪種顏色的衣服比較顯氣色？",hint:"想想哪種讓你看起來更有精神",opts:[
+    {label:"純白、冷灰、正藍",val:"cool"},
+    {label:"米色、卡其、大地色",val:"warm"},
+    {label:"兩種都還行",val:"neutral"}]},
+  {q:"塗哪種口紅比較不顯憔悴？",hint:"素顏時最明顯",opts:[
+    {label:"粉紫、莓粉色系",val:"cool"},
+    {label:"珊瑚、橘紅色系",val:"warm"},
+    {label:"都差不多",val:"neutral"}]},
+  {q:"手腕內側的血管看起來偏什麼色？",hint:"在自然光下看最準",opts:[
+    {label:"偏藍、偏紫",val:"cool"},
+    {label:"偏綠、偏橄欖",val:"warm"},
+    {label:"看不太出來／兩者都有",val:"neutral"}]},
+  {q:"戴哪種金屬比較襯膚、顯氣色？",hint:"想想哪種戴起來臉比較亮",opts:[
+    {label:"銀飾、白金",val:"cool"},
+    {label:"金飾、玫瑰金",val:"warm"},
+    {label:"兩種都還好",val:"neutral"}]},
+  {q:"曬太陽後皮膚通常會？",hint:"想想夏天曬一整天的反應",opts:[
+    {label:"容易曬紅、不太變黑",val:"cool"},
+    {label:"容易曬黑、變古銅色",val:"warm"},
+    {label:"先紅後黑",val:"neutral"}]}
+];
+/* 膚色判定結果說明 */
+const SKIN_RESULT={
+  cool:{name:"冷膚調",tag:"藍底膚色",desc:"你的膚色帶藍粉底調，適合乾淨、清透、帶藍感的顏色，能讓氣色更明亮。",
+    palette:[["#3a4a5a","寶藍"],["#7a4a6a","正紫"],["#a8443f","莓紅"],["#f4f1ef","純白"],["#5a6b6f","灰青"]],
+    avoid:"避開橘調、土黃、暖棕，容易顯得氣色蠟黃。"},
+  warm:{name:"暖膚調",tag:"黃底膚色",desc:"你的膚色帶黃金底調，適合溫暖、飽和、帶大地感的顏色，能襯出健康的好氣色。",
+    palette:[["#c45b54","磚紅"],["#c79a4b","芥黃"],["#9c7a4a","駝棕"],["#e6dccb","米杏"],["#7d8a6f","橄欖綠"]],
+    avoid:"避開螢光冷色、正藍、純白，容易顯得臉色暗沉。"},
+  neutral:{name:"中性膚調",tag:"冷暖皆宜",desc:"你的膚色冷暖傾向不明顯，是百搭型，多數顏色都能駕馭，避開極端螢光即可。",
+    palette:[["#b5806f","奶茶"],["#8a8a7a","霧灰綠"],["#a8443f","酒紅"],["#d8c9b8","裸杏"],["#5a6b80","霧藍"]],
+    avoid:"避開過於螢光、過於刺眼的飽和色，柔和的莫蘭迪色最適合你。"}
+};
+
+/* ===== 氣質：調性方向 + 冷暖橋接色票 =====
+   palettes 依膚色冷暖分 cool/warm/neutral 三版：
+   氣質決定「氛圍方向」，膚色決定「色彩冷暖底調」，兩者橋接不打架 */
+const VIBE={
+  zhi:{name:"知性",tag:"俐落沉穩",
+    toneDesc:"低彩度、收斂的配色，營造專業可信賴的氛圍。",
+    palettes:{
+      cool:[["#2b3a4a","藏青"],["#3f4a52","鐵藍灰"],["#5a6b70","灰青"],["#2b2622","墨黑"],["#7a3b4a","冷酒紅·點綴"]],
+      warm:[["#3a3a2e","墨橄欖"],["#5a4a3a","深咖"],["#9c7a4a","駝"],["#2b2622","墨黑"],["#7a3b3b","暖酒紅·點綴"]],
+      neutral:[["#3a4148","炭灰藍"],["#4a4a4a","鐵灰"],["#8a7a64","灰駝"],["#2b2622","墨黑"],["#7a3b42","酒紅·點綴"]]},
+    items:"挑剪裁俐落的襯衫、西裝外套、直筒褲，線條乾淨不繁複。",
+    avoid:"過多荷葉邊、蝴蝶結等甜美元素會削弱專業感。"},
+  sweet:{name:"甜美",tag:"柔和粉嫩",
+    toneDesc:"高明度、柔和的粉嫩配色，營造親切溫柔的氛圍。",
+    palettes:{
+      cool:[["#e6c0cc","冷霧粉"],["#dcdcea","薰衣草"],["#c8d4e0","霧藍"],["#eae6f0","藕白"],["#d0c4dc","紫丁香"]],
+      warm:[["#e8c4b0","蜜桃粉"],["#f0e0c8","奶油"],["#e6d2c0","杏色"],["#f2e8d8","米黃"],["#e0c4a8","暖裸"]],
+      neutral:[["#e6c8c4","柔粉"],["#ece4d8","奶杏"],["#d4d2dc","霧紫灰"],["#ede6dc","象牙"],["#d8c4c4","藕粉"]]},
+    items:"挑泡泡袖、圓領、荷葉邊、碎花、針織等帶圓潤感的單品。",
+    avoid:"全身硬挺剪裁與大量黑色會壓掉柔和的氣質。"},
+  retro:{name:"復古",tag:"懷舊調",
+    toneDesc:"懷舊感的配色，營造有故事感的氛圍（依膚色調整冷暖底）。",
+    palettes:{
+      // 橋接重點：冷膚的復古 → 冷調復古色，不給暖駝芥黃
+      cool:[["#7a3b4a","復古酒紅"],["#2b3a4a","藏青"],["#3a4a3a","墨綠"],["#5a5560","煙燻灰"],["#b08a92","復古玫瑰"]],
+      warm:[["#c79a4b","芥黃"],["#a8443f","磚紅"],["#5a6b3a","橄欖綠"],["#8a5a3a","棕"],["#b3a07a","卡其"]],
+      neutral:[["#9a5a4a","磚棕"],["#5a5a3a","橄欖"],["#7a4a52","酒紅棕"],["#8a7a5a","灰卡其"],["#a88a7a","奶茶棕"]]},
+    items:"挑格紋、燈芯絨、針織背心、襯衫洋裝、復古版型單品。",
+    avoid:"過於螢光、科技感的材質會破壞懷舊調性。"},
+  cool2:{name:"個性",tag:"俐落帥氣",
+    toneDesc:"高對比、強烈的配色，營造有態度的俐落氛圍。",
+    palettes:{
+      cool:[["#2b2622","墨黑"],["#f4f1ef","純白"],["#a83b4a","冷正紅·亮點"],["#3a3f4a","鐵灰"],["#5a5a6a","冷灰紫"]],
+      warm:[["#2b2622","墨黑"],["#f2ece0","暖白"],["#b8442e","暖正紅·亮點"],["#4a443a","暖鐵灰"],["#6a5a4a","深咖灰"]],
+      neutral:[["#2b2622","墨黑"],["#f0ede8","白"],["#a8443f","正紅·亮點"],["#3f3f44","鐵灰"],["#5f5a5f","灰紫"]]},
+    items:"挑皮革、丹寧、俐落西裝、靴款，用黑白與單一亮色製造對比。",
+    avoid:"過多柔和粉嫩色會稀釋俐落的個性。"},
+  elegant:{name:"優雅",tag:"質感簡約",
+    toneDesc:"質感中性色的配色，營造低調有品味的氛圍。",
+    palettes:{
+      cool:[["#ece6dc","冷米白"],["#8a8a7a","霧灰"],["#9aa0a4","銀灰"],["#d4c0c4","冷霧粉"],["#b0b4ba","鴿灰"]],
+      warm:[["#e6dccb","暖米白"],["#9c7a4a","駝"],["#b3a07a","卡其"],["#d8b8b8","暖霧粉"],["#c79a4b","低調金"]],
+      neutral:[["#e8e0d4","米白"],["#9a8a74","灰駝"],["#9a9690","霧灰"],["#d4bcbc","霧粉"],["#b8a888","香檳"]]},
+    items:"挑大地色系、簡約剪裁、好質感的素色單品，少即是多。",
+    avoid:"過多撞色與繁複裝飾會破壞簡約的高級感。"}
+};
+/* 橋接說明文（依冷暖×氣質組合，向使用者解釋為何這樣配）*/
+function bridgeNote(skin,vibe){
+  if(skin==="cool"&&vibe==="retro")return "你是冷膚調又喜歡復古風——一般復古暖大地色會讓你顯蠟黃，所以這裡幫你換成「冷調復古色」（酒紅、藏青、墨綠、煙燻灰），保留懷舊氛圍又襯膚色。";
+  if(skin==="warm"&&(vibe==="zhi"||vibe==="cool2"))return "你是暖膚調又走"+VIBE[vibe].name+"路線——這裡把一般的冷硬色微調成帶暖底的版本，讓俐落感不會跟你的膚色打架。";
+  if(skin==="cool"&&vibe==="sweet")return "你是冷膚調的甜美風——粉嫩色幫你選了帶藍紫底的冷粉系，比暖蜜桃粉更襯你的膚色。";
+  return "這組配色已依你的膚色冷暖（"+SKIN_RESULT[skin].name+"）調整過底調，與你的"+VIBE[vibe].name+"氣質相互搭配。";
+}
+
+/* ===== 身型/比例 → 深淺色上下分配（形狀邏輯，配色區引用、不重寫）===== */
+const COLOR_PLACEMENT={
+  pear:"深色建議放下半身、亮色或淺色放上半身，平衡上下比例。",
+  apple:"全身相近色調、避免腰腹處亮色，維持俐落縱向線條。",
+  hourglass:"上下皆可，順著腰線用合身款即可，不必刻意分深淺。",
+  rectangle:"可用上下不同色＋腰帶分割，創造腰線與層次。",
+  inverted:"深色放上半身、淺色或亮色放下半身，平衡上寬下窄。"
+};
+/* 比例對分配的補充 */
+const PROP_PLACEMENT={
+  shortleg:"下半身與鞋盡量同色延伸，腿看起來更長。",
+  longleg:"可大膽用上下對比色，比例優勢撐得住。",
+  balanced:""
+};
+
+/* ===== 臉型資料庫（只管頭頸以上＋配飾形狀，不碰衣服版型與顏色）===== */
+const FACE={
+  round:{name:"圓臉",tag:"長寬相近、線條柔",
+    desc:"臉部線條圓潤、長寬接近，下顎柔和。重點是「拉長、製造立體角度」，讓臉看起來更修長立體。",
+    hair:"中長髮、層次捲、能修飾兩頰的線條最適合；長度過下巴有拉長效果。",
+    bangs:"側分、空氣瀏海、長瀏海＋中分，露出額頭製造縱向感。",
+    length:"建議過下巴以上的長度，避免剛好停在臉最寬處。",
+    glasses:"方框、長方框、稜角眼鏡，用直線中和圓潤感。",
+    earring:"長條形、垂墜、水滴形耳環，拉出縱向線條。",
+    avoid:"齊瀏海＋齊下巴鮑伯頭、圓框眼鏡、大圓耳環，會放大圓潤感。"},
+  square:{name:"方臉",tag:"下顎線明顯",
+    desc:"額頭與下顎接近同寬、下顎線條較分明，輪廓俐落有個性。重點是「柔化稜角」。",
+    hair:"帶弧度的捲髮、側分長髮，用柔和線條包覆下顎角。",
+    bangs:"斜瀏海、空氣瀏海、旁分長瀏海，避免厚重齊瀏海。",
+    length:"建議長髮或中長髮，髮尾帶捲，柔化下顎。",
+    glasses:"圓框、橢圓框、無框，用曲線柔化方正輪廓。",
+    earring:"圓形、弧形、水滴形耳環，曲線中和稜角。",
+    avoid:"齊瀏海、過於方正的粗框眼鏡、幾何方耳環，會強調下顎角。"},
+  oblong:{name:"長臉",tag:"臉偏長",
+    desc:"臉部縱向較長、額頭到下巴距離長。重點是「製造橫向感、縮短視覺長度」。",
+    hair:"兩側有蓬度的捲髮、中長髮，增加橫向寬度。",
+    bangs:"齊瀏海、空氣瀏海最適合，能縮短臉的長度。",
+    length:"中長髮為佳，避免過長直髮拉長臉型。",
+    glasses:"上下較厚、有存在感的圓框或方框，截斷縱向長度。",
+    earring:"圓形、貼耳、有寬度的耳環，增加橫向感。",
+    avoid:"無瀏海中分長直髮、細長垂墜耳環，會讓臉更顯長。"},
+  oval:{name:"鵝蛋臉",tag:"比例均衡",
+    desc:"額頭略寬於下巴、線條流暢，是公認最均衡的臉型，幾乎什麼都好駕馭。",
+    hair:"幾乎所有髮型都適合，可依氣質與場合自由選擇。",
+    bangs:"各種瀏海都好看，依想要的風格選即可。",
+    length:"長短皆宜，是少數能自由嘗試的臉型。",
+    glasses:"多數框型都適合，挑與五官比例相稱的大小即可。",
+    earring:"各種耳環都好搭，可依造型主題選擇。",
+    avoid:"幾乎沒有禁忌，只要注意整體比例協調。"},
+  heart:{name:"心形臉",tag:"額寬下巴尖",
+    desc:"額頭較寬、下巴較尖（瓜子臉）。重點是「平衡上寬下窄、增加下半臉份量」。",
+    hair:"下巴附近有層次或捲度的中長髮，增加下半臉份量。",
+    bangs:"側分、長瀏海較適合，避免厚重齊瀏海加重上半臉。",
+    length:"中長到長髮，重點蓬度放在下半部。",
+    glasses:"下半部較圓、底框較寬的款式，平衡尖下巴。",
+    earring:"下半部有份量的水滴形、三角形耳環，補足下半臉。",
+    avoid:"頭頂蓬鬆的髮型、上寬下窄的耳環，會加重上寬下窄。"},
+  diamond:{name:"菱形臉",tag:"顴骨較突出",
+    desc:"額頭與下巴較窄、顴骨最寬。重點是「增加額頭與下巴寬度、柔化顴骨」。",
+    hair:"額頭與下巴附近有蓬度的髮型，平衡突出的顴骨。",
+    bangs:"齊瀏海、旁分瀏海增加額頭寬度，平衡比例。",
+    length:"中長髮、髮尾外翹，能在下顎處增加份量。",
+    glasses:"上緣較寬（貓眼、上框明顯）的款式，平衡顴骨。",
+    earring:"耳垂處有份量、下寬的耳環，柔化顴骨線條。",
+    avoid:"把兩側貼平、露出顴骨的髮型，會強調臉中段最寬處。"}
+};
+const FACE_FIELDS=[
+  ["hair","髮型","💇"],["bangs","瀏海","✂️"],["length","髮長","📏"],
+  ["glasses","眼鏡","👓"],["earring","耳環","💎"]
+];
+
+/* ===== 配飾邏輯（職責分工：每件配飾由不同模組決定）===== */
+// 金屬色 ← 膚色
+const METAL_BY_SKIN={
+  cool:{name:"銀色 / 白金 / 鉑金",note:"冷膚調戴銀色系最襯，能提亮膚色。"},
+  warm:{name:"金色 / 玫瑰金",note:"暖膚調戴金色系最襯，氣色更溫潤。"},
+  neutral:{name:"金、銀皆可",note:"中性膚調金銀都好駕馭，可依當天造型選。"}
+};
+// 項鍊長度 ← 脖子長短（取自 concerns）
+function necklaceByNeck(concerns){
+  if(concerns.includes("neckShort"))return {name:"中長項鍊、Y字鍊",note:"脖子偏短：用中長項鍊拉出 V 型縱向線條，避開貼頸 Choker。"};
+  if(concerns.includes("neckLong"))return {name:"短鍊、Choker、貼頸款",note:"脖子偏長：短鍊或 Choker 剛好點綴，修飾修長頸線。"};
+  return {name:"中長鍊（百搭）",note:"頸部比例適中，多數長度都好看，依領口高低選即可。"};
+}
+// 包包大小 ← 身高
+const BAG_BY_HEIGHT={
+  petite:{name:"小至中型包",note:"嬌小身形配小巧包款，比例更協調；過大包會顯得身形更小。"},
+  standard:{name:"中型包",note:"標準身高包款選擇自由，中型最百搭。"},
+  tall:{name:"中至大型包",note:"高挑身形可駕馭有份量的大包，比例上更顯協調。"}
+};
+// 腰帶 ← 身型
+const BELT_BY_SHAPE={
+  pear:{name:"細腰帶點綴",note:"可用細腰帶定義腰線，但避免過寬蓋住比例。"},
+  apple:{name:"少用腰帶",note:"腰腹是修飾重點，建議少用腰帶，改以垂墜線條取代。"},
+  hourglass:{name:"各式腰帶皆宜",note:"腰線是優勢，各種腰帶都能展現好比例。"},
+  rectangle:{name:"腰帶是好朋友",note:"用腰帶創造腰線與層次，是矩形身型的關鍵配件。"},
+  inverted:{name:"腰帶＋下身份量",note:"用腰帶搭配有份量的下身，平衡上寬下窄。"}
+};
+// 配件風格 ← 氣質
+const ACC_BY_VIBE={
+  zhi:"配件走精簡路線：小巧金屬感、結構包、細框眼鏡。",
+  sweet:"配件帶柔美細節：珍珠、蝴蝶結、圓潤造型小物。",
+  retro:"配件選復古元素：方釦、玳瑁框、編織包、金屬感胸針。",
+  cool2:"配件用俐落單品：粗鍊、金屬感、皮革、有態度的大框。",
+  elegant:"配件重質感：簡約線條、低調金屬、質感皮革，少而精。"
+};
+
+/* ===== 今日造型公式素材（依場合 × 各模組組出單品）===== */
+// 各場合的單品骨架（會被膚色色名、氣質、身型等填充）
+const FORMULA={
+  work:{top:"襯衫",bottom:"高腰直筒褲",outer:"西裝外套",shoes:"尖頭低跟鞋",focus:"上身清爽、下身深色拉長比例，配件小而精緻。"},
+  date:{top:"針織上衣",bottom:"高腰牛仔褲",outer:"針織外套",shoes:"樂福鞋",focus:"展現身型優勢，用一個亮點配件提氣色。"},
+  casual:{top:"白T",bottom:"牛仔褲",outer:"牛仔襯衫",shoes:"小白鞋",focus:"舒適好動，靠版型與配色維持俐落。"},
+  sport:{top:"機能上衣",bottom:"黑色運動褲",outer:"輕量外套",shoes:"運動鞋",focus:"排汗好動，俐落綁髮，配件從簡。"}
+};
+
+/* ===== 購物清單（身型 → 適合買/少買的具體單品＋可搜尋關鍵字）===== */
+const SHOP_BY_SHAPE={
+  pear:{buy:["V領上衣","泡泡袖上衣","深色直筒褲","深色A字裙","短版西裝外套","尖頭鞋"],
+        avoid:["淺色緊身褲","淺色窄管褲","落在大腿最寬處的長版上衣"],
+        kw:["V領針織上衣","深色高腰直筒褲","深色A字裙","短版西裝外套","尖頭低跟鞋"]},
+  apple:{buy:["V領上衣","垂墜長版上衣","直筒褲","窄管褲","長版開襟外套","露踝鞋"],
+        avoid:["腰部抓皺上衣","緊身針織","高領寬鬆上衣"],
+        kw:["V領垂墜上衣","過臀長版上衣","直筒褲","長版開襟外套","露踝樂福鞋"]},
+  hourglass:{buy:["合身上衣","高腰褲","高腰裙","收腰洋裝","綁帶大衣"],
+        avoid:["oversize寬鬆上衣","低腰褲","不收腰直筒洋裝"],
+        kw:["合身針織上衣","高腰直筒褲","收腰洋裝","綁帶大衣","高腰窄裙"]},
+  rectangle:{buy:["荷葉邊上衣","抓皺上衣","褶裙","寬褲","腰帶","收腰外套"],
+        avoid:["完全筆直長版","上下同寬剪裁"],
+        kw:["荷葉邊上衣","褶裙","寬褲","腰帶","收腰襯衫洋裝"]},
+  inverted:{buy:["素色V領上衣","深色上衣","淺色寬褲","褶裙","踝靴"],
+        avoid:["墊肩上衣","泡泡袖","橫紋上衣","上寬下窄緊身褲"],
+        kw:["素色V領上衣","淺色寬褲","褶裙","深色針織","踝靴"]}
+};
+// 身高比例對購物的補充關鍵字
+const SHOP_EXTRA={
+  petite:["高腰款","短版上衣"], shortleg:["高腰直筒褲","裙褲同色"],
+  tall:["長版單品","寬褲"], longleg:["落腰褲"]
+};
+
+/* ===== 妝容模組（B方案：臉型＋氣質＋膚色推妝容，不需使用者自評五官）===== */
+// 氣質 → 妝感風格、眉、眼、唇質地
+const MAKEUP_BY_VIBE={
+  zhi:{mood:"乾淨俐落的自然裸妝，重點在精緻而不誇張。",brow:"眉型清晰平直，帶一點俐落的眉峰，呈現專業感。",eye:"大地色系眼影打底，細眼線拉長，睫毛自然根根分明。",lipFinish:"霧面或半霧面質地，顯得沉穩有質感。"},
+  sweet:{mood:"柔和粉嫩的甜美妝，營造好氣色與親和力。",brow:"眉型柔和帶弧度，眉色淺一號更顯溫柔。",eye:"粉色、蜜桃色眼影，臥蠶打亮放大雙眼，睫毛捲翹。",lipFinish:"水潤或微光澤質地，咬唇或漸層更甜。"},
+  retro:{mood:"復古韻味妝容，強調輪廓與一個經典重點。",brow:"眉型稍濃、線條明確，呼應復古氛圍。",eye:"眼線是重點，可拉長或上揚做出復古眼型，搭霧面眼影。",lipFinish:"霧面、飽和度高的質地，復古感十足。"},
+  cool2:{mood:"俐落有態度的個性妝，強調眼神與輪廓。",brow:"眉型俐落、稍有角度，增添銳利感。",eye:"深邃眼線或煙燻，眼神是整張臉的焦點。",lipFinish:"霧面質地，裸棕或正紅都能撐起氣場。"},
+  elegant:{mood:"柔霧質感妝，低調而精緻的高級感。",brow:"眉型自然柔順，無明顯稜角。",eye:"裸色、霧粉、香檳色眼影，柔和暈染，不搶戲。",lipFinish:"絲絨霧面或奶油質地，裸色系最顯氣質。"}
+};
+// 臉型 → 腮紅位置與修容（修飾輪廓，與髮型模組的形狀邏輯一致但作用在妝）
+const MAKEUP_BY_FACE={
+  round:{blush:"腮紅斜向往太陽穴方向刷，製造拉提與立體感。",contour:"修容打在兩頰側邊與下顎，視覺上收窄臉型。"},
+  square:{blush:"腮紅以圓形方式打在蘋果肌，柔化稜角。",contour:"修容重點在下顎角，柔化方正線條。"},
+  oblong:{blush:"腮紅橫向刷在蘋果肌，增加橫向感、縮短臉長。",contour:"修容打在額頭髮際與下巴尖，縮短臉的縱向長度。"},
+  oval:{blush:"腮紅自然打在蘋果肌即可，臉型均衡好駕馭。",contour:"輕修兩頰維持立體感，不需大幅修飾。"},
+  heart:{blush:"腮紅打在蘋果肌偏下，平衡上寬下窄。",contour:"修容打在額頭兩側，柔化較寬的上半臉。"},
+  diamond:{blush:"腮紅打在蘋果肌正面，柔化突出的顴骨。",contour:"修容輕掃顴骨最高點，平衡中段寬度。"}
+};
+// 膚色 → 唇色與底妝方向（與配色橋接一致：冷膚冷調、暖膚暖調）
+const MAKEUP_BY_SKIN={
+  cool:{lip:"冷調唇色最襯你：玫瑰粉、莓果色、正紅、覆盆子。",base:"底妝選帶粉的冷調色號，氣色更透亮。"},
+  warm:{lip:"暖調唇色最襯你：珊瑚橘、磚紅、奶茶、暖蜜桃。",base:"底妝選帶黃的暖調色號，膚色更均勻自然。"},
+  neutral:{lip:"冷暖唇色都好駕馭：豆沙、玫瑰裸、正紅都適合。",base:"底妝冷暖色號皆可，挑最貼近膚色的即可。"}
+};
+const CAT_LABEL={top:"上衣",bottom:"下身",outer:"外套",shoes:"鞋",acc:"配飾",overall:"整體原則"};
+const CAT_ICON={top:"👚",bottom:"👖",outer:"🧥",shoes:"👠",acc:"👜",overall:"✨"};
+const CAT_ORDER=["overall","top","bottom","outer","shoes","acc"];
+
+/* ===== 升級版程式插畫：女性人物輪廓（含髮型、衣著線條）===== */
+function figureSVG(shape){
+  // 依身型調整軀幹與下身寬度
+  const cfg={
+    pear:     {sh:20, wa:17, hip:30, leg:26},
+    apple:    {sh:24, wa:27, hip:23, leg:22},
+    hourglass:{sh:25, wa:15, hip:26, leg:24},
+    rectangle:{sh:22, wa:21, hip:22, leg:22},
+    inverted: {sh:30, wa:18, hip:18, leg:20}
+  }[shape]||{sh:22,wa:19,hip:24,leg:23};
+  const cx=49;
+  const {sh,wa,hip,leg}=cfg;
+  return `<svg viewBox="0 0 98 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs><linearGradient id="g${shape}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f2eee5"/><stop offset="1" stop-color="#e8d8cf"/></linearGradient></defs>
+    <!-- 頭髮後層 -->
+    <path d="M${cx-13} 20 q-3 14 1 24 q2 5 5 6 q-9-12 -6-30z M${cx+13} 20 q3 14 -1 24 q-2 5 -5 6 q9-12 6-30z" fill="var(--hair)"/>
+    <!-- 臉 -->
+    <ellipse cx="${cx}" cy="20" rx="9.5" ry="11" fill="var(--skin)"/>
+    <!-- 瀏海 -->
+    <path d="M${cx-10} 16 q3-11 10-11 q7 0 10 11 q-5-5 -10-5 q-5 0-10 5z" fill="var(--hair)"/>
+    <!-- 頸 -->
+    <rect x="${cx-3}" y="29" width="6" height="6" fill="var(--skin)"/>
+    <!-- 身體（依身型變化的剪影）-->
+    <path d="
+      M${cx-sh} 38
+      Q${cx} 34 ${cx+sh} 38
+      L${cx+wa} 70
+      Q${cx} 73 ${cx-wa} 70 Z" fill="url(#g${shape})" stroke="var(--rose)" stroke-width="1.6" stroke-linejoin="round"/>
+    <!-- 下身 -->
+    <path d="
+      M${cx-wa} 70
+      Q${cx} 73 ${cx+wa} 70
+      L${cx+hip} 96
+      Q${cx} 100 ${cx-hip} 96 Z" fill="url(#g${shape})" stroke="var(--rose)" stroke-width="1.6" stroke-linejoin="round"/>
+    <!-- 腿 -->
+    <path d="M${cx-leg*0.5} 96 L${cx-leg*0.42} 130 l-4 0 L${cx-3} 98 Z" fill="var(--skin)" stroke="var(--rose)" stroke-width="1.1"/>
+    <path d="M${cx+leg*0.5} 96 L${cx+leg*0.42} 130 l4 0 L${cx+3} 98 Z" fill="var(--skin)" stroke="var(--rose)" stroke-width="1.1"/>
+    <!-- 手臂 -->
+    <path d="M${cx-sh+2} 40 q-7 14 -5 30" stroke="var(--rose)" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <path d="M${cx+sh-2} 40 q7 14 5 30" stroke="var(--rose)" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  </svg>`;
+}
+
+/* ===== 臉型輪廓插畫（程式繪製簡圖）===== */
+function faceSVG(key){
+  const cx=40, cy=42;
+  // 各臉型用不同的輪廓路徑表達長寬與下顎差異
+  const paths={
+    round:   `M${cx} 14 q20 0 20 26 q0 24 -20 30 q-20 -6 -20 -30 q0 -26 20 -26z`,
+    square:  `M${cx-19} 20 q0 -6 6 -6 h26 q6 0 6 6 v24 q0 18 -19 24 q-19 -6 -19 -24z`,
+    oblong:  `M${cx} 10 q17 0 17 24 q0 30 -17 38 q-17 -8 -17 -38 q0 -24 17 -24z`,
+    oval:    `M${cx} 13 q18 0 18 25 q0 27 -18 32 q-18 -5 -18 -32 q0 -25 18 -25z`,
+    heart:   `M${cx-19} 22 q0 -8 19 -8 q19 0 19 8 q0 18 -8 30 q-6 9 -11 12 q-5 -3 -11 -12 q-8 -12 -8 -30z`,
+    diamond: `M${cx} 12 q9 2 13 16 q5 14 -13 42 q-18 -28 -13 -42 q4 -14 13 -16z`
+  };
+  return `<svg viewBox="0 0 80 92" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="${paths[key]}" fill="#f7e3dd" stroke="var(--rose)" stroke-width="1.8" stroke-linejoin="round"/>
+    <circle cx="${cx-7}" cy="40" r="1.6" fill="var(--rose)"/>
+    <circle cx="${cx+7}" cy="40" r="1.6" fill="var(--rose)"/>
+    <path d="M${cx-3} 50 q3 2 6 0" stroke="var(--rose)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  </svg>`;
+}
+
+/* ===== 狀態 ===== */
+const state={shape:null,height:null,prop:null,concerns:[],skinAns:[],skin:null,vibe:null,face:null};
+
+/* ===== 儲存層（安全包裝 localStorage，含版本與遷移保護）=====
+   預覽環境可能停用 localStorage，全部以 try/catch 包住，失敗時不影響功能 */
+const STORE={
+  KEY_PROFILE:"style_profile_v1",   // 上次測驗結果
+  KEY_FAV:"style_favorites_v1",     // 收藏
+  ok(){try{const t="__t";localStorage.setItem(t,"1");localStorage.removeItem(t);return true;}catch(e){return false;}},
+  saveProfile(s){try{localStorage.setItem(this.KEY_PROFILE,JSON.stringify({v:1,ts:Date.now(),state:s}));}catch(e){}},
+  loadProfile(){try{const r=localStorage.getItem(this.KEY_PROFILE);if(!r)return null;const o=JSON.parse(r);return o&&o.state?o.state:null;}catch(e){return null;}},
+  clearProfile(){try{localStorage.removeItem(this.KEY_PROFILE);}catch(e){}},
+  getFav(){try{const r=localStorage.getItem(this.KEY_FAV);if(!r)return {formulas:[],items:[]};const o=JSON.parse(r);
+    // 遷移保護：缺欄位時補上，不弄丟舊資料
+    return {formulas:Array.isArray(o.formulas)?o.formulas:[],items:Array.isArray(o.items)?o.items:[]};}catch(e){return {formulas:[],items:[]};}},
+  setFav(f){try{localStorage.setItem(this.KEY_FAV,JSON.stringify({v:1,formulas:f.formulas,items:f.items}));}catch(e){}},
+  toggleFavItem(name){const f=this.getFav();const i=f.items.indexOf(name);if(i>=0)f.items.splice(i,1);else f.items.push(name);this.setFav(f);return f;},
+  hasFavItem(name){return this.getFav().items.includes(name);},
+  toggleFavFormula(obj){const f=this.getFav();const key=obj.key;const i=f.formulas.findIndex(x=>x.key===key);if(i>=0)f.formulas.splice(i,1);else f.formulas.push(obj);this.setFav(f);return f;},
+  hasFavFormula(key){return this.getFav().formulas.some(x=>x.key===key);}
+};
+
+/* ===== 渲染選項卡 ===== */
+function buildCards(){
+  const gs=document.getElementById('grid-shape');
+  Object.entries(SHAPES).forEach(([k,s])=>{
+    const c=document.createElement('div');c.className='card';c.tabIndex=0;c.setAttribute('role','button');
+    c.innerHTML=`${figureSVG(k)}<div class="name">${s.label}</div><div class="tag">${s.tag}</div>`;
+    const pick=()=>{document.querySelectorAll('#grid-shape .card').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');state.shape=k;document.getElementById('next1').disabled=false;};
+    c.onclick=pick;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick();}};
+    gs.appendChild(c);
+  });
+  const gh=document.getElementById('grid-height');
+  Object.entries(HEIGHT).forEach(([k,h])=>{
+    const c=document.createElement('div');c.className='card mini';c.tabIndex=0;c.setAttribute('role','button');
+    c.innerHTML=`<div class="name">${h.name}</div><div class="tag">${h.tag}</div>`;
+    const pick=()=>{document.querySelectorAll('#grid-height .card').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');state.height=k;checkStep2();};
+    c.onclick=pick;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick();}};
+    gh.appendChild(c);
+  });
+  const gp=document.getElementById('grid-prop');
+  Object.entries(PROP).forEach(([k,p])=>{
+    const c=document.createElement('div');c.className='card mini';c.tabIndex=0;c.setAttribute('role','button');
+    c.innerHTML=`<div class="name">${p.name}</div><div class="tag">${p.tag}</div>`;
+    const pick=()=>{document.querySelectorAll('#grid-prop .card').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');state.prop=k;checkStep2();};
+    c.onclick=pick;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick();}};
+    gp.appendChild(c);
+  });
+  const gc=document.getElementById('grid-concern');
+  const NECK_PAIR={neckShort:'neckLong',neckLong:'neckShort'};
+  Object.entries(CONCERN).forEach(([k,co])=>{
+    const c=document.createElement('div');c.className='card multi';c.tabIndex=0;c.setAttribute('role','button');
+    c.dataset.concern=k;
+    c.innerHTML=`<span class="emoji">${co.icon}</span><div class="name">${co.name}</div>`;
+    const toggle=()=>{
+      const i=state.concerns.indexOf(k);
+      if(i>=0){state.concerns.splice(i,1);c.classList.remove('sel');}
+      else{
+        // 脖子長短互斥：選一個就取消另一個
+        const pair=NECK_PAIR[k];
+        if(pair){
+          const pi=state.concerns.indexOf(pair);
+          if(pi>=0){state.concerns.splice(pi,1);const pe=gc.querySelector(`[data-concern="${pair}"]`);if(pe)pe.classList.remove('sel');}
+        }
+        // 複選上限：最多 3 項，避免建議互相打架
+        if(state.concerns.length>=3){
+          const hint=document.getElementById('concern-hint');
+          if(hint){hint.textContent="最多選 3 項，重點修飾效果更好";hint.style.color="var(--rose)";
+            clearTimeout(window._chTimer);window._chTimer=setTimeout(()=>{hint.textContent="可複選最多 3 項，也可以都不選直接進下一步";hint.style.color="";},2000);}
+          return;
+        }
+        state.concerns.push(k);c.classList.add('sel');
+      }
+    };
+    c.onclick=toggle;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}};
+    gc.appendChild(c);
+  });
+  // 臉型卡
+  const gf=document.getElementById('grid-face');
+  Object.entries(FACE).forEach(([k,f])=>{
+    const c=document.createElement('div');c.className='card';c.tabIndex=0;c.setAttribute('role','button');
+    c.innerHTML=`${faceSVG(k)}<div class="name">${f.name}</div><div class="tag">${f.tag}</div>`;
+    const pick=()=>{document.querySelectorAll('#grid-face .card').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');state.face=k;document.getElementById('next5').disabled=false;};
+    c.onclick=pick;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick();}};
+    gf.appendChild(c);
+  });
+}
+function checkStep2(){document.getElementById('next2').disabled=!(state.height&&state.prop);}
+
+/* ===== 膚色三問 + 氣質 建構 ===== */
+function buildStep4(){
+  const sq=document.getElementById('skin-quiz');
+  sq.innerHTML=SKIN_QUIZ.map((item,qi)=>`
+    <div class="catrow" style="margin-bottom:16px">
+      <div class="cat-label">膚色測驗 ${qi+1}／${SKIN_QUIZ.length}　${item.q}</div>
+      <div style="font-size:12.5px;color:#a99e8e;margin:-4px 0 8px 2px">${item.hint}</div>
+      <div class="grid cols3" data-skinq="${qi}">
+        ${item.opts.map((o,oi)=>`<div class="card mini skinopt" data-q="${qi}" data-val="${o.val}" data-oi="${oi}" tabindex="0" role="button"><div class="name" style="font-size:13.5px">${o.label}</div></div>`).join("")}
+      </div>
+    </div>`).join("");
+  sq.querySelectorAll('.skinopt').forEach(c=>{
+    const pick=()=>{
+      const qi=+c.dataset.q;
+      sq.querySelectorAll(`.skinopt[data-q="${qi}"]`).forEach(x=>x.classList.remove('sel'));
+      c.classList.add('sel');
+      state.skinAns[qi]=c.dataset.val;
+      checkStep4();
+    };
+    c.onclick=pick;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick();}};
+  });
+  const gv=document.getElementById('grid-vibe');
+  gv.innerHTML="";
+  Object.entries(VIBE).forEach(([k,v])=>{
+    const c=document.createElement('div');c.className='card mini';c.tabIndex=0;c.setAttribute('role','button');
+    c.innerHTML=`<div class="name">${v.name}</div><div class="tag">${v.tag}</div>`;
+    const pick=()=>{document.querySelectorAll('#grid-vibe .card').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');state.vibe=k;checkStep4();};
+    c.onclick=pick;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick();}};
+    gv.appendChild(c);
+  });
+}
+/* 膚色三題加總 → 冷暖中性 */
+function judgeSkin(){
+  const cnt={cool:0,warm:0,neutral:0};
+  state.skinAns.forEach(v=>{if(v)cnt[v]++;});
+  // 取最高；平手且有 neutral 成分或冷暖各半 → neutral
+  let best="neutral",max=-1,tie=false;
+  for(const k of["cool","warm","neutral"]){
+    if(cnt[k]>max){max=cnt[k];best=k;tie=false;}
+    else if(cnt[k]===max){tie=true;}
+  }
+  // 冷暖完全平手(各>0且相等)視為中性
+  if(cnt.cool>0&&cnt.cool===cnt.warm&&cnt.cool>=cnt.neutral)best="neutral";
+  return best;
+}
+function checkStep4(){
+  const ready=state.skinAns.filter(Boolean).length===SKIN_QUIZ.length && state.vibe;
+  document.getElementById('next4').disabled=!ready;
+}
+
+/* ===== 規則引擎：合併三維度建議 ===== */
+function buildAdvice(){
+  // 收集所有來源的 tips
+  let all=[];
+  const push=(arr,src)=>{(arr||[]).forEach(t=>all.push({...t,src}));};
+  push(SHAPES[state.shape].tips,"shape");
+  push(HEIGHT[state.height].tips,"height");
+  push(PROP[state.prop].tips,"prop");
+  state.concerns.forEach(c=>push(CONCERN[c].tips,"concern"));
+
+  // 依分類分組，組內依 prio 由高到低，去除幾乎重複的（同 cat 下文字高度相似）
+  const byCat={};
+  all.forEach(t=>{(byCat[t.cat]=byCat[t.cat]||[]).push(t);});
+  Object.keys(byCat).forEach(cat=>{
+    byCat[cat].sort((a,b)=>b.prio-a.prio);
+    const seen=new Set();const out=[];
+    byCat[cat].forEach(t=>{
+      const key=t.text.slice(0,6);
+      if(!seen.has(key)){seen.add(key);out.push(t);}
+    });
+    byCat[cat]=out;
+  });
+
+  // 收集 avoid（合併去重）
+  let avoid=[];
+  const addAvoid=a=>(a||[]).forEach(x=>{if(!avoid.includes(x))avoid.push(x);});
+  addAvoid(SHAPES[state.shape].avoid);
+  addAvoid(HEIGHT[state.height].avoid);
+  addAvoid(PROP[state.prop].avoid);
+  state.concerns.forEach(c=>addAvoid(CONCERN[c].avoid));
+
+  return {byCat,avoid};
+}
+
+/* ===== 渲染結果 ===== */
+function renderResult(){
+  const s=SHAPES[state.shape];
+  const h=HEIGHT[state.height], p=PROP[state.prop];
+  state.skin=judgeSkin();
+  const sk=SKIN_RESULT[state.skin];
+  const vb=VIBE[state.vibe];
+  const fc=FACE[state.face];
+  const concernNames=state.concerns.map(c=>CONCERN[c].name);
+  const {byCat,avoid}=buildAdvice();
+
+  let profileParts=[s.name, h.name, p.name, sk.name, vb.name+"風"];
+  if(fc)profileParts.push(fc.name);
+  if(concernNames.length)profileParts.splice(3,0,"想修飾"+concernNames.join("、"));
+  const profile=profileParts.join("・");
+
+  // 穿搭建議區塊（身型+比例+局部，管形狀）
+  let adviceHTML="";
+  CAT_ORDER.forEach(cat=>{
+    if(!byCat[cat]||!byCat[cat].length)return;
+    const rows=byCat[cat].map(t=>`<div class="tip"><div class="ic">${CAT_ICON[cat]}</div><div class="tx">${t.text}</div></div>`).join("");
+    adviceHTML+=`<div class="catrow"><div class="cat-label">${CAT_LABEL[cat]}</div>${rows}</div>`;
+  });
+  const avoidHTML=avoid.map(a=>`<div class="tip no"><div class="ic">✕</div><div class="tx">${a}</div></div>`).join("");
+
+  // ===== 配飾建議（職責分工合成）=====
+  const metal=METAL_BY_SKIN[state.skin];
+  const necklace=necklaceByNeck(state.concerns);
+  const bag=BAG_BY_HEIGHT[state.height];
+  const belt=BELT_BY_SHAPE[state.shape];
+  const accVibe=ACC_BY_VIBE[state.vibe];
+  const accItems=[
+    ["💎","耳環",fc?fc.earring:"依臉型選擇耳環形狀。"],
+    ["📿","項鍊",necklace.name+"——"+necklace.note],
+    ["👓","眼鏡",fc?fc.glasses:"依臉型選擇鏡框。"],
+    ["👜","包包",bag.name+"——"+bag.note],
+    ["🎗️","腰帶",belt.name+"——"+belt.note],
+    ["✨","金屬色",metal.name+"——"+metal.note],
+    ["🎨","配件風格",accVibe]
+  ];
+  const accHTML=accItems.map(a=>`<div class="tip"><div class="ic">${a[0]}</div><div class="tx"><span style="font-weight:500;display:block;font-size:12.5px;color:var(--sage)">${a[1]}</span>${a[2]}</div></div>`).join("");
+
+  // 配色深度區：膚色色票 + 氣質色票(橋接) + 分配原則 + 公式
+  const skinPalette=sk.palette.map(c=>`<div class="sw"><div class="chip" style="background:${c[0]}"></div><div class="lab">${c[1]}</div></div>`).join("");
+  // 橋接：依膚色冷暖取氣質對應色票
+  const vibeColors=vb.palettes[state.skin]||vb.palettes.neutral;
+  const vibePalette=vibeColors.map(c=>`<div class="sw"><div class="chip" style="background:${c[0]}"></div><div class="lab">${c[1]}</div></div>`).join("");
+  const bridge=bridgeNote(state.skin,state.vibe);
+  const placement=COLOR_PLACEMENT[state.shape]+(PROP_PLACEMENT[state.prop]?" "+PROP_PLACEMENT[state.prop]:"");
+  // 配色公式：膚色作主、氣質(橋接後)作輔、膚色亮色作點綴
+  const mainC=sk.palette[3]||sk.palette[0];
+  const subC=vibeColors[0];
+  const popC=sk.palette[2]||sk.palette[1];
+  const formula=`
+    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;margin-top:4px">
+      <div class="sw"><div class="chip" style="width:62px;height:62px;background:${mainC[0]}"></div><div class="lab">主色·大面積<br>${mainC[1]}</div></div>
+      <div class="sw"><div class="chip" style="width:50px;height:50px;background:${subC[0]}"></div><div class="lab">輔色·次面積<br>${subC[1]}</div></div>
+      <div class="sw"><div class="chip" style="width:38px;height:38px;background:${popC[0]}"></div><div class="lab">點綴·小面積<br>${popC[1]}</div></div>
+    </div>`;
+
+  const occTabs=Object.keys(OCCASIONS).map((k,i)=>`<div class="occ-tab ${i===0?'on':''}" data-occ="${k}">${OCCASIONS[k].name}</div>`).join("");
+
+  // ===== 今日造型公式（把全部模組合成一句，複用上面的色名）=====
+  const cMain=mainC[1];
+  const cSub=subC[1];
+  const EARRING_BY_FACE={圓臉:"長垂墜耳環",長臉:"圓形貼耳耳環",方臉:"圓弧耳環",心形臉:"下襬有份量的耳環",菱形臉:"耳垂處有份量的耳環",鵝蛋臉:"耳環"};
+  const earringShort=fc?(EARRING_BY_FACE[fc.name]||"耳環"):"耳環";
+  const neckPhrase=state.concerns.includes("neckShort")?"中長項鍊拉長頸線":state.concerns.includes("neckLong")?"短鍊點綴頸部":"";
+  function formulaFor(occKey){
+    const f=FORMULA[occKey];
+    const pieces=[`${cSub}${f.top}`,`${cMain}${f.bottom}`,f.outer,`${metal.name.split(" ")[0]}${earringShort}`,f.shoes];
+    return {line:pieces.join(" ＋ "),focus:f.focus+(neckPhrase?"搭配"+neckPhrase+"。":"")};
+  }
+
+  // ===== 妝容（氣質定妝感、臉型定腮紅修容、膚色定唇色）=====
+  const mkVibe=MAKEUP_BY_VIBE[state.vibe];
+  const mkFace=fc?MAKEUP_BY_FACE[state.face]:null;
+  const mkSkin=MAKEUP_BY_SKIN[state.skin];
+  const makeupItems=[
+    ["💄","整體妝感",mkVibe.mood],
+    ["🖌️","眉型",mkVibe.brow],
+    ["👁️","眼妝",mkVibe.eye],
+    ["🌸","腮紅",mkFace?mkFace.blush:"打在蘋果肌，依想要的氣色濃淡調整。"],
+    ["🔻","修容",mkFace?mkFace.contour:"輕修兩頰維持立體感。"],
+    ["💋","唇色",mkSkin.lip+"（"+mkVibe.lipFinish+"）"],
+    ["🧴","底妝",mkSkin.base]
+  ];
+  const makeupHTML=makeupItems.map(a=>`<div class="tip"><div class="ic">${a[0]}</div><div class="tx"><span style="font-weight:500;display:block;font-size:12.5px;color:var(--sage)">${a[1]}</span>${a[2]}</div></div>`).join("");
+
+  // ===== 購物清單（適合買／少買／關鍵字）=====
+  const shop=SHOP_BY_SHAPE[state.shape];
+  // 關鍵字 = 身型關鍵字 + 身高比例補充
+  let shopKw=[...shop.kw];
+  if(SHOP_EXTRA[state.height])shopKw=shopKw.concat(SHOP_EXTRA[state.height]);
+  if(SHOP_EXTRA[state.prop])shopKw=shopKw.concat(SHOP_EXTRA[state.prop]);
+  shopKw=[...new Set(shopKw)];
+  const buyHTML=shop.buy.map(x=>`<span class="pill buy" data-fav="${x}">${x}<span class="favheart">♡</span></span>`).join("");
+  const avoidBuyHTML=shop.avoid.map(x=>`<span class="pill avoidbuy">${x}</span>`).join("");
+  const kwHTML=shopKw.map(x=>`<span class="pill kw">🔍 ${x}</span>`).join("");
+
+  // ===== 3 秒懶人包：穿搭關鍵字 + 命定色 =====
+  // 穿搭關鍵字：從身型策略萃取 3 個短句
+  const KEY_BY_SHAPE={
+    pear:["上身亮點","下身深色","平衡比例"],
+    apple:["V領縱向","垂墜顯瘦","露出手腳"],
+    hourglass:["合身展腰","高腰款式","順勢曲線"],
+    rectangle:["製造腰線","層次細節","腰帶點綴"],
+    inverted:["上收下放","下身份量","柔化肩線"]
+  };
+  const keyWords=KEY_BY_SHAPE[state.shape]||[];
+  // 命定色：膚色主色 + 氣質輔色 + 金屬
+  const destinyColors=[mainC,subC,popC];
+  const destinyHTML=destinyColors.map(c=>`<span style="display:inline-flex;align-items:center;gap:5px;margin:0 8px 6px 0;font-size:12.5px"><span style="width:16px;height:16px;border-radius:3px;background:${c[0]};display:inline-block;border:1px solid rgba(74,63,56,.1)"></span>${c[1]}</span>`).join("");
+
+  document.getElementById('result').innerHTML=`
+    <div class="res-head">
+      ${figureSVG(state.shape)}
+      <div class="rname">${s.label}</div>
+      <div class="rprofile">${profile}</div>
+      <div class="rdesc">${s.desc}</div>
+    </div>
+    <div class="block lazy">
+      <h3>3 秒重點 <span class="cnt">先看這個</span></h3>
+      <div style="margin-bottom:14px">
+        <div class="cat-label">你的穿搭關鍵</div>
+        <div>${keyWords.map(w=>`<span class="pill key">${w}</span>`).join("")}</div>
+      </div>
+      <div>
+        <div class="cat-label">你的命定色</div>
+        <div style="margin-top:4px">${destinyHTML}</div>
+      </div>
+    </div>
+    <div class="block" style="border:1px solid var(--rose)">
+      <h3>今日造型公式 <span class="cnt">直接照做</span></h3>
+      <p style="font-size:13px;color:var(--ink-soft);margin-bottom:14px">挑場合，直接抄一整套：</p>
+      <div class="occ-tabs" id="formulaTabs">${Object.keys(FORMULA).map((k,i)=>`<div class="occ-tab ${i===0?'on':''}" data-fml="${k}">${OCCASIONS[k].name}</div>`).join("")}</div>
+      <div id="formulaBody"></div>
+    </div>
+    <div class="block">
+      <h3>購物清單 <span class="cnt">買對少踩雷</span></h3>
+      <div class="catrow">
+        <div class="cat-label" style="color:var(--sage)">✓ 適合優先買</div>
+        <div>${buyHTML}</div>
+      </div>
+      <div class="catrow">
+        <div class="cat-label" style="color:var(--rose)">✕ 盡量少買</div>
+        <div>${avoidBuyHTML}</div>
+      </div>
+      <div class="catrow">
+        <div class="cat-label">🔍 可搜尋關鍵字（直接複製去購物網站找）</div>
+        <div>${kwHTML}</div>
+      </div>
+    </div>
+    <div class="block">
+      <h3>為你綜合的穿搭建議 <span class="cnt">整合 ${profileParts.length} 項條件</span></h3>
+      ${adviceHTML}
+    </div>
+    ${avoid.length?`<div class="block"><h3>盡量避開</h3>${avoidHTML}</div>`:""}
+    <div class="block">
+      <h3>專屬配色 <span class="cnt">膚色×氣質×身型</span></h3>
+      <div class="catrow">
+        <div class="cat-label">① 你的膚色：${sk.name}（${sk.tag}）</div>
+        <p style="font-size:14px;margin-bottom:10px">${sk.desc}</p>
+        <div class="palette">${skinPalette}</div>
+        <div class="tip no" style="margin-top:12px"><div class="ic">✕</div><div class="tx">${sk.avoid}</div></div>
+      </div>
+      <div class="catrow">
+        <div class="cat-label">② 你的氣質：${vb.name}（${vb.tag}）</div>
+        <p style="font-size:14px;margin-bottom:10px">${vb.toneDesc}</p>
+        <div class="palette">${vibePalette}</div>
+        <div class="tip" style="margin-top:12px;background:var(--paper);border-radius:4px;padding:10px 12px"><div class="ic" style="background:var(--paper-soft)">🔗</div><div class="tx" style="font-size:13.5px">${bridge}</div></div>
+        <div class="tip" style="margin-top:10px"><div class="ic">👗</div><div class="tx">${vb.items}</div></div>
+        <div class="tip no"><div class="ic">✕</div><div class="tx">${vb.avoid}</div></div>
+      </div>
+      <div class="catrow">
+        <div class="cat-label">③ 深淺怎麼放（依你的身型比例）</div>
+        <p style="font-size:14px">${placement}</p>
+      </div>
+      <div class="catrow">
+        <div class="cat-label">④ 一套這樣配</div>
+        <p style="font-size:13px;color:var(--ink-soft);margin-bottom:6px">取你膚色適合的色系，套入氣質調性，依比例分配深淺：</p>
+        ${formula}
+      </div>
+    </div>
+    ${fc?`<div class="block">
+      <h3>髮型與五官 <span class="cnt">${fc.name}</span></h3>
+      <div class="catrow" style="display:flex;gap:14px;align-items:center;margin-bottom:14px">
+        <div style="flex-shrink:0">${faceSVG(state.face)}</div>
+        <p style="font-size:14px">${fc.desc}</p>
+      </div>
+      ${FACE_FIELDS.map(([key,label,icon])=>`<div class="tip"><div class="ic">${icon}</div><div class="tx"><span style="font-weight:500;display:block;font-size:12.5px;color:var(--sage)">${label}</span>${fc[key]}</div></div>`).join("")}
+      <div class="tip no" style="margin-top:4px"><div class="ic">✕</div><div class="tx">${fc.avoid}</div></div>
+    </div>`:""}
+    <div class="block">
+      <h3>妝容重點 <span class="cnt">氣質×臉型×膚色</span></h3>
+      <p style="font-size:13px;color:var(--ink-soft);margin-bottom:14px">依你的${VIBE[state.vibe].name}氣質${fc?"、"+fc.name:""}與${sk.name}，推給你的妝容方向：</p>
+      ${makeupHTML}
+    </div>
+    <div class="block">
+      <h3>配飾建議 <span class="cnt">臉型·脖子·身高·膚色·氣質</span></h3>
+      ${accHTML}
+    </div>
+    <div class="block">
+      <h3>不同場合怎麼穿</h3>
+      <div class="occ-tabs" id="occTabsWrap">${occTabs}</div>
+      <div class="occ-body" id="occBody"></div>
+    </div>
+  `;
+
+  // 場合（吃身型 hint）
+  const occBody=document.getElementById('occBody');
+  function showOcc(k){
+    const base=OCCASIONS[k].base.map(x=>`<span class="pill">${x}</span>`).join("");
+    occBody.innerHTML=base+`<span class="shapehint">依你的身型：${OCC_SHAPE_HINT[state.shape]}</span>`;
+  }
+  showOcc(Object.keys(OCCASIONS)[0]);
+  const occWrap=document.getElementById('occTabsWrap');
+  occWrap.querySelectorAll('.occ-tab').forEach(t=>{
+    t.onclick=()=>{occWrap.querySelectorAll('.occ-tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');showOcc(t.dataset.occ);};
+  });
+
+  // 今日造型公式切換
+  const fmlBody=document.getElementById('formulaBody');
+  const fmlTabs=document.getElementById('formulaTabs');
+  function showFormula(k){
+    const r=formulaFor(k);
+    const vibeName=VIBE[state.vibe].name;
+    const favKey=state.vibe+"_"+k;
+    const title=vibeName+OCCASIONS[k].name+"公式";
+    const faved=STORE.hasFavFormula(favKey);
+    fmlBody.innerHTML=`
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:16px;position:relative">
+        <button class="favbtn ${faved?'faved':''}" id="favFormulaBtn" aria-label="收藏這套公式">${faved?'♥':'♡'}</button>
+        <div style="font-weight:700;color:var(--rose);font-size:15px;margin-bottom:8px;padding-right:30px">${title}</div>
+        <div style="font-size:15px;line-height:1.8;margin-bottom:10px">${r.line}</div>
+        <div style="font-size:13px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px">重點：${r.focus}</div>
+      </div>`;
+    const fb=document.getElementById('favFormulaBtn');
+    fb.onclick=()=>{
+      const f=STORE.toggleFavFormula({key:favKey,title,line:r.line,focus:r.focus});
+      const now=f.formulas.some(x=>x.key===favKey);
+      fb.classList.toggle('faved',now);fb.textContent=now?'♥':'♡';
+    };
+  }
+  showFormula(Object.keys(FORMULA)[0]);
+  fmlTabs.querySelectorAll('.occ-tab').forEach(t=>{
+    t.onclick=()=>{fmlTabs.querySelectorAll('.occ-tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');showFormula(t.dataset.fml);};
+  });
+
+  // 自動存檔本次結果（供下次直接開啟）
+  STORE.saveProfile(state);
+  // 綁定單品收藏鈕
+  bindItemFav();
+}
+
+/* 綁定購物清單單品的收藏鈕 */
+function bindItemFav(){
+  document.querySelectorAll('.pill.buy[data-fav]').forEach(el=>{
+    const name=el.dataset.fav;
+    if(STORE.hasFavItem(name))el.classList.add('faved');
+    el.onclick=()=>{
+      const f=STORE.toggleFavItem(name);
+      el.classList.toggle('faved',f.items.includes(name));
+    };
+  });
+}
+
+/* ===== 步驟切換 ===== */
+function go(n){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  const panel=document.getElementById('p'+n);
+  if(panel)panel.classList.add('active');
+  for(let i=1;i<=6;i++){
+    const d=document.getElementById('sd'+i);
+    if(!d)continue;
+    d.classList.remove('on','done');
+    if(i<n)d.classList.add('done');else if(i===n)d.classList.add('on');
+  }
+  if(n===4)buildStep4();
+  if(n===6)renderResult();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function restart(){
+  state.shape=null;state.height=null;state.prop=null;state.concerns=[];
+  state.skinAns=[];state.skin=null;state.vibe=null;state.face=null;
+  document.querySelectorAll('.card').forEach(x=>x.classList.remove('sel'));
+  document.getElementById('next1').disabled=true;
+  document.getElementById('next2').disabled=true;
+  ['next4','next5'].forEach(id=>{const e=document.getElementById(id);if(e)e.disabled=true;});
+  go(1);
+}
+
+/* ===== 收藏頁 ===== */
+function showFavPanel(){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('pFav').classList.add('active');
+  const fav=STORE.getFav();
+  const box=document.getElementById('favContent');
+  let html="";
+  if(fav.formulas.length){
+    html+=`<div class="fav-section"><div class="cat-label">收藏的造型公式</div>`;
+    html+=fav.formulas.map(f=>`<div class="block" style="margin-top:10px;position:relative">
+      <button class="favbtn faved" data-rmformula="${f.key}">♥</button>
+      <div style="font-weight:700;color:var(--rose);font-size:14px;margin-bottom:6px;padding-right:30px">${f.title}</div>
+      <div style="font-size:14px;line-height:1.7">${f.line}</div>
+      <div style="font-size:12.5px;color:var(--ink-soft);margin-top:6px">重點：${f.focus}</div>
+    </div>`).join("");
+    html+=`</div>`;
+  }
+  if(fav.items.length){
+    html+=`<div class="fav-section"><div class="cat-label">收藏的單品</div><div style="margin-top:8px">`;
+    html+=fav.items.map(x=>`<span class="pill buy faved" data-rmitem="${x}">${x}<span class="favheart">♥</span></span>`).join("");
+    html+=`</div></div>`;
+  }
+  if(!fav.formulas.length&&!fav.items.length){
+    html=`<div class="fav-empty">還沒有收藏。<br>做完測驗後，點公式或單品旁的 ♡ 就能收藏。</div>`;
+  }
+  box.innerHTML=html;
+  // 移除收藏
+  box.querySelectorAll('[data-rmformula]').forEach(b=>b.onclick=()=>{STORE.toggleFavFormula({key:b.dataset.rmformula});showFavPanel();});
+  box.querySelectorAll('[data-rmitem]').forEach(b=>b.onclick=()=>{STORE.toggleFavItem(b.dataset.rmitem);showFavPanel();});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ===== 回訪入口初始化 ===== */
+function initReturning(){
+  const saved=STORE.loadProfile();
+  const fav=STORE.getFav();
+  const hasFav=fav.formulas.length||fav.items.length;
+  if(saved||hasFav){
+    document.getElementById('returning').style.display='block';
+    const resume=document.getElementById('btn-resume');
+    if(saved){
+      resume.onclick=()=>{
+        Object.assign(state,saved);
+        go(6);
+      };
+    }else{resume.style.display='none';}
+    document.getElementById('btn-favs').onclick=showFavPanel;
+  }
+}
+
+buildCards();
+initReturning();
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>
