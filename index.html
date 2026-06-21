@@ -974,7 +974,119 @@ function renderResult(){
       <div class="occ-tabs" id="occTabsWrap">${occTabs}</div>
       <div class="occ-body" id="occBody"></div>
     </div>
-  `;
+    <div class="block" id="glassesBlock">
+      <h3>眼鏡框型建議 <span class="cnt">臉型×臉寬×鼻樑×風格</span></h3>
+      <p style="font-size:13px;color:var(--ink-soft);margin-bottom:16px">選你的臉部條件，推薦最適合的框型：</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+        <div>
+          <div class="cat-label" style="margin-bottom:8px">臉寬</div>
+          <div class="occ-tabs" id="glFaceWidth" style="flex-direction:column;gap:6px">
+            <div class="occ-tab on" data-gfw="narrow">窄臉</div>
+            <div class="occ-tab" data-gfw="medium">適中</div>
+            <div class="occ-tab" data-gfw="wide">寬臉</div>
+          </div>
+        </div>
+        <div>
+          <div class="cat-label" style="margin-bottom:8px">鼻樑</div>
+          <div class="occ-tabs" id="glNose" style="flex-direction:column;gap:6px">
+            <div class="occ-tab on" data-gnose="low">低平</div>
+            <div class="occ-tab" data-gnose="medium">適中</div>
+            <div class="occ-tab" data-gnose="high">高挺</div>
+          </div>
+        </div>
+      </div>
+      <div class="cat-label" style="margin-bottom:8px">風格偏好</div>
+      <div class="occ-tabs" id="glStyle" style="flex-wrap:wrap;margin-bottom:16px">
+        <div class="occ-tab on" data-gst="natural">自然低調</div>
+        <div class="occ-tab" data-gst="intellectual">知性文青</div>
+        <div class="occ-tab" data-gst="edgy">個性前衛</div>
+        <div class="occ-tab" data-gst="sweet">甜美可愛</div>
+      </div>
+      <div id="glassesResult"></div>
+    </div>
+  \`;
+
+  // 眼鏡模組
+  const GLASSES_BY_FACE={
+    oval:   {good:["方框","幾何框","飛行員框","貓眼框"],avoid:["正圓框（蓋過臉型優勢）"],note:"鵝蛋臉最百搭，幾乎所有框型都適合，大膽挑你喜歡的。"},
+    round:  {good:["方框","矩形框","角框","幾何框"],avoid:["正圓框","小圓框（強化圓感）"],note:"有稜角的框型能拉長視覺、修飾圓潤感。"},
+    square: {good:["圓框","橢圓框","貓眼框","無框"],avoid:["方框","角形框（加重方感）"],note:"圓弧框型柔化方正下顎，讓整體更柔和。"},
+    heart:  {good:["底部較寬的框","飛行員框","淡色框","無框"],avoid:["貓眼框","頂部裝飾重的框（加重額頭寬度）"],note:"重心往下移的框型能平衡上寬下窄。"},
+    oblong: {good:["大框","圓框","方框","有裝飾上緣的框"],avoid:["細長窄框（拉長臉型）"],note:"大框或有高度的框型能縮短臉的縱向感。"},
+    diamond:{good:["貓眼框","橢圓框","無框","細邊框"],avoid:["窄框（強調顴骨寬）"],note:"柔和的框型能平衡突出的顴骨，讓五官更協調。"}
+  };
+  const GLASSES_BY_WIDTH={
+    narrow: {tip:"臉窄適合中小框或細邊框，避免超出臉寬的大框。",prefer:"細框、小圓框、無框"},
+    medium: {tip:"臉寬適中，大中小框都好駕馭，以個人風格為主。",prefer:"各尺寸皆可"},
+    wide:   {tip:"臉寬建議選稍寬的框，框寬不超過臉寬為原則。",prefer:"寬框、大框、飛行員框"}
+  };
+  const GLASSES_BY_NOSE={
+    low:  {tip:"鼻樑低平建議選鼻托可調節的款式，或無鼻托（一體成型）的框，避免鏡片貼臉。",prefer:"矽膠鼻托可調式、輕量無托框"},
+    medium:{tip:"鼻樑適中，大多數框型都適合，彈性最大。",prefer:"無特別限制"},
+    high: {tip:"鼻樑高挺可以撐起各種框型，包含較重的粗框或厚板材。",prefer:"板材框、粗框、波士頓框"}
+  };
+  const GLASSES_BY_STYLE={
+    natural:    {frames:["金屬細框","無框","透明框","淡色板材"],vibe:"低調輕盈，不搶眼，日常最好搭。"},
+    intellectual:{frames:["圓框","波士頓框","玳瑁色板材","細金屬方框"],vibe:"文青感十足，搭針織、西裝外套、牛津鞋。"},
+    edgy:       {frames:["幾何框","不對稱框","黑色粗框","金屬感框"],vibe:"個性強烈，是整套的焦點單品。"},
+    sweet:      {frames:["貓眼框","粉色框","小圓框","透明彩色框"],vibe:"甜美可愛，搭碎花、粉色系、荷葉邊。"}
+  };
+
+  const glState={fw:'narrow', nose:'low', style:'natural'};
+
+  function renderGlasses(){
+    const face=state.face||'oval';
+    const fc2=GLASSES_BY_FACE[face]||GLASSES_BY_FACE.oval;
+    const fw=GLASSES_BY_WIDTH[glState.fw];
+    const ns=GLASSES_BY_NOSE[glState.nose];
+    const st=GLASSES_BY_STYLE[glState.style];
+    const goodHTML=fc2.good.map(x=>`<span class="pill" style="background:#e3e6db;border-color:var(--sage);color:#5a6147">${x}</span>`).join('');
+    const avoidHTML=fc2.avoid.map(x=>`<span class="pill" style="background:#ece0db;border-color:var(--rose);color:#8a5848">${x}</span>`).join('');
+    const frameHTML=st.frames.map(x=>`<span class="pill kw" style="cursor:default">${x}</span>`).join('');
+    document.getElementById('glassesResult').innerHTML=`
+      <div class="catrow">
+        <div class="cat-label">✓ 依臉型（${fc2.good[0]}等）</div>
+        <div style="margin-top:6px">${goodHTML}</div>
+        <p style="font-size:12.5px;color:var(--ink-soft);margin-top:8px">${fc2.note}</p>
+      </div>
+      <div class="catrow">
+        <div class="cat-label" style="color:var(--rose)">✕ 盡量避開</div>
+        <div style="margin-top:6px">${avoidHTML}</div>
+      </div>
+      <div class="catrow">
+        <div class="cat-label">依臉寬（${['窄臉','適中','寬臉'][['narrow','medium','wide'].indexOf(glState.fw)]}）</div>
+        <p style="font-size:13px;margin-top:4px">${fw.tip}</p>
+        <p style="font-size:12.5px;color:var(--ink-soft)">推薦：${fw.prefer}</p>
+      </div>
+      <div class="catrow">
+        <div class="cat-label">依鼻樑（${['低平','適中','高挺'][['low','medium','high'].indexOf(glState.nose)]}）</div>
+        <p style="font-size:13px;margin-top:4px">${ns.tip}</p>
+        <p style="font-size:12.5px;color:var(--ink-soft)">推薦：${ns.prefer}</p>
+      </div>
+      <div class="catrow" style="margin-bottom:0">
+        <div class="cat-label">風格框型（${st.vibe.split('，')[0]}）</div>
+        <div style="margin-top:6px">${frameHTML}</div>
+        <p style="font-size:12.5px;color:var(--ink-soft);margin-top:8px">${st.vibe}</p>
+      </div>
+    `;
+  }
+  renderGlasses();
+
+  function bindGlTabs(wrapperId, stateKey, dataAttr){
+    const wrap=document.getElementById(wrapperId);
+    if(!wrap) return;
+    wrap.querySelectorAll('.occ-tab').forEach(t=>{
+      t.onclick=()=>{
+        wrap.querySelectorAll('.occ-tab').forEach(x=>x.classList.remove('on'));
+        t.classList.add('on');
+        glState[stateKey]=t.dataset[dataAttr];
+        renderGlasses();
+      };
+    });
+  }
+  bindGlTabs('glFaceWidth','fw','gfw');
+  bindGlTabs('glNose','nose','gnose');
+  bindGlTabs('glStyle','style','gst');
 
   // 場合（吃身型 hint）
   const occBody=document.getElementById('occBody');
