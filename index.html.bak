@@ -143,109 +143,14 @@
   footer{font-family:var(--sans);text-align:center;padding:34px 0 48px;color:var(--ink-soft);font-size:11px;font-weight:300;letter-spacing:.1em}
   footer .v{color:var(--rose)}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
-
-  /* ===== 五大主選單導航 ===== */
-  body{padding-bottom:72px} /* 手機底部留空給導航列 */
-  .app-nav-bottom{
-    display:flex;position:fixed;bottom:0;left:0;right:0;
-    background:var(--card);border-top:1px solid var(--line);
-    z-index:1000;height:60px;padding-bottom:env(safe-area-inset-bottom);
-  }
-  .app-nav-bottom a{
-    flex:1;display:flex;flex-direction:column;align-items:center;
-    justify-content:center;gap:3px;font-size:10px;letter-spacing:.06em;
-    color:var(--ink-soft);text-decoration:none;padding:6px 0;
-    transition:color .2s;cursor:pointer;border:none;background:none;
-  }
-  .app-nav-bottom a.active{color:var(--rose)}
-  .app-nav-bottom a .nav-icon{font-size:20px;line-height:1}
-  /* 桌機左側導航 */
-  @media(min-width:720px){
-    body{padding-bottom:0;display:flex;min-height:100vh}
-    .app-nav-bottom{
-      display:flex;flex-direction:column;position:fixed;
-      left:0;top:0;bottom:0;width:80px;height:100vh;
-      border-top:none;border-right:1px solid var(--line);
-      padding:24px 0;gap:4px;align-items:center;justify-content:flex-start;
-    }
-    .app-nav-bottom a{flex:unset;width:100%;padding:12px 0}
-    .main-content{margin-left:80px;width:calc(100% - 80px)}
-  }
-  /* 主頁面切換 */
-  .page{display:none}
-  .page.active{display:block}
-  /* 頁標題列（各分頁頂部小標題） */
-  .page-header{padding:28px 0 8px;text-align:center}
-  .page-header .page-eyebrow{font-family:var(--sans);font-size:10px;letter-spacing:.45em;color:var(--rose);font-weight:500;margin-bottom:8px}
-  .page-header h2{font-family:var(--serif);font-size:clamp(22px,5vw,30px);font-weight:700;letter-spacing:.04em}
 </style>
 </head>
 <body>
-<!-- 底部 / 左側主選單導航 -->
-<nav class="app-nav-bottom" id="appNav">
-  <a class="nav-item" data-page="color" onclick="switchPage('color')">
-    <span class="nav-icon">🎨</span>色彩
-  </a>
-  <a class="nav-item" data-page="shape" onclick="switchPage('shape')">
-    <span class="nav-icon">👗</span>身形
-  </a>
-  <a class="nav-item" data-page="face" onclick="switchPage('face')">
-    <span class="nav-icon">✨</span>臉型
-  </a>
-  <a class="nav-item active" data-page="recommend" onclick="switchPage('recommend')">
-    <span class="nav-icon">💡</span>推薦
-  </a>
-  <a class="nav-item" data-page="mine" onclick="switchPage('mine')">
-    <span class="nav-icon">♥</span>我的
-  </a>
-</nav>
-<div class="main-content">
 <div class="wrap">
-  <!-- 色彩分頁（未來獨立測驗，現先導引到推薦的膚色步驟） -->
-  <div class="page" id="page-color">
-    <div class="page-header">
-      <div class="page-eyebrow">COLOR</div>
-      <h2>色彩</h2>
-    </div>
-    <div style="text-align:center;padding:40px 0 20px">
-      <div style="font-size:48px;margin-bottom:16px">🎨</div>
-      <p style="color:var(--ink-soft);font-size:14px;margin-bottom:24px;line-height:1.8">色彩測驗是了解你命定色的第一步。<br>目前整合在完整造型測驗中，<br>點下方按鈕開始測驗，膚色氣質是第四步。</p>
-      <button class="btn btn-primary" onclick="switchPage('recommend');go(1)">開始完整造型測驗 →</button>
-    </div>
-  </div>
-
-  <!-- 身形分頁（未來獨立，現先導引） -->
-  <div class="page" id="page-shape">
-    <div class="page-header">
-      <div class="page-eyebrow">BODY SHAPE</div>
-      <h2>身形</h2>
-    </div>
-    <div style="text-align:center;padding:40px 0 20px">
-      <div style="font-size:48px;margin-bottom:16px">👗</div>
-      <p style="color:var(--ink-soft);font-size:14px;margin-bottom:24px;line-height:1.8">身形測驗幫你找到最適合的穿搭比例公式。<br>目前整合在完整造型測驗中，<br>點下方按鈕從身形步驟開始。</p>
-      <button class="btn btn-primary" onclick="switchPage('recommend');go(1)">開始完整造型測驗 →</button>
-    </div>
-  </div>
-
-  <!-- 臉型分頁（未來獨立，現先導引） -->
-  <div class="page" id="page-face">
-    <div class="page-header">
-      <div class="page-eyebrow">FACE SHAPE</div>
-      <h2>臉型</h2>
-    </div>
-    <div style="text-align:center;padding:40px 0 20px">
-      <div style="font-size:48px;margin-bottom:16px">✨</div>
-      <p style="color:var(--ink-soft);font-size:14px;margin-bottom:24px;line-height:1.8">臉型測驗決定你的髮型、眼鏡、彩妝建議。<br>目前整合在完整造型測驗中，<br>點下方按鈕從臉型步驟開始。</p>
-      <button class="btn btn-primary" onclick="switchPage('recommend');go(5)">直接跳到臉型步驟 →</button>
-    </div>
-  </div>
-
-  <!-- 推薦分頁（現有完整測驗＋結果） -->
-  <div class="page active" id="page-recommend">
   <header>
     <div class="eyebrow">PERSONAL STYLE</div>
     <h1>形<span class="stroke">・</span>穿搭顧問</h1>
-    <p class="sub">透過 7 個步驟，建立你的個人造型檔案。整合身型、比例、膚色、氣質與臉型，給你可直接照做的穿搭建議。</p>
+    <p class="sub">透過 5 個步驟，建立你的個人造型檔案。整合身型、比例、膚色、氣質與臉型，給你可直接照做的穿搭建議。</p>
     <div class="rule"></div>
     <div class="steps">
       <span class="step-dot on" id="sd1">① 身型</span>
@@ -334,20 +239,8 @@
       </div>
     </div>
   </section>
-  </div><!-- /page-recommend -->
-
-  <!-- 我的分頁 -->
-  <div class="page" id="page-mine">
-    <div class="page-header">
-      <div class="page-eyebrow">MY STYLE</div>
-      <h2>我的</h2>
-    </div>
-    <div id="mineContent" style="padding-bottom:20px"></div>
-  </div>
-
   <footer>形・穿搭顧問 <span class="v">v1.3</span>　·　示意圖為程式繪製，後續可替換為插畫</footer>
-</div><!-- /wrap -->
-</div><!-- /main-content -->
+</div>
 <script>
 /* ===== 建議資料庫 ===== */
 const SHAPES={
@@ -1590,87 +1483,6 @@ function copyFormula(btn){
     'by 形・穿搭顧問 emmadecor.vercel.app'
   ].join('\n');
   _doCopy(text, btn, '複製造型公式文字');
-}
-
-/* ===== 五大主選單導航 ===== */
-function switchPage(pageId){
-  // 切換分頁
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  const pg=document.getElementById('page-'+pageId);
-  if(pg) pg.classList.add('active');
-  // 更新導航高亮
-  document.querySelectorAll('.nav-item').forEach(a=>{
-    a.classList.toggle('active', a.dataset.page===pageId);
-  });
-  // 我的分頁：渲染內容
-  if(pageId==='mine') renderMinePage();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function renderMinePage(){
-  const box=document.getElementById('mineContent');
-  if(!box) return;
-  const fav=STORE.getFav();
-  const profile=STORE.loadProfile();
-  let html='';
-
-  // 個人風格檔案摘要
-  if(profile){
-    const SHAPE_LABEL={hourglass:'沙漏型',pear:'梨型',apple:'蘋果型',rectangle:'矩形',inverted:'倒三角型'};
-    const VIBE_LABEL={feminine:'女性優雅',natural:'自然清爽',edgy:'個性前衛',classic:'知性經典',romantic:'浪漫甜美'};
-    const FACE_LABEL={oval:'鵝蛋臉',round:'圓臉',square:'方臉',heart:'心型臉',long:'長臉'};
-    html+=`<div class="block" style="margin-bottom:16px">
-      <h3>我的風格檔案</h3>
-      <div style="font-size:13.5px;line-height:2;color:var(--ink)">
-        ${profile.shape?`<div>身型：<span style="color:var(--rose)">${SHAPE_LABEL[profile.shape]||profile.shape}</span></div>`:''}
-        ${profile.vibe?`<div>氣質：<span style="color:var(--rose)">${VIBE_LABEL[profile.vibe]||profile.vibe}</span></div>`:''}
-        ${profile.face?`<div>臉型：<span style="color:var(--rose)">${FACE_LABEL[profile.face]||profile.face}</span></div>`:''}
-        ${profile.skin?`<div>膚色：<span style="color:var(--rose)">${profile.skin}</span></div>`:''}
-      </div>
-      <div class="nav" style="margin-top:16px;justify-content:flex-start">
-        <button class="btn btn-ghost" style="font-size:12px" onclick="switchPage('recommend');go(1)">重新測驗</button>
-        <button class="btn btn-ghost" style="font-size:12px" onclick="switchPage('recommend');go(7)">看建議結果</button>
-      </div>
-    </div>`;
-  } else {
-    html+=`<div class="block" style="margin-bottom:16px;text-align:center;padding:32px 20px">
-      <div style="font-size:36px;margin-bottom:12px">✦</div>
-      <p style="color:var(--ink-soft);font-size:14px;margin-bottom:20px">還沒有風格檔案<br>做完測驗就會自動儲存在這裡</p>
-      <button class="btn btn-primary" onclick="switchPage('recommend');go(1)">開始測驗 →</button>
-    </div>`;
-  }
-
-  // 收藏的造型公式
-  if(fav.formulas && fav.formulas.length>0){
-    html+=`<div class="block" style="margin-bottom:16px"><h3>收藏的心法與公式</h3>`;
-    fav.formulas.forEach(f=>{
-      html+=`<div class="fav-section">
-        <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:4px">${f.title||''}</div>
-        <div style="font-size:12.5px;color:var(--rose);margin-bottom:2px">${f.line||''}</div>
-        <div style="font-size:12px;color:var(--ink-soft)">${f.focus||''}</div>
-        <button style="font-size:11px;color:var(--ink-soft);background:none;border:none;cursor:pointer;margin-top:6px" data-rmformula="${f.key}" onclick="STORE.toggleFavFormula({key:'${f.key}'});renderMinePage()">✕ 移除</button>
-      </div>`;
-    });
-    html+=`</div>`;
-  }
-
-  // 待購清單
-  if(fav.items && fav.items.length>0){
-    html+=`<div class="block"><h3>待購清單</h3>`;
-    fav.items.forEach(name=>{
-      html+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:.5px solid var(--line);font-size:13.5px">
-        <span>${name}</span>
-        <button style="font-size:11px;color:var(--ink-soft);background:none;border:none;cursor:pointer" onclick="STORE.toggleFavItem('${name}');renderMinePage()">✕</button>
-      </div>`;
-    });
-    html+=`</div>`;
-  }
-
-  if(!profile && (!fav.formulas||fav.formulas.length===0) && (!fav.items||fav.items.length===0)){
-    // 已在上面顯示空狀態
-  }
-
-  box.innerHTML=html;
 }
 
 /* ===== 步驟切換 ===== */
