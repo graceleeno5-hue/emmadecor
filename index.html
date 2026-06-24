@@ -2190,25 +2190,27 @@ function finishFaceQuiz(){
          `<b>線條呼應：</b>${ln.hair}`])}
       ${(()=>{
         const mk = profile.color && profile.color.makeup;
-        const swRow = pairs => pairs ? `<div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;">${pairs.map(([h,n])=>`<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--ink-soft);"><span style="width:18px;height:18px;border-radius:50%;background:${h};border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.12);"></span>${n}</span>`).join('')}</div>` : '<span style="color:var(--ink-faint);">完成色彩測驗後，這裡會顯示適合你膚色的彩妝色票。</span>';
+        const swRow = pairs => pairs ? `<div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;">${pairs.map(([h,n])=>`<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--ink-soft);"><span style="width:18px;height:18px;border-radius:50%;background:${h};border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.12);"></span>${n}</span>`).join('')}</div>` : '';
         const mkSteps = FACE_MAKEUP_STEPS[shape] || FACE_MAKEUP_STEPS['oval'];
+        // 合併色票＋畫法：有色票則色票在上、說明在下；無色票則只顯示說明
+        const mergedLine = (label, step, swatches) => {
+          const swHtml = swatches ? swRow(swatches) : '';
+          const stepHtml = step ? `<div style="font-size:12.5px;color:var(--ink-soft);margin-top:${swHtml?'4px':'0'};">${step}</div>` : '';
+          return `<b>${label}：</b>${swHtml}${stepHtml}`;
+        };
         const lines = [
-          `<b>眉：</b>${mkSteps.brow}`,
-          `<b>眼：</b>${mkSteps.eye}`,
-          `<b>腮紅：</b>${mkSteps.blush}`,
+          mergedLine('眉', mkSteps.brow, mk ? mk.brow : null),
+          mergedLine('眼', mkSteps.eye, mk ? mk.eye : null),
+          mergedLine('腮紅', mkSteps.blush, mk ? mk.blush : null),
           `<b>修容：</b>${mkSteps.contour}`,
           `<b>鼻影：</b>${mkSteps.nose}`,
-          `<b>唇：</b>${mkSteps.lip}`,
-          `<b>妝感方向（依臉部線條）：</b>${ln.makeup}`
+          mergedLine('唇', mkSteps.lip, mk ? mk.lip : null),
+          `<b>妝感方向（依臉部線條）：</b>${ln.makeup}`,
         ];
         if(mk){
-          lines.push(`<b>底妝質地：</b>${mk.base}`);
-          lines.push(`<b>眉色：</b>${swRow(mk.brow)}`);
-          lines.push(`<b>眼妝：</b>${swRow(mk.eye)}`);
-          lines.push(`<b>腮紅：</b>${swRow(mk.blush)}`);
-          lines.push(`<b>唇色：</b>${swRow(mk.lip)}`);
+          lines.push(`<b>底妝質地：</b><div style="font-size:12.5px;color:var(--ink-soft);margin-top:4px;">${mk.base}</div>`);
         } else {
-          lines.push(`<b>用色：</b>${swRow(null)}`);
+          lines.push(`<b>用色：</b><span style="color:var(--ink-faint);">完成色彩測驗後，這裡會顯示適合你膚色的彩妝色票。</span>`);
         }
         return expandBlock('02','彩妝幾何與用色','畫法依臉型截長補短，用色依你的膚色色型；濃淡留到今日推薦再依場合調整。', lines);
       })()}
