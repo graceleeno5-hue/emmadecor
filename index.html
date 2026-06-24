@@ -307,12 +307,17 @@
     background: var(--magenta-pale);
     box-shadow: inset 0 0 0 2px var(--magenta);
   }
-  .quiz-option.face-opt { align-items: center; }
+  .quiz-option.face-opt, .quiz-option.leg-opt { align-items: center; }
   .face-opt-fig {
     width: 38px; height: 46px; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
   }
   .face-opt-fig svg { width: 100%; height: 100%; }
+  .leg-opt-fig {
+    width: 30px; height: 40px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .leg-opt-fig svg { width: 100%; height: 100%; }
   .quiz-option.focus-opt.selected .opt-bullet {
     background: var(--magenta);
     color: #fff;
@@ -439,10 +444,15 @@
     padding: 15px 0;
     cursor: pointer;
     text-align: left;
+    color: var(--ink);
+    -webkit-appearance: none;
+    appearance: none;
+    font-family: inherit;
   }
   .expand-head .et {
     font-size: 14.5px;
     font-weight: 700;
+    color: var(--ink);
     display: flex;
     align-items: center;
     gap: 10px;
@@ -975,18 +985,16 @@
 
       <div class="quiz-step" data-step="5">
         <div class="quiz-step-tag">身形分析</div>
-        <div class="quiz-question">你最想優化哪些地方？最多選 3 個</div>
+        <div class="quiz-question">你最想優化哪些地方？最多選 2 個</div>
         <div class="quiz-options" id="shape-focus-opts">
           <button class="quiz-option focus-opt" data-val="waist" onclick="toggleFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">腰線更明顯</span></button>
           <button class="quiz-option focus-opt" data-val="arm" onclick="toggleFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">手臂線條</span></button>
           <button class="quiz-option focus-opt" data-val="belly" onclick="toggleFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">腹部平順</span></button>
-          <button class="quiz-option focus-opt" data-val="hip" onclick="toggleFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">臀部份量</span></button>
-          <button class="quiz-option focus-opt" data-val="hipbone" onclick="toggleFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">髖胯、假胯寬</span></button>
+          <button class="quiz-option focus-opt" data-val="hip" onclick="toggleFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">臀胯份量</span></button>
           <button class="quiz-option focus-opt" data-val="shoulder" onclick="toggleFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">肩膀偏寬</span></button>
           <button class="quiz-option focus-opt" data-val="bust" onclick="toggleFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">胸前較明顯</span></button>
           <button class="quiz-option focus-opt" data-val="flatbust" onclick="toggleFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">上半身較單薄</span></button>
-          <button class="quiz-option focus-opt" data-val="thigh" onclick="toggleFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">大腿線條</span></button>
-          <button class="quiz-option focus-opt" data-val="calf" onclick="toggleFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">小腿線條</span></button>
+          <button class="quiz-option focus-opt" data-val="thigh" onclick="toggleFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">腿部線條</span></button>
           <button class="quiz-option focus-opt" data-val="neck" onclick="toggleFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">拉長頸部</span></button>
           <button class="quiz-option focus-opt" data-val="tall" onclick="toggleFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">整體顯高</span></button>
         </div>
@@ -1175,16 +1183,12 @@
 
       <div class="field-label">Q5　今天的穿搭需求（可複選，最多 3 個）</div>
       <div class="chip-row" id="needChips">
-        <button class="chip" data-n="slim" onclick="selectChip(this,'need')">想顯瘦</button>
         <button class="chip" data-n="tall" onclick="selectChip(this,'need')">想顯高</button>
         <button class="chip" data-n="comfy" onclick="selectChip(this,'need')">想舒服</button>
-        <button class="chip" data-n="spirit" onclick="selectChip(this,'need')">想有精神</button>
-        <button class="chip" data-n="lowkey" onclick="selectChip(this,'need')">想低調</button>
         <button class="chip" data-n="refined" onclick="selectChip(this,'need')">想精緻</button>
         <button class="chip" data-n="noleg" onclick="selectChip(this,'need')">不想露腿</button>
         <button class="chip" data-n="noheel" onclick="selectChip(this,'need')">不想穿高跟</button>
         <button class="chip" data-n="arm" onclick="selectChip(this,'need')">想遮手臂</button>
-        <button class="chip" data-n="waist" onclick="selectChip(this,'need')">想修飾腰腹</button>
       </div>
 
       <button class="btn btn-primary btn-block" style="margin-top:24px;" onclick="generateFormula()">生成今日造型建議</button>
@@ -1198,7 +1202,7 @@
   <div class="page" id="page-mine">
     <div class="eyebrow">我的</div>
     <h1 class="page-title">個人風格檔案</h1>
-    <p class="page-desc">完成測驗後，這裡會生成一張可以存成手機桌布的「心法記憶卡」，逛街時拿出來對照就知道該不該買。</p>
+    <p class="page-desc">完成測驗後，這裡會生成一張你的「心法記憶卡」，逛街時拿出來對照就知道該不該買。</p>
 
     <div id="memcardWrap"></div>
 
@@ -1719,7 +1723,6 @@ function finishColorQuiz(){
       <div class="formula-line" style="margin-bottom:6px;">依春夏秋冬的氣候、衣物厚薄與穿搭氛圍，從你的命定色庫中挑出當季更好用的顏色。這不是限制，而是當季優先參考。</div>
       ${expandSeasonBlock(seasonPalettes)}
     </div>
-    <button class="btn btn-primary btn-block" onclick="goPage('recommend')" style="margin-top:4px;"><span style="display:inline-flex;align-items:center;gap:6px;justify-content:center;">套用到今日推薦<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span></button>
     <button class="btn btn-ghost btn-block" onclick="retakeQuiz('color')">重新測驗</button>
   `;
   document.getElementById('hubstatus-color').textContent = '已完成';
@@ -1777,11 +1780,11 @@ function toggleFocus(btn){
     btn.classList.remove('selected');
     shapeFocus = shapeFocus.filter(x=>x!==v);
   } else {
-    if(shapeFocus.length >= 3) return;
+    if(shapeFocus.length >= 2) return;
     btn.classList.add('selected');
     shapeFocus.push(v);
   }
-  wrap.classList.toggle('maxed', shapeFocus.length >= 3);
+  wrap.classList.toggle('maxed', shapeFocus.length >= 2);
 }
 
 // 主分類校正：不確定時用客觀錨點 + 勾選部位反推
@@ -1811,13 +1814,11 @@ const FOCUS_TACTIC = {
   waist:'收腰剪裁、腰帶落在自然腰線，短版上衣幫你分割比例。',
   arm:'七分袖露出最細的手腕、落肩袖模糊上臂，避開卡最粗處的長度。',
   belly:'直線與垂墜布料、中高腰有挺度的下身，外鬆內合最俐落。',
-  hip:'A 字、垂墜長裙與長版上衣修飾臀線，避免過亮過緊的下身。',
-  hipbone:'腰頭平整的寬褲、挺版 A 字裙，避免緊身褲與貼身短裙。',
+  hip:'A 字、垂墜長裙與長版上衣修飾臀胯線條，腰頭平整的寬褲、挺版 A 字裙更俐落，避免過緊貼身的下身。',
   shoulder:'大 V 領、柔軟布料，下身增加一點份量平衡，避免墊肩。',
   bust:'大 V 領、避免高領與胸下立即收緊，布料不要太厚。',
   flatbust:'一字領、小圓領與層次設計增加份量，正肩或微泡泡袖更立體。',
-  thigh:'A 字裙、直筒或寬褲、垂墜長裙，把線條拉直。',
-  calf:'落地褲、長裙，避免長度剛好卡在小腿最粗的地方。',
+  thigh:'A 字裙、直筒或寬褲、垂墜長裙把腿部線條拉直，避免長度卡在最粗處。',
   neck:'V 領、開口領與長鍊，幫你縱向延伸頸部線條。',
   tall:'同色系內外搭、高腰單品、垂直延伸，整體比例自然顯高。'
 };
@@ -1905,19 +1906,18 @@ function finishShapeQuiz(){
          `<b>洋裝：</b>${d.dress}`,
          `<b>外套：</b>${d.coat}`])}
       ${expandBlock('03','想優化的地方','針對你勾選的部位，用線條轉移視覺，不是遮蓋。', focusItems)}
-      ${expandBlock('04','適合你的經典版型','從經典單品裡，挑出特別適合你身型的版型方向（完整清單在「我的衣櫥」）。',
-        [SHAPE_CLASSIC[body]||'高腰下身＋有腰線的剪裁，是你最好用的方向。',
-         `<div style="font-size:11.5px;color:var(--ink-faint);margin-top:6px;">想看完整、依你色彩臉型篩過的經典衣櫥，到「我的 → 我的衣櫥」。</div>`])}
+      ${expandBlock('04','適合你的經典版型','從經典單品裡，挑出特別適合你身型的版型方向。',
+        [SHAPE_CLASSIC[body]||'高腰下身＋有腰線的剪裁，是你最好用的方向。'])}
     </div>
 
     <div class="card" id="legtype-card" style="margin-top:14px;">
       <div style="font-weight:700;margin-bottom:4px;">想讓褲、裙、鞋的建議更準？</div>
       <div class="result-tag" style="margin-bottom:12px;">補答 1 題腿型，我們可以給更細的下身與鞋款建議（選填）。</div>
       <div class="quiz-options" id="legtype-opts">
-        <button class="quiz-option" onclick="answerLegType('straight')"><span class="opt-bullet">A</span><span class="opt-text-wrap">直腿</span></button>
-        <button class="quiz-option" onclick="answerLegType('o')"><span class="opt-bullet">B</span><span class="opt-text-wrap">O 型腿</span></button>
-        <button class="quiz-option" onclick="answerLegType('x')"><span class="opt-bullet">C</span><span class="opt-text-wrap">X 型腿</span></button>
-        <button class="quiz-option" onclick="answerLegType('xo')"><span class="opt-bullet">D</span><span class="opt-text-wrap">XO 型腿</span></button>
+        <button class="quiz-option leg-opt" onclick="answerLegType('straight')"><span class="opt-bullet">A</span><span class="leg-opt-fig"><svg viewBox="0 0 30 40" fill="none" stroke="var(--violet)" stroke-width="2.2" stroke-linecap="round"><path d="M7 4 L7 36"/><path d="M23 4 L23 36"/><path d="M4 4 H26"/></svg></span><span class="opt-text-wrap">直腿</span></button>
+        <button class="quiz-option leg-opt" onclick="answerLegType('o')"><span class="opt-bullet">B</span><span class="leg-opt-fig"><svg viewBox="0 0 30 40" fill="none" stroke="var(--violet)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4 Q3 20 11 36"/><path d="M19 4 Q27 20 19 36"/><path d="M4 4 H26"/></svg></span><span class="opt-text-wrap">O 型腿</span></button>
+        <button class="quiz-option leg-opt" onclick="answerLegType('x')"><span class="opt-bullet">C</span><span class="leg-opt-fig"><svg viewBox="0 0 30 40" fill="none" stroke="var(--violet)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 Q15 18 6 36"/><path d="M21 4 Q15 18 24 36"/><path d="M4 4 H26"/></svg></span><span class="opt-text-wrap">X 型腿</span></button>
+        <button class="quiz-option leg-opt" onclick="answerLegType('xo')"><span class="opt-bullet">D</span><span class="leg-opt-fig"><svg viewBox="0 0 30 40" fill="none" stroke="var(--violet)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4 Q16 14 14 22 Q12 30 7 36"/><path d="M20 4 Q14 14 16 22 Q18 30 23 36"/><path d="M4 4 H26"/></svg></span><span class="opt-text-wrap">XO 型腿</span></button>
         <button class="quiz-option" onclick="answerLegType(null)"><span class="opt-bullet">E</span><span class="opt-text-wrap">不確定／略過</span></button>
       </div>
     </div>
@@ -1932,8 +1932,8 @@ function finishShapeQuiz(){
 }
 
 function focusLabel(f){
-  return {waist:'腰線',arm:'手臂',belly:'腹部',hip:'臀部',hipbone:'髖胯',shoulder:'肩膀',
-    bust:'胸前',flatbust:'上半身份量',thigh:'大腿',calf:'小腿',neck:'頸部',tall:'顯高'}[f];
+  return {waist:'腰線',arm:'手臂',belly:'腹部',hip:'臀胯',shoulder:'肩膀',
+    bust:'胸前',flatbust:'上半身份量',thigh:'腿部',neck:'頸部',tall:'顯高'}[f];
 }
 
 const LEG_TACTIC = {
@@ -2055,11 +2055,63 @@ const FACE_SHAPE = {
     accFShape:'圓潤弧線飾品，柔化顴骨的銳利線條。'}
 };
 
+// 依臉型的彩妝分項畫法（眉/眼/腮紅/修容/鼻影/唇），全繁體
+const FACE_MAKEUP_STEPS = {
+  oval:{
+    brow:'順自然眉型、眉峰柔和，維持原本的流暢線條即可。',
+    eye:'眼線貼著睫毛根部、眼尾自然帶出，不刻意上揚或下垂。',
+    blush:'笑肌位置橫向自然暈開，柔和提氣色。',
+    contour:'髮際、鼻側、下頜輕掃帶出立體，比例已均衡不需大修。',
+    nose:'鼻樑兩側淡掃即可，保持自然不誇張。',
+    lip:'順原本唇形描繪，飽和度依當天妝感調整。'
+  },
+  round:{
+    brow:'帶點眉峰、眉尾微挑，增加俐落感。',
+    eye:'眼線眼尾向外拉長，放大橫向、修飾圓潤。',
+    blush:'從顴骨往太陽穴斜上刷，做出拉提效果。',
+    contour:'臉頰兩側順著外輪廓收緊，視覺上收窄。',
+    nose:'鼻樑兩側淡掃、可稍微拉長，幫助縱向延伸。',
+    lip:'唇形自然飽滿即可，不刻意外擴。'
+  },
+  square:{
+    brow:'眉型自然微彎、眉峰圓潤，柔化整體線條。',
+    eye:'眼線柔和暈染、眼尾帶圓弧，避免過於銳利。',
+    blush:'圓潤打圈暈染在笑肌，增加柔和感。',
+    contour:'下顎轉折處做收斂修容，柔化方正感。',
+    nose:'鼻影自然淡掃，不需強調骨感。',
+    lip:'唇峰描得圓潤些，整體偏柔。'
+  },
+  long:{
+    brow:'眉型平緩柔和，避免高挑眉峰拉長臉部。',
+    eye:'眼線平拉、眼尾不上揚，維持橫向感。',
+    blush:'橫向平刷在顴骨中段，縮短縱向比例。',
+    contour:'髮際線與下巴帶點陰影，壓縮臉部長度。',
+    nose:'鼻影短而淡、不往下延伸，避免拉長。',
+    lip:'唇色可稍飽和，增加下半臉的重量感。'
+  },
+  heart:{
+    brow:'眉型平緩自然，避免上揚強調偏寬的額頭。',
+    eye:'眼妝重心放在眼尾、適度橫向延伸，平衡上半臉。',
+    blush:'刷在笑肌偏下位置，把視覺重心往下帶。',
+    contour:'額頭兩側與太陽穴輕修收窄，下巴適度提亮補長度。',
+    nose:'鼻影自然淡掃即可。',
+    lip:'唇色可稍飽和、唇形完整，補足下半臉份量。'
+  },
+  diamond:{
+    brow:'眉型自然、眉尾柔和，平衡較窄的額頭。',
+    eye:'眼妝柔和暈染，避免在顴骨上方堆疊重點。',
+    blush:'刷在笑肌、略偏內側，避開最寬的顴骨。',
+    contour:'顴骨最高點做收斂修容，額頭與下巴適度提亮。',
+    nose:'鼻影淡掃，重點在柔化顴骨而非加深骨感。',
+    lip:'唇形自然圓潤，增加下半臉的柔和度。'
+  }
+};
+
 // 線條 → 妝感與剪裁語氣
 const FACE_LINE = {
-  soft:{makeup:'適合邊緣暈染、低飽和的輕透妝，眉型柔和自然。', hair:'柔順自然的髮流最襯，避免太銳利的剪裁線條。'},
-  natural:{makeup:'妝感彈性大，自然微立體的修容就很好看。', hair:'俐落或柔和的剪裁都能駕馭。'},
-  bony:{makeup:'可駕馭俐落、有對比的妝容，但修容重在柔化而非加深骨感。', hair:'適度的層次與髮絲能柔化分明的骨架。'}
+  soft:{makeup:'妝感走輕透路線：邊緣多暈染、彩度放低，腮紅與眼影都用拍開的方式，避免明顯線條。', hair:'柔順自然的髮流最襯，避免太銳利的剪裁線條。'},
+  natural:{makeup:'妝感彈性大：日常用裸感、想精緻時加深眼線與修容即可，濃淡都能駕馭。', hair:'俐落或柔和的剪裁都能駕馭。'},
+  bony:{makeup:'妝感可俐落有對比：眼線與唇色都撐得起飽和色，但修容重在柔化轉折、不再加深骨感。', hair:'適度的層次與髮絲能柔化分明的骨架。'}
 };
 
 // 眼鏡框「粗細」依量感（形狀依臉型）
@@ -2075,7 +2127,7 @@ const WEIGHT_ACC = {
   airy:'細鍊、微鑽等細緻款，呼應輕盈氣質。',
   fine:'細緻到中等份量的飾品都合適。',
   balanced:'中等份量飾品最安全，依造型微調。',
-  striking:'可選有份量的幾何款，撐得起存在感。',
+  striking:'可選大圈耳環、幾何垂墜、寬版手環等有份量的款式，份量足才壓得住五官。',
   intense:'粗鍊條、厚實幾何款，與五官份量相襯。'
 };
 
@@ -2139,9 +2191,15 @@ function finishFaceQuiz(){
       ${(()=>{
         const mk = profile.color && profile.color.makeup;
         const swRow = pairs => pairs ? `<div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;">${pairs.map(([h,n])=>`<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--ink-soft);"><span style="width:18px;height:18px;border-radius:50%;background:${h};border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.12);"></span>${n}</span>`).join('')}</div>` : '<span style="color:var(--ink-faint);">完成色彩測驗後，這裡會顯示適合你膚色的彩妝色票。</span>';
+        const mkSteps = FACE_MAKEUP_STEPS[shape] || FACE_MAKEUP_STEPS['oval'];
         const lines = [
-          `<b>修容重點（依臉型）：</b>${s.makeup}`,
-          `<b>妝感方向（依臉型）：</b>${ln.makeup}`
+          `<b>眉：</b>${mkSteps.brow}`,
+          `<b>眼：</b>${mkSteps.eye}`,
+          `<b>腮紅：</b>${mkSteps.blush}`,
+          `<b>修容：</b>${mkSteps.contour}`,
+          `<b>鼻影：</b>${mkSteps.nose}`,
+          `<b>唇：</b>${mkSteps.lip}`,
+          `<b>妝感方向（依臉部線條）：</b>${ln.makeup}`
         ];
         if(mk){
           lines.push(`<b>底妝質地：</b>${mk.base}`);
@@ -2160,10 +2218,9 @@ function finishFaceQuiz(){
       ${expandBlock('04','耳環與項鍊','形狀呼應臉型線條，份量呼應五官量感。',
         [`<b>形狀：</b>${s.accFShape}`,
          `<b>份量：</b>${WEIGHT_ACC[fw.key]}`])}
-      ${expandBlock('05','適合你的領口與配件','挑單品時的快速口訣，會連動到「我的衣櫥」的篩選。',
+      ${expandBlock('05','適合你的領口與配件','挑單品時的快速口訣。',
         [`<b>領口方向：</b>${FACE_COLLAR[shape]||'多數領口都適合，依場合與穿搭重心選。'}`,
-         `<b>配件份量：</b>${(fw.key==='striking'||fw.key==='intense')?'五官量感較足，可選有份量、撐得起來的款式。':'五官清秀，精緻細緻款最呼應，避免過於厚重。'}`,
-         `<div style="font-size:11.5px;color:var(--ink-faint);margin-top:6px;">買襯衫、洋裝、耳環時，「我的衣櫥」會自動帶入這個方向。</div>`])}
+         `<b>配件份量：</b>${(fw.key==='striking'||fw.key==='intense')?'五官存在感足，可選大圈耳環、3cm 以上垂墜、寬版手環這類有份量的款式，細小飾品反而被五官壓過。':'五官清秀，選細圈耳環、小巧耳釘、細鍊這類精緻款最呼應，避免過大過厚的飾品。'}`])}
     </div>
 
     <div class="card" id="hairfocus-card" style="margin-top:14px;">
@@ -2665,7 +2722,7 @@ function generateFormula(){
       ${expandBlock('05','今日臉型加分','髮型、眼鏡、耳環、項鍊，依你的臉型與五官量感。',
         [`<b>髮型：</b>${f.hair.split('；')[0]}`,
          `<b>眼鏡框：</b>${f.glasses}`,
-         `<b>耳環：</b>${faceStriking?'可選有份量的幾何、垂墜款，撐得起五官':'精緻貼耳或細緻小垂墜，呼應清秀感'}`,
+         `<b>耳環：</b>${faceStriking?'可選大圈、幾何或 3cm 以上垂墜款，份量足才壓得住五官':'精緻貼耳或細緻小垂墜，呼應清秀感'}`,
          `<b>項鍊：</b>${s.type==='pear'||s.type==='apple'?'V 型或長墜鍊，拉長上半身線條':'鎖骨鍊或短鍊，貼合領口'}`])}
 
       ${(()=>{
@@ -2735,7 +2792,7 @@ function generateFormula(){
     face: [
       {label:'髮型', text:f.hair.split('；')[0]},
       {label:'眼鏡框', text:f.glasses},
-      {label:'耳環', text:faceStriking?'可選有份量的幾何、垂墜款，撐得起五官':'精緻貼耳或細緻小垂墜，呼應清秀感'},
+      {label:'耳環', text:faceStriking?'可選大圈、幾何或 3cm 以上垂墜款，份量足才壓得住五官':'精緻貼耳或細緻小垂墜，呼應清秀感'},
       {label:'項鍊', text:(s.type==='pear'||s.type==='apple')?'V 型或長墜鍊，拉長上半身線條':'鎖骨鍊或短鍊，貼合領口'}
     ],
     // 06 今日彩妝建議（色票帶 hex，分享卡用色點呈現）
@@ -2838,7 +2895,7 @@ ${d.avoid.map(o=>`${o.label}：${o.text}`).join('\n')}`:''}
   modal.innerHTML = `
     <div style="background:#fff;border-radius:20px;max-width:340px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 12px 40px rgba(0,0,0,.3);">
       <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #f0e6ee;position:sticky;top:0;background:#fff;border-radius:20px 20px 0 0;">
-        <div style="font-weight:800;font-size:15px;color:#2b1b28;">分享預覽（demo）</div>
+        <div style="font-weight:800;font-size:15px;color:#2b1b28;">分享預覽</div>
         <button onclick="document.getElementById('share-modal').remove()" style="border:none;background:none;font-size:22px;color:#9a8a96;cursor:pointer;line-height:1;">×</button>
       </div>
 
@@ -2877,9 +2934,6 @@ ${d.avoid.map(o=>`${o.label}：${o.text}`).join('\n')}`:''}
         <button onclick="copyShareText()" style="flex:1;border:1px solid #931F5C;background:#fff;color:#931F5C;border-radius:12px;padding:11px;font-weight:700;cursor:pointer;font-size:13px;">複製文字</button>
         <button onclick="document.getElementById('share-modal').remove()" style="flex:1;border:none;background:linear-gradient(135deg,#931F5C,#7C5CC4);color:#fff;border-radius:12px;padding:11px;font-weight:700;cursor:pointer;font-size:13px;">完成</button>
       </div>
-      <div style="padding:0 16px 16px;font-size:11px;color:#a89aa4;line-height:1.6;">
-        這是分享卡的版面 demo。實際「存成圖片」或「叫起系統分享」需要後續串接（html2canvas 轉圖 / navigator.share），可交給後續開發完成。
-      </div>
     </div>`;
   modal._shareText = shareText;
   document.body.appendChild(modal);
@@ -2908,7 +2962,6 @@ function refreshMinePage(){
         <div class="mc-formula">${c.label} ✕ ${s.label} ✕ ${f.volLabel}</div>
         <div class="swatches" style="margin-bottom:16px;">${c.swatches.slice(0,5).map(x=>`<div class="swatch" style="background:${x}"></div>`).join('')}</div>
         <div class="mc-rule">${s.core}<br>${f.volDesc}</div>
-        <button class="btn btn-primary btn-sm" style="margin-top:18px;" onclick="alert('已儲存為桌布圖（demo）')">存成手機桌布</button>
       </div>
     `;
   } else {
@@ -3268,7 +3321,7 @@ function faceFitNote(item){
   if(!item.faceRule || !f) return '';
   if(item.faceRule==='earring'){
     const striking = f.featureWeight==='striking' || f.featureWeight==='intense';
-    return striking ? '可選有份量的款式，撐得起五官' : '精緻細緻款，呼應清秀感';
+    return striking ? '可選大圈、幾何或寬版有份量的款式，份量足才壓得住五官' : '精緻細緻款，呼應清秀感';
   }
   const collarMap = {
     round:'V 領拉長線條最加分', square:'圓弧、柔和領口柔化下顎',
