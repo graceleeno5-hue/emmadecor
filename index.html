@@ -4,41 +4,54 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>命定造型｜個人造型心法</title>
+
+<!-- App 圖示 / 加入主畫面（命定造型） -->
+<link rel="icon" type="image/png" href="assets/app-icon.png">
+<link rel="apple-touch-icon" href="assets/app-icon.png">
+<link rel="manifest" href="assets/manifest.webmanifest">
+<meta name="theme-color" content="#F5EFE4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="命定造型">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Noto+Serif+TC:wght@500;600;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #F3F1F7;
+    --bg: #F3F0EA;
     --surface: #FFFFFF;
-    --ink: #1F1B2E;
-    --ink-soft: #6E6680;
-    --ink-faint: #A39CB3;
-    --line: #E3DEED;
-    --line-strong: #CFC7E0;
+    --ink: #4F2E27;
+    --ink-soft: #544E44;
+    --ink-faint: #9A9286;
+    --line: #D6D0C4;
+    --line-strong: #C4BBA9;
 
-    --magenta: #C13B7A;
-    --magenta-deep: #931F5C;
-    --magenta-pale: #FBE4EE;
-    --magenta-pale-2: #F6CADD;
+    --magenta: #B85636;
+    --magenta-deep: #9A3D22;
+    --magenta-pale: #F0E5D8;
+    --magenta-pale-2: #E7D6C4;
 
-    --violet: #7C5CC4;
-    --violet-pale: #ECE5FA;
+    --violet: #8A7C68;
+    --violet-pale: #ECE5D8;
 
-    --mint: #2F9E83;
-    --mint-pale: #DEF3EB;
+    --mint: #7C7F5E;
+    --mint-pale: #E6E6D7;
 
-    --amber: #E0913B;
-    --amber-pale: #FCEBD7;
+    --amber: #B85636;
+    --amber-pale: #F0E5D8;
 
-    --shadow-sm: 0 2px 8px rgba(31,27,46,0.06);
-    --shadow-md: 0 8px 24px rgba(31,27,46,0.10);
-    --radius-s: 10px;
-    --radius-m: 18px;
-    --radius-l: 26px;
-    --radius-xl: 32px;
-    --sans: 'Noto Sans TC', 'Manrope', sans-serif;
-    --display: 'Manrope', 'Noto Sans TC', sans-serif;
+    --shadow-sm: 0 2px 10px rgba(60,48,30,0.06);
+    --shadow-md: 0 8px 26px rgba(60,48,30,0.12);
+    --radius-s: 3px;
+    --radius-m: 3px;
+    --radius-l: 4px;
+    --radius-xl: 4px;
+    --sans: 'Noto Sans TC', sans-serif;
+    --display: 'Bodoni Moda', serif;
+    --serif: 'Noto Serif TC', serif;
+    --mono: 'DM Mono', monospace;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -59,55 +72,55 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 80px rgba(31,27,46,0.10);
+    box-shadow: 0 0 60px rgba(60,48,30,0.12);
   }
 
   .topbar {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(243,241,247,0.9);
+    background: rgba(243,240,234,0.94);
     backdrop-filter: blur(10px);
-    padding: 20px 22px 12px;
+    padding: 22px 24px 0;
   }
   .topbar-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--ink);
   }
   .brand {
     font-family: var(--display);
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: -0.3px;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
     color: var(--ink);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 9px;
   }
   .brand .logo-dot {
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--magenta), var(--violet));
+    width: 9px; height: 9px;
+    border-radius: 0;
+    transform: rotate(45deg);
+    background: var(--magenta);
     flex-shrink: 0;
   }
   .topbar-icon {
-    width: 38px; height: 38px;
-    border-radius: 50%;
-    background: var(--surface);
-    box-shadow: var(--shadow-sm);
+    width: 36px; height: 36px;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
     display: flex; align-items: center; justify-content: center;
-    font-family: var(--display);
-    font-weight: 800;
-    color: var(--magenta-deep);
-    font-size: 13px;
+    color: var(--ink-soft);
     cursor: pointer;
     border: none;
   }
 
   .page {
     flex: 1;
-    padding: 18px 22px 110px;
+    padding: 22px 24px 120px;
     display: none;
     animation: fadeIn 0.35s ease;
   }
@@ -118,37 +131,42 @@
   }
 
   .eyebrow {
-    font-size: 11.5px;
-    letter-spacing: 1.5px;
-    color: var(--magenta-deep);
-    font-weight: 800;
-    margin-bottom: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--magenta);
+    font-weight: 500;
+    margin-bottom: 12px;
     text-transform: uppercase;
   }
   h1.page-title {
     font-family: var(--display);
-    font-size: 26px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    line-height: 1.3;
-    margin-bottom: 10px;
+    font-size: 46px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.0;
+    margin-bottom: 14px;
   }
   .page-desc {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--ink-soft);
-    line-height: 1.7;
-    margin-bottom: 22px;
+    line-height: 1.85;
+    margin-bottom: 24px;
+    padding-left: 14px;
+    border-left: 2px solid var(--ink);
   }
 
   .card {
     background: var(--surface);
+    border: 1px solid var(--line);
     border-radius: var(--radius-l);
     padding: 20px;
     margin-bottom: 14px;
     box-shadow: var(--shadow-sm);
   }
   .card-title {
-    font-size: 14.5px;
+    font-family: var(--serif);
+    font-size: 15px;
     font-weight: 700;
     margin-bottom: 4px;
     display: flex;
@@ -157,7 +175,7 @@
   }
   .card-title .icon {
     width: 30px; height: 30px;
-    border-radius: 10px;
+    border-radius: 2px;
     background: var(--mint-pale);
     color: var(--mint);
     display: flex; align-items: center; justify-content: center;
@@ -168,130 +186,157 @@
   .hub-grid {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 0;
+    border-top: 1px solid var(--line);
   }
   .hub-card {
-    background: var(--surface);
-    border-radius: var(--radius-l);
-    padding: 18px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    padding: 20px 2px;
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
     cursor: pointer;
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.15s, box-shadow 0.15s;
-    border: 1.5px solid transparent;
+    box-shadow: none;
+    transition: background 0.15s;
   }
-  .hub-card:active { transform: scale(0.98); }
-  .hub-card.done { border-color: var(--mint); }
+  .hub-card:active { background: var(--magenta-pale); }
   .hub-card .hub-emoji {
-    width: 48px; height: 48px;
-    border-radius: 16px;
+    width: 40px; height: 40px;
+    border-radius: 0;
     display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
+    font-size: 18px;
+    color: var(--ink-faint);
     flex-shrink: 0;
+    background: transparent !important;
   }
+  .hub-card.done .hub-emoji { color: var(--magenta); }
   .hub-card .hub-text { flex: 1; }
   .hub-card .hub-title {
+    font-family: var(--serif);
     font-weight: 700;
-    font-size: 15px;
-    margin-bottom: 2px;
+    font-size: 16px;
+    margin-bottom: 4px;
   }
   .hub-card .hub-sub {
-    font-size: 12px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
     color: var(--ink-faint);
   }
   .hub-card .hub-status {
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 999px;
-    background: var(--bg);
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: transparent;
+    border: 1px solid var(--line-strong);
     color: var(--ink-faint);
     flex-shrink: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
   .hub-card.done .hub-status {
-    background: var(--mint-pale);
-    color: var(--mint);
+    background: transparent;
+    border-color: var(--magenta);
+    color: var(--magenta);
   }
   .hub-card .chev {
-    color: var(--ink-faint);
+    color: var(--ink);
     flex-shrink: 0;
   }
+  .hub-card .hub-num {
+    font-family: var(--display);
+    font-size: 32px;
+    line-height: 1;
+    color: var(--line-strong);
+    width: 34px;
+    flex-shrink: 0;
+  }
+  .hub-card.done .hub-num { color: var(--ink); }
 
   .quiz-progress {
     display: flex;
     gap: 6px;
-    margin-bottom: 24px;
+    margin-bottom: 26px;
   }
   .quiz-progress span {
-    height: 4px;
+    height: 3px;
     flex: 1;
     background: var(--line);
-    border-radius: 4px;
+    border-radius: 0;
     transition: background 0.3s;
   }
-  .quiz-progress span.filled { background: var(--magenta); }
+  .quiz-progress span.filled { background: var(--ink); }
 
   .quiz-step { display: none; }
   .quiz-step.active { display: block; animation: fadeIn 0.3s ease; }
 
   .quiz-step-tag {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--violet);
-    margin-bottom: 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--magenta);
+    margin-bottom: 12px;
   }
   .step-back {
-    display: inline-flex; align-items: center; gap: 3px;
+    display: inline-flex; align-items: center; gap: 4px;
     background: none; border: none; cursor: pointer;
-    color: var(--ink-faint); font-size: 12.5px; font-weight: 600;
-    padding: 4px 0; margin-bottom: 6px;
-    font-family: inherit;
+    color: var(--ink-faint); font-size: 11px; font-weight: 500;
+    font-family: var(--mono); letter-spacing: 0.04em;
+    padding: 4px 0; margin-bottom: 8px;
+    text-transform: uppercase;
   }
   .step-back:hover { color: var(--magenta); }
   .step-back svg { margin-top: -1px; }
   .quiz-question {
-    font-family: var(--display);
-    font-size: 20px;
-    font-weight: 800;
-    letter-spacing: -0.3px;
-    line-height: 1.5;
-    margin-bottom: 20px;
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.55;
+    margin-bottom: 22px;
   }
   .quiz-options {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 9px;
   }
   .quiz-option {
     text-align: left;
     background: var(--surface);
-    border: none;
+    border: 1px solid var(--line);
     border-radius: var(--radius-m);
     padding: 16px 18px;
     font-family: var(--sans);
     font-size: 14.5px;
     color: var(--ink);
     cursor: pointer;
-    transition: transform 0.12s, box-shadow 0.15s, background 0.15s;
-    line-height: 1.5;
-    box-shadow: var(--shadow-sm);
+    transition: border-color 0.15s, background 0.15s;
+    line-height: 1.55;
+    box-shadow: none;
     display: flex;
     align-items: flex-start;
-    gap: 12px;
+    gap: 13px;
   }
   .quiz-option:hover {
-    box-shadow: var(--shadow-md);
+    border-color: var(--magenta);
     background: var(--magenta-pale);
   }
-  .quiz-option:active { transform: scale(0.98); }
+  .quiz-option:active { background: var(--magenta-pale-2); }
   .quiz-option .opt-bullet {
     width: 26px; height: 26px;
     border-radius: 50%;
-    background: var(--violet-pale);
-    color: var(--violet);
-    font-weight: 800;
+    background: transparent;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-weight: 500;
     font-size: 12px;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
@@ -302,24 +347,27 @@
     font-size: 12px;
     color: var(--ink-faint);
     margin-top: 3px;
+    line-height: 1.6;
   }
   .quiz-option.focus-opt.selected {
     background: var(--magenta-pale);
-    box-shadow: inset 0 0 0 2px var(--magenta);
+    border-color: var(--magenta);
+    box-shadow: inset 0 0 0 1px var(--magenta);
   }
   .quiz-option.face-opt, .quiz-option.leg-opt { align-items: center; }
   .face-opt-fig {
-    width: 38px; height: 46px; flex-shrink: 0;
+    width: 44px; height: 54px; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
   }
-  .face-opt-fig svg { width: 100%; height: 100%; }
+  .face-opt-fig svg, .face-opt-fig img { width: 100%; height: 100%; }
   .leg-opt-fig {
-    width: 30px; height: 40px; flex-shrink: 0;
+    width: 40px; height: 52px; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
   }
-  .leg-opt-fig svg { width: 100%; height: 100%; }
+  .leg-opt-fig svg, .leg-opt-fig img { width: 100%; height: 100%; }
   .quiz-option.focus-opt.selected .opt-bullet {
     background: var(--magenta);
+    border-color: var(--magenta);
     color: #fff;
   }
   #shape-focus-opts.maxed .focus-opt:not(.selected),
@@ -329,30 +377,29 @@
     pointer-events: none;
   }
 
-  /* 身型圖卡網格 */
   .shape-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 9px;
   }
   .shape-card {
     background: var(--surface);
-    border: 1.5px solid var(--line);
+    border: 1px solid var(--line);
     border-radius: var(--radius-m);
     padding: 14px 10px 12px;
     cursor: pointer;
     text-align: center;
-    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
-    box-shadow: var(--shadow-sm);
+    transition: border-color 0.18s, background 0.18s;
+    box-shadow: none;
   }
   .shape-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
     border-color: var(--magenta);
+    background: var(--magenta-pale);
   }
-  .shape-card:active { transform: scale(0.98); }
+  .shape-card:active { background: var(--magenta-pale-2); }
   .shape-card svg { width: 58px; height: 84px; display: block; margin: 0 auto 6px; }
   .shape-card .sc-name {
+    font-family: var(--serif);
     font-weight: 700;
     font-size: 14px;
     color: var(--ink);
@@ -367,75 +414,84 @@
   .shape-card .sc-q {
     width: 44px; height: 44px; margin: 8px auto;
     border-radius: 50%;
-    background: var(--violet-pale);
-    color: var(--violet);
-    font-size: 22px; font-weight: 800;
+    background: transparent;
+    border: 1px solid var(--magenta);
+    color: var(--magenta);
+    font-family: var(--display);
+    font-size: 22px; font-weight: 600;
     display: flex; align-items: center; justify-content: center;
   }
 
   .btn {
     font-family: var(--sans);
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 700;
-    border-radius: 999px;
-    padding: 13px 24px;
+    border-radius: 2px;
+    padding: 14px 24px;
     cursor: pointer;
     border: none;
+    letter-spacing: 0.04em;
     transition: opacity 0.15s, transform 0.1s;
   }
-  .btn:active { transform: scale(0.97); }
+  .btn:active { transform: scale(0.98); }
   .btn-primary {
-    background: linear-gradient(135deg, var(--magenta), var(--violet));
-    color: white;
+    background: var(--ink);
+    color: var(--bg);
   }
-  .btn-primary:hover { opacity: 0.92; }
+  .btn-primary:hover { opacity: 0.9; }
   .btn-ghost {
     background: var(--surface);
     color: var(--ink-soft);
-    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--line-strong);
+    box-shadow: none;
   }
   .btn-block { width: 100%; text-align: center; }
-  .btn-sm { padding: 8px 16px; font-size: 12.5px; }
+  .btn-sm { padding: 9px 16px; font-size: 12.5px; }
 
   .result-hero {
-    background: linear-gradient(160deg, var(--magenta-pale) 0%, var(--violet-pale) 100%);
-    border-radius: var(--radius-xl);
-    padding: 30px 24px;
+    background: var(--bg);
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    padding: 26px 6px 26px;
     text-align: center;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
   }
   .result-hero .eyebrow { justify-content: center; display: flex; }
   .result-hero .result-name {
     font-family: var(--display);
-    font-size: 26px;
-    font-weight: 800;
-    letter-spacing: -0.4px;
-    color: var(--magenta-deep);
-    margin: 8px 0 10px;
+    font-size: 52px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 0.98;
+    color: var(--ink);
+    margin: 10px 0 12px;
   }
   .result-hero .result-tag {
-    font-size: 13.5px;
+    font-size: 13px;
     color: var(--ink-soft);
-    line-height: 1.6;
+    line-height: 1.75;
+    max-width: 360px;
+    margin: 0 auto;
   }
   .swatches {
     display: flex;
     justify-content: center;
-    gap: 9px;
-    margin-top: 16px;
+    gap: 0;
+    margin-top: 18px;
   }
   .swatch {
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    border: 3px solid white;
-    box-shadow: var(--shadow-sm);
+    width: 40px; height: 40px;
+    border-radius: 0;
+    border: none;
+    box-shadow: inset 0 0 0 1px rgba(79,46,39,0.12);
   }
 
   .expand {
     border-top: 1px solid var(--line);
-    margin-top: 10px;
+    margin-top: 0;
   }
-  .expand:first-child { border-top: none; margin-top: 0; }
+  .expand:first-child { border-top: none; }
   .expand-head {
     width: 100%;
     background: transparent;
@@ -443,7 +499,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
+    padding: 17px 0;
     cursor: pointer;
     text-align: left;
     color: var(--ink);
@@ -452,22 +508,27 @@
     font-family: inherit;
   }
   .expand-head .et {
-    font-size: 14.5px;
+    font-family: var(--serif);
+    font-size: 15px;
     font-weight: 700;
     color: var(--ink);
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
   }
   .expand-head .et .num {
-    width: 22px; height: 22px;
-    border-radius: 7px;
-    background: var(--magenta-pale);
-    color: var(--magenta-deep);
-    font-size: 11px;
-    font-weight: 800;
-    display: flex; align-items: center; justify-content: center;
+    font-family: var(--display);
+    font-size: 24px;
+    font-weight: 600;
+    color: #CFC7B8;
+    width: auto;
+    height: auto;
+    min-width: 26px;
+    background: transparent;
+    border-radius: 0;
+    display: flex; align-items: center; justify-content: flex-start;
     flex-shrink: 0;
+    line-height: 1;
   }
   .expand-chevron {
     width: 18px; height: 18px;
@@ -481,20 +542,21 @@
     overflow: hidden;
     transition: max-height 0.3s ease;
   }
-  .expand.open .expand-body { max-height: 1200px; }
+  .expand.open .expand-body { max-height: 2400px; }
   .expand-body-inner {
     padding: 0 0 18px;
     font-size: 13.5px;
     color: var(--ink-soft);
-    line-height: 1.8;
+    line-height: 1.85;
   }
   .formula-line {
     background: var(--bg);
-    border-radius: var(--radius-s);
+    border-radius: 2px;
     padding: 11px 14px;
     margin-bottom: 8px;
     font-size: 13px;
     color: var(--ink);
+    line-height: 1.8;
   }
   .formula-line b { color: var(--magenta-deep); }
   .formula-line:last-child { margin-bottom: 0; }
@@ -505,11 +567,11 @@
     gap: 8px;
   }
   .chip {
-    border: none;
+    border: 1px solid var(--line-strong);
     background: var(--surface);
-    box-shadow: var(--shadow-sm);
-    border-radius: 999px;
-    padding: 9px 16px;
+    box-shadow: none;
+    border-radius: 2px;
+    padding: 9px 15px;
     font-size: 13px;
     font-weight: 600;
     color: var(--ink-soft);
@@ -517,51 +579,55 @@
     transition: all 0.15s;
   }
   .chip.selected {
-    background: linear-gradient(135deg, var(--magenta), var(--violet));
-    color: white;
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--bg);
   }
 
   .bottomnav {
     position: fixed;
-    bottom: 12px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: calc(100% - 28px);
-    max-width: 452px;
-    background: var(--surface);
-    border-radius: 999px;
-    box-shadow: var(--shadow-md);
+    width: 100%;
+    max-width: 480px;
+    background: var(--bg);
+    border-top: 2px solid var(--ink);
+    border-radius: 0;
+    box-shadow: 0 -4px 20px rgba(60,48,30,0.06);
     display: flex;
     z-index: 60;
-    padding: 8px;
+    padding: 12px 8px 16px;
   }
   .nav-item {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3px;
+    gap: 5px;
     background: transparent;
     border: none;
-    padding: 8px 2px 7px;
+    padding: 6px 2px;
     cursor: pointer;
     color: var(--ink-faint);
-    border-radius: 999px;
-    transition: background 0.2s, color 0.2s;
+    border-radius: 0;
+    transition: color 0.2s;
   }
   .nav-item svg { width: 19px; height: 19px; }
-  .nav-item span { font-size: 9.5px; font-weight: 700; }
+  .nav-item img { width: 22px; height: 22px; object-fit: contain; opacity: 0.38; transition: opacity 0.2s; }
+  .nav-item.active img { opacity: 1; }
+  .nav-item span { font-family: var(--mono); font-size: 9px; letter-spacing: 0.05em; }
   .nav-item.active {
-    color: var(--magenta-deep);
-    background: var(--magenta-pale);
+    color: var(--ink);
+    background: transparent;
   }
   .nav-item .nav-dot {
     position: absolute;
-    margin-top: -16px;
-    margin-left: 14px;
-    width: 6px; height: 6px;
+    margin-top: -14px;
+    margin-left: 16px;
+    width: 5px; height: 5px;
     border-radius: 50%;
-    background: var(--mint);
+    background: var(--magenta);
     display: none;
   }
   .nav-item.done .nav-dot { display: block; }
@@ -569,13 +635,13 @@
   .occasion-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 9px;
     margin-bottom: 20px;
   }
   .occasion-card {
-    border: none;
+    border: 1px solid var(--line);
     background: var(--surface);
-    box-shadow: var(--shadow-sm);
+    box-shadow: none;
     border-radius: var(--radius-m);
     padding: 18px 12px;
     text-align: center;
@@ -583,135 +649,144 @@
     transition: all 0.15s;
   }
   .occasion-card .occ-icon { font-size: 22px; margin-bottom: 6px; display:block; }
-  .occasion-card .occ-name { font-weight: 700; font-size: 13.5px; }
-  .occasion-card .occ-desc { font-size: 11px; color: var(--ink-faint); margin-top: 2px; }
+  .occasion-card .occ-name { font-family: var(--serif); font-weight: 700; font-size: 14px; }
+  .occasion-card .occ-desc { font-size: 11px; color: var(--ink-faint); margin-top: 3px; }
   .occasion-card.selected {
-    background: linear-gradient(160deg, var(--magenta-pale), var(--violet-pale));
-    box-shadow: var(--shadow-md);
+    background: var(--magenta-pale);
+    border-color: var(--magenta);
+    box-shadow: inset 0 0 0 1px var(--magenta);
   }
   .occasion-card.selected .occ-name { color: var(--magenta-deep); }
 
   .field-label {
-    font-size: 12.5px;
-    font-weight: 700;
-    color: var(--ink-soft);
-    margin: 20px 0 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink-faint);
+    margin: 22px 0 11px;
   }
 
   .cal-wrap {
-    background: var(--card, #fff);
-    border-radius: var(--radius-lg, 16px);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-m);
     padding: 14px 14px 10px;
     margin-bottom: 8px;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    box-shadow: none;
   }
   .cal-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
-  .cal-title { font-weight:800; font-size:14px; color:var(--ink); }
+  .cal-title { font-family: var(--serif); font-weight:700; font-size:14px; color:var(--ink); }
   .cal-nav {
-    width:30px; height:30px; border:none; background:var(--magenta-pale);
-    color:var(--magenta-deep); border-radius:50%; font-size:18px; cursor:pointer;
+    width:30px; height:30px; border:1px solid var(--line-strong); background:transparent;
+    color:var(--ink); border-radius:2px; font-size:18px; cursor:pointer;
     display:flex; align-items:center; justify-content:center; line-height:1;
   }
-  .cal-nav:hover { background:var(--magenta-pale-2); }
+  .cal-nav:hover { background:var(--magenta-pale); border-color:var(--magenta); }
   .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }
-  .cal-dow span { text-align:center; font-size:10px; color:var(--ink-faint); padding:4px 0; }
+  .cal-dow span { text-align:center; font-family:var(--mono); font-size:10px; color:var(--ink-faint); padding:4px 0; }
   .cal-cell {
     aspect-ratio:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    font-size:12.5px; color:var(--ink); border-radius:10px; cursor:default; position:relative;
-    border:1.5px solid transparent;
+    font-size:12.5px; color:var(--ink); border-radius:2px; cursor:default; position:relative;
+    border:1px solid transparent;
   }
   .cal-cell.has-rec { cursor:pointer; color:var(--magenta-deep); font-weight:700; }
   .cal-cell.has-rec:hover { background:var(--magenta-pale); }
   .cal-cell.is-today { border-color:var(--magenta); }
-  .cal-cell.is-selected { background:var(--magenta); color:#fff; }
+  .cal-cell.is-selected { background:var(--ink); color:#fff; }
   .cal-cell.is-selected.has-rec { color:#fff; }
   .cal-cell.empty { cursor:default; }
-  .cal-dot { width:5px; height:5px; border-radius:50%; background:var(--magenta); margin-top:2px; }
+  .cal-dot { width:4px; height:4px; border-radius:50%; background:var(--magenta); margin-top:2px; }
   .cal-cell.is-selected .cal-dot { background:#fff; }
-  .cal-foot { display:flex; align-items:center; justify-content:space-between; margin-top:10px; padding-top:8px; border-top:1px solid var(--line,#eee); }
+  .cal-foot { display:flex; align-items:center; justify-content:space-between; margin-top:10px; padding-top:8px; border-top:1px solid var(--line); }
   .cal-hint { font-size:11px; color:var(--ink-faint); }
-  .cal-demo { border:none; background:none; color:var(--violet); font-size:12px; font-weight:700; cursor:pointer; }
+  .cal-demo { border:none; background:none; color:var(--magenta); font-family:var(--mono); font-size:11px; letter-spacing:0.04em; font-weight:500; cursor:pointer; text-transform:uppercase; }
   .cal-demo:hover { text-decoration:underline; }
   .viewing-banner {
-    background:var(--violet-pale); color:var(--violet); border-radius:12px;
+    background:var(--violet-pale); color:var(--ink); border:1px solid var(--line); border-radius:2px;
     padding:10px 14px; margin-bottom:12px; font-size:13px; font-weight:600;
     display:flex; align-items:center; justify-content:space-between;
   }
-  .viewing-banner button { border:none; background:var(--violet); color:#fff; border-radius:8px; padding:5px 12px; font-size:12px; cursor:pointer; }
+  .viewing-banner button { border:none; background:var(--ink); color:#fff; border-radius:2px; padding:6px 12px; font-size:12px; cursor:pointer; }
   .rec-item-chip {
-    font-size:13px; background:var(--magenta-pale); color:var(--magenta-deep);
-    border:1.5px solid transparent; padding:7px 14px; border-radius:20px; cursor:pointer;
+    font-size:13px; background:var(--surface); color:var(--magenta-deep);
+    border:1px solid var(--magenta); padding:7px 14px; border-radius:2px; cursor:pointer;
     font-family:inherit; font-weight:600; transition:all .15s;
   }
-  .rec-item-chip:hover { background:var(--magenta-pale-2); }
-  .rec-item-chip.added { background:var(--magenta); color:#fff; }
+  .rec-item-chip:hover { background:var(--magenta-pale); }
+  .rec-item-chip.added { background:var(--ink); border-color:var(--ink); color:#fff; }
   .app-toast {
     position:fixed; left:50%; bottom:90px; transform:translateX(-50%) translateY(10px);
-    background:rgba(40,20,40,0.92); color:#fff; font-size:13px; font-weight:600;
-    padding:10px 20px; border-radius:22px; opacity:0; pointer-events:none;
+    background:var(--ink); color:var(--bg); font-size:13px; font-weight:600;
+    padding:11px 22px; border-radius:2px; opacity:0; pointer-events:none;
     transition:opacity .2s, transform .2s; z-index:9999; white-space:nowrap;
   }
   .app-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
   .today-formula {
-    background: linear-gradient(135deg, var(--magenta-deep), var(--violet));
-    color: white;
-    border-radius: var(--radius-xl);
-    padding: 26px 22px;
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: var(--radius-m);
+    padding: 28px 22px;
     margin: 22px 0 18px;
     text-align: center;
   }
   .today-formula .tf-eyebrow {
-    font-size: 11.5px;
-    letter-spacing: 1.5px;
-    color: var(--amber-pale);
-    font-weight: 800;
-    margin-bottom: 12px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: #D8A87E;
+    font-weight: 500;
+    margin-bottom: 14px;
     text-transform: uppercase;
   }
   .today-formula .tf-text {
-    font-family: var(--display);
-    font-size: 16.5px;
-    font-weight: 700;
-    line-height: 1.8;
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.85;
   }
 
   .why-box {
-    background: var(--mint-pale);
-    border-radius: var(--radius-m);
+    background: #EFE4CD;
+    border-radius: 2px;
     padding: 16px 18px;
     font-size: 12.5px;
-    color: #1F5C4C;
-    line-height: 1.7;
+    color: #544E44;
+    line-height: 1.75;
     margin-top: 12px;
   }
-  .why-box b { color: var(--mint); }
+  .why-box b { color: var(--magenta-deep); }
 
   .memcard {
-    background: linear-gradient(160deg, var(--violet-pale), var(--magenta-pale));
-    border-radius: var(--radius-xl);
-    padding: 28px 22px;
+    background: var(--bg);
+    border: 1px solid var(--ink);
+    border-radius: var(--radius-m);
+    padding: 30px 22px;
     text-align: center;
   }
   .memcard .mc-name {
     font-family: var(--display);
-    font-size: 19px;
-    font-weight: 800;
-    margin-bottom: 16px;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 18px;
+    color: var(--ink);
   }
   .memcard .mc-formula {
-    font-size: 13.5px;
+    font-family: var(--serif);
+    font-size: 14px;
     color: var(--magenta-deep);
     font-weight: 700;
     line-height: 2;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
   .memcard .mc-rule {
     font-size: 12.5px;
     color: var(--ink-soft);
-    line-height: 1.8;
-    border-top: 1px solid rgba(124,92,196,0.25);
-    padding-top: 14px;
+    line-height: 1.85;
+    border-top: 1px solid var(--line-strong);
+    padding-top: 16px;
   }
 
   .check-row {
@@ -725,8 +800,8 @@
   .check-row:last-child { border-bottom: none; }
   .check-box {
     width: 20px; height: 20px;
-    border-radius: 7px;
-    border: 2px solid var(--line-strong);
+    border-radius: 2px;
+    border: 1px solid var(--line-strong);
     flex-shrink: 0;
     margin-top: 1px;
     cursor: pointer;
@@ -745,9 +820,9 @@
     gap: 10px;
     overflow-x: auto;
     padding-bottom: 4px;
-    margin: 0 -22px;
-    padding-left: 22px;
-    padding-right: 22px;
+    margin: 0 -24px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
   .scroll-x::-webkit-scrollbar { display: none; }
 
@@ -755,15 +830,19 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 13px;
-    font-weight: 700;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
     color: var(--ink-soft);
     background: none;
     border: none;
     cursor: pointer;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     padding: 0;
   }
+  .back-link:hover { color: var(--magenta); }
 
   ::selection { background: var(--magenta-pale-2); }
 </style>
@@ -774,9 +853,12 @@
   <div class="topbar">
     <div class="topbar-row">
       <div class="brand"><span class="logo-dot"></span>命定造型</div>
-      <button class="topbar-icon" onclick="openSettings()" aria-label="設定" style="display:flex;align-items:center;justify-content:center;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-      </button>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <span style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--ink-faint);">EST. 2026</span>
+        <button class="topbar-icon" onclick="openSettings()" aria-label="設定" style="display:flex;align-items:center;justify-content:center;">
+          <img src="assets/ic-settings.png" alt="" style="width:20px;height:20px;object-fit:contain;display:block;">
+        </button>
+      </div>
     </div>
   </div>
 
@@ -795,22 +877,23 @@
         <button onclick="resetWardrobeData()" style="width:100%;border:1.5px solid var(--violet);background:var(--violet-pale);color:var(--violet);font-family:var(--sans);font-size:12.5px;font-weight:700;padding:9px;border-radius:var(--radius-s);cursor:pointer;">清空我的衣櫥</button>
       </div>
 
-      <div style="border:1.5px solid #F0C4C4;border-radius:var(--radius-m);padding:14px;">
-        <div style="font-size:13.5px;font-weight:700;color:#B23B3B;margin-bottom:4px;">重置所有測驗與資料</div>
+      <div style="border:1.5px solid #E0CABA;border-radius:var(--radius-m);padding:14px;">
+        <div style="font-size:13.5px;font-weight:700;color:#A23B28;margin-bottom:4px;">重置所有測驗與資料</div>
         <div style="font-size:11.5px;color:var(--ink-soft);line-height:1.6;margin-bottom:12px;">清除三份測驗與衣櫥、待購，回到全新狀態。</div>
-        <button onclick="resetEverything()" style="width:100%;border:1.5px solid #D96B6B;background:#FBEDED;color:#B23B3B;font-family:var(--sans);font-size:12.5px;font-weight:700;padding:9px;border-radius:var(--radius-s);cursor:pointer;">全部重置</button>
+        <button onclick="resetEverything()" style="width:100%;border:1.5px solid #C08A6A;background:#F4E9E2;color:#A23B28;font-family:var(--sans);font-size:12.5px;font-weight:700;padding:9px;border-radius:var(--radius-s);cursor:pointer;">全部重置</button>
       </div>
     </div>
   </div>
 
   <div class="page active" id="page-color-hub">
-    <div class="eyebrow">風格密碼</div>
-    <h1 class="page-title">三個測驗，找到<br>命定的造型公式</h1>
+    <div class="eyebrow">The Style Issue</div>
+    <h1 class="page-title">三道命題，<br>解出你的<br>造型公式</h1>
     <p class="page-desc">色彩、身形、臉型各自獨立測驗，但資料會互相連動，完成越多，推薦頁就越精準。</p>
 
     <div class="hub-grid">
       <div class="hub-card" id="hubcard-color" onclick="goPage('quiz-color')">
-        <div class="hub-emoji" style="background:var(--magenta-pale);">🎨</div>
+        <span class="hub-num">01</span>
+        <div class="hub-emoji" style="background:var(--magenta-pale);"><img src="assets/ic-color.png" alt="" style="width:30px;height:30px;object-fit:contain;display:block;"></div>
         <div class="hub-text">
           <div class="hub-title">色彩測驗</div>
           <div class="hub-sub" id="hubsub-color">找到你的命定色彩型</div>
@@ -819,7 +902,8 @@
         <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
       </div>
       <div class="hub-card" id="hubcard-shape" onclick="goPage('quiz-shape')">
-        <div class="hub-emoji" style="background:var(--violet-pale);">📐</div>
+        <span class="hub-num">02</span>
+        <div class="hub-emoji" style="background:var(--violet-pale);"><img src="assets/ic-shape.png" alt="" style="width:30px;height:30px;object-fit:contain;display:block;"></div>
         <div class="hub-text">
           <div class="hub-title">身形測驗</div>
           <div class="hub-sub" id="hubsub-shape">建立比例與穿搭公式</div>
@@ -828,7 +912,8 @@
         <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
       </div>
       <div class="hub-card" id="hubcard-face" onclick="goPage('quiz-face')">
-        <div class="hub-emoji" style="background:var(--amber-pale);">💫</div>
+        <span class="hub-num">03</span>
+        <div class="hub-emoji" style="background:var(--amber-pale);"><img src="assets/ic-face.png" alt="" style="width:30px;height:30px;object-fit:contain;display:block;"></div>
         <div class="hub-text">
           <div class="hub-title">臉型測驗</div>
           <div class="hub-sub" id="hubsub-face">外輪廓 × 五官量感線條</div>
@@ -1000,7 +1085,7 @@
           <button class="quiz-option focus-opt" data-val="neck" onclick="toggleFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">拉長頸部</span></button>
           <button class="quiz-option focus-opt" data-val="tall" onclick="toggleFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">整體顯高</span></button>
         </div>
-        <button class="btn btn-block" id="shape-focus-next" onclick="finishShapeQuiz()" style="margin-top:14px;">看我的身型建議</button>
+        <button class="btn btn-primary btn-block" id="shape-focus-next" onclick="finishShapeQuiz()" style="margin-top:14px;">看我的身型建議</button>
       </div>
     </div>
     <div id="result-shape" style="display:none;"></div>
@@ -1062,7 +1147,7 @@
           <button class="quiz-option focus-opt" data-val="narrow" onclick="toggleForehead(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">額頭、太陽穴偏窄</span></button>
           <button class="quiz-option focus-opt" data-val="mline" onclick="toggleForehead(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">髮際線不平整、有 M 字或美人尖</span></button>
         </div>
-        <button class="btn btn-block" id="face-forehead-next" onclick="nextStep('face',3)" style="margin-top:14px;">下一步</button>
+        <button class="btn btn-primary btn-block" id="face-forehead-next" onclick="nextStep('face',3)" style="margin-top:14px;">下一步</button>
       </div>
 
       <!-- Q5 下庭下顎 -->
@@ -1101,11 +1186,12 @@
   </div>
 
   <div class="page" id="page-recommend">
-    <div class="eyebrow">推薦</div>
+    <div class="eyebrow">Today&#39;s Edit</div>
     <h1 class="page-title">今日造型公式</h1>
     <p class="page-desc">結合你的色彩、身形、臉型，加上場合、天氣與氣質目標，輸出今天可以直接運用的公式。</p>
 
     <div id="recommend-locked" class="card">
+      <div style="display:flex;justify-content:center;margin:4px 0 14px;"><img src="assets/mk-base.png" alt="" style="height:132px;width:auto;display:block;"></div>
       <div class="card-title"><span class="icon" style="background:var(--amber-pale);color:var(--amber);">!</span>還缺一些資料</div>
       <p style="font-size:13px;color:var(--ink-soft);line-height:1.7;margin-top:8px;">完成色彩、身形、臉型測驗後，這裡才能組合出真正屬於你的公式。目前已完成 <b id="doneCount" style="color:var(--magenta-deep);">0</b> / 3 項。</p>
       <button class="btn btn-primary btn-block" style="margin-top:16px;" onclick="goPage('color-hub')">前往完成測驗 →</button>
@@ -1132,22 +1218,22 @@
       <div class="field-label">Q1　今天的場合</div>
       <div class="occasion-grid">
         <div class="occasion-card" data-occ="work" onclick="selectOccasion('work')">
-          <span class="occ-icon">🗂️</span>
+          <span class="occ-icon"><img src="assets/ic-work.png" alt="" style="width:28px;height:28px;object-fit:contain;display:inline-block;"></span>
           <div class="occ-name">上班</div>
           <div class="occ-desc">商務／面試／正式</div>
         </div>
         <div class="occasion-card" data-occ="date" onclick="selectOccasion('date')">
-          <span class="occ-icon">🌷</span>
+          <span class="occ-icon"><img src="assets/ic-date.png" alt="" style="width:28px;height:28px;object-fit:contain;display:inline-block;"></span>
           <div class="occ-name">約會</div>
           <div class="occ-desc">聚餐／旅行／拍照</div>
         </div>
         <div class="occasion-card" data-occ="casual" onclick="selectOccasion('casual')">
-          <span class="occ-icon">☕</span>
+          <span class="occ-icon"><img src="assets/ic-casual.png" alt="" style="width:28px;height:28px;object-fit:contain;display:inline-block;"></span>
           <div class="occ-name">休閒</div>
           <div class="occ-desc">日常／逛街／辦事</div>
         </div>
         <div class="occasion-card" data-occ="sport" onclick="selectOccasion('sport')">
-          <span class="occ-icon">🏃</span>
+          <span class="occ-icon"><img src="assets/ic-sport.png" alt="" style="width:28px;height:28px;object-fit:contain;display:inline-block;"></span>
           <div class="occ-name">運動</div>
           <div class="occ-desc">健身／戶外／散步</div>
         </div>
@@ -1202,29 +1288,29 @@
   </div>
 
   <div class="page" id="page-mine">
-    <div class="eyebrow">我的</div>
+    <div class="eyebrow">Profile</div>
     <h1 class="page-title">個人風格檔案</h1>
     <p class="page-desc">完成測驗後，這裡會生成一張你的「心法記憶卡」，逛街時拿出來對照就知道該不該買。</p>
 
     <div id="memcardWrap"></div>
 
     <div class="card" style="margin-top:18px;">
-      <div class="card-title"><span class="icon" style="background:var(--magenta-pale);color:var(--magenta-deep);">📁</span>我的色彩檔案</div>
+      <div class="card-title"><span class="icon" style="background:var(--magenta-pale);color:var(--magenta-deep);"><img src="assets/ic-folder.png" alt="" style="width:19px;height:19px;object-fit:contain;display:block;"></span>我的色彩檔案</div>
       <div id="mineColorBlock" style="font-size:13px;color:var(--ink-soft);margin-top:8px;">尚未完成色彩測驗</div>
     </div>
     <div class="card">
-      <div class="card-title"><span class="icon" style="background:var(--violet-pale);color:var(--violet);">📁</span>我的身形公式</div>
+      <div class="card-title"><span class="icon" style="background:var(--violet-pale);color:var(--violet);"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.4a1.5 1.5 0 0 1 1.5-1.5H9l2 2h7.5A1.5 1.5 0 0 1 20 9.4v8.1A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5z"/></svg></span>我的身形公式</div>
       <div id="mineShapeBlock" style="font-size:13px;color:var(--ink-soft);margin-top:8px;">尚未完成身形測驗</div>
     </div>
     <div class="card">
-      <div class="card-title"><span class="icon" style="background:var(--amber-pale);color:var(--amber);">📁</span>我的臉型公式</div>
+      <div class="card-title"><span class="icon" style="background:var(--amber-pale);color:var(--amber);"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.4a1.5 1.5 0 0 1 1.5-1.5H9l2 2h7.5A1.5 1.5 0 0 1 20 9.4v8.1A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5z"/></svg></span>我的臉型公式</div>
       <div id="mineFaceBlock" style="font-size:13px;color:var(--ink-soft);margin-top:8px;">尚未完成臉型測驗</div>
     </div>
 
     <!-- 靈感看板 -->
     <div class="card" id="moodboardCard">
-      <div class="card-title"><span class="icon">📌</span>靈感看板</div>
-      <div style="background:var(--violet-pale);border-radius:var(--radius-s);padding:11px 14px;margin:8px 0 14px;font-size:12.5px;color:#4A3E7A;line-height:1.7;">
+      <div class="card-title"><span class="icon"><img src="assets/ic-pin.png" alt="" style="width:19px;height:19px;object-fit:contain;display:block;"></span>靈感看板</div>
+      <div style="background:var(--violet-pale);border-radius:var(--radius-s);padding:11px 14px;margin:8px 0 14px;font-size:12.5px;color:#544E44;line-height:1.7;">
         <b>怎麼用：</b>點任何一張圖 → 選擇「哪裡吸引你」的標籤 → 儲存。標籤累積後，下方會自動統計你的風格傾向。
       </div>
       <div class="scroll-x" id="moodboardRow"></div>
@@ -1237,8 +1323,8 @@
 
     <!-- 我的衣櫥 -->
     <div class="card">
-      <div class="card-title"><span class="icon" style="background:var(--magenta-pale);color:var(--magenta-deep);">👗</span>我的衣櫥</div>
-      <div style="background:var(--magenta-pale);border-radius:var(--radius-s);padding:11px 14px;margin:8px 0 14px;font-size:12.5px;color:#7A1F4F;line-height:1.7;">
+      <div class="card-title"><span class="icon" style="background:var(--magenta-pale);color:var(--magenta-deep);"><img src="assets/ic-wardrobe.png" alt="" style="width:19px;height:19px;object-fit:contain;display:block;"></span>我的衣櫥</div>
+      <div style="background:var(--magenta-pale);border-radius:var(--radius-s);padding:11px 14px;margin:8px 0 14px;font-size:12.5px;color:#8A4A2E;line-height:1.7;">
         用經典單品作為基礎，但只留下真正適合你的版本。已經有的標記起來，缺的加入待購，逛街時照著對。
       </div>
       <div id="wardrobeBody"></div>
@@ -1246,8 +1332,8 @@
 
     <!-- 待購清單（獨立卡片） -->
     <div class="card">
-      <div class="card-title"><span class="icon" style="background:var(--violet-pale);color:var(--violet);">🛍️</span>待購清單</div>
-      <div style="background:var(--violet-pale);border-radius:var(--radius-s);padding:11px 14px;margin:8px 0 14px;font-size:12.5px;color:#4A3E7A;line-height:1.7;">
+      <div class="card-title"><span class="icon" style="background:var(--violet-pale);color:var(--violet);"><img src="assets/ic-wishlist.png" alt="" style="width:19px;height:19px;object-fit:contain;display:block;"></span>待購清單</div>
+      <div style="background:var(--violet-pale);border-radius:var(--radius-s);padding:11px 14px;margin:8px 0 14px;font-size:12.5px;color:#544E44;line-height:1.7;">
         想找的單品先放這裡，系統會依你的風格密碼生成「買前自問清單」。逛街核對全打勾再買；買到後點「已購買」就會轉進上方「我已有」。
       </div>
       <div id="wishlistItems"></div>
@@ -1280,25 +1366,25 @@
   <div class="bottomnav">
     <button class="nav-item active" id="nav-color" onclick="goPage('color-hub')" style="position:relative;">
       <span class="nav-dot" id="navdot-color"></span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+      <img src="assets/ic-color.png" alt="">
       <span>色彩</span>
     </button>
     <button class="nav-item" id="nav-shape" onclick="goPage('quiz-shape')" style="position:relative;">
       <span class="nav-dot" id="navdot-shape"></span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="3.4"/><path d="M5 21c1.2-4.5 4-7 7-7s5.8 2.5 7 7"/></svg>
+      <img src="assets/ic-shape.png" alt="">
       <span>身形</span>
     </button>
     <button class="nav-item" id="nav-face" onclick="goPage('quiz-face')" style="position:relative;">
       <span class="nav-dot" id="navdot-face"></span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M9 10h.01M15 10h.01M9 15c1 1 5 1 6 0"/></svg>
+      <img src="assets/ic-face.png" alt="">
       <span>臉型</span>
     </button>
     <button class="nav-item" id="nav-recommend" onclick="goPage('recommend')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>
+      <img src="assets/ic-recommend.png" alt="">
       <span>推薦</span>
     </button>
     <button class="nav-item" id="nav-mine" onclick="goPage('mine')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-8-4-8 4z"/></svg>
+      <img src="assets/ic-mine.png" alt="">
       <span>我的</span>
     </button>
   </div>
@@ -1512,7 +1598,7 @@ const colorProfiles = {
   },
   'winter-contrast':{
     label:'冬日高對比型',
-    faceColors:[['#FFFFFF','純白'],['#DDE5EE','冰灰藍'],['#931F5C','莓果紅'],['#3A4A78','寶藍'],['#1F1B2E','純黑紫墨']],
+    faceColors:[['#FFFFFF','純白'],['#DDE5EE','冰灰藍'],['#9A3D22','莓果紅'],['#3A4A78','寶藍'],['#1F1B2E','純黑紫墨']],
     baseColors:[['#FFFFFF','純白'],['#B9C0CC','冷灰'],['#25344F','海軍藍'],['#20202A','炭黑'],['#000000','純黑']],
     layerColors:[['#36518A','冷寶藍'],['#6D2E65','酒莓紫'],['#244F5D','深孔雀藍'],['#B51E4D','冷紅']],
     accentColors:[['#C5163E','正紅'],['#C13B7A','莓果粉'],['#8E78B8','冰紫'],['#E5E7EB','亮銀白']],
@@ -1521,9 +1607,9 @@ const colorProfiles = {
     seasonPalettes:{
       spring:{colors:['#FFFFFF','#DDE5EE','#E5E7EB','#C13B7A','#8E78B8'],desc:'春天可用冷亮色提氣，保留乾淨度，不要轉成暖粉或奶茶。'},
       summer:{colors:['#FFFFFF','#B9C0CC','#36518A','#244F5D','#C9CED6'],desc:'夏天可用白、冷灰與藍色維持清爽，同時保留明確對比。'},
-      autumn:{colors:['#931F5C','#6D2E65','#3A4A78','#244F5D','#B51E4D'],desc:'秋天可用寶石色與深冷色增加質感，不需要加入暖濁大地色。'},
+      autumn:{colors:['#9A3D22','#6D2E65','#3A4A78','#244F5D','#B51E4D'],desc:'秋天可用寶石色與深冷色增加質感，不需要加入暖濁大地色。'},
       winter:{colors:['#000000','#FFFFFF','#25344F','#20202A','#C5163E'],desc:'冬天是高對比主場，黑白、深藍與正紅最能呈現俐落氣場。'}},
-    makeup:{base:'清透或冷霧底妝，乾淨俐落、保留輪廓對比。', brow:[['#3F3A3D','深灰棕'],['#29262A','黑棕']], eye:[['#A7ABB3','冷灰'],['#5C6270','深灰'],['#25344F','海軍藍'],['#1F1B2E','紫黑']], blush:[['#C4879B','冷玫瑰'],['#C46B8D','莓粉']], lip:[['#B51E3F','正紅'],['#931F5C','莓果紅'],['#A63A67','冷玫瑰紅']]}
+    makeup:{base:'清透或冷霧底妝，乾淨俐落、保留輪廓對比。', brow:[['#3F3A3D','深灰棕'],['#29262A','黑棕']], eye:[['#A7ABB3','冷灰'],['#5C6270','深灰'],['#25344F','海軍藍'],['#1F1B2E','紫黑']], blush:[['#C4879B','冷玫瑰'],['#C46B8D','莓粉']], lip:[['#B51E3F','正紅'],['#9A3D22','莓果紅'],['#A63A67','冷玫瑰紅']]}
   },
   'neutral-natural':{
     label:'中性自然型',
@@ -1567,9 +1653,42 @@ function dotHex(hex, name){
   </div>`;
 }
 function rowDotsHex(pairs){ return `<div style="display:flex;gap:10px;flex-wrap:wrap;">${pairs.map(([h,n])=>dotHex(h,n)).join('')}</div>`; }
+/* 03 定稿橫向色卡：白底保護框 + 外框線 + 色塊 + 色碼 + 色名（不用圓點／方塊／chip） */
+function swatchStrip(pairs, cross){
+  return `<div style="background:#fff;border:1px solid var(--line);padding:16px 16px 12px;">
+    <div style="display:flex;gap:0;box-shadow:inset 0 0 0 1px rgba(79,46,39,0.07);">
+      ${pairs.map(([h,n])=>`<span style="position:relative;flex:1;display:block;height:52px;background:${h};">${cross?'<svg style="position:absolute;inset:0;width:100%;height:100%;padding:14px;" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.92)" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>':''}</span>`).join('')}
+    </div>
+    <div style="display:flex;gap:0;margin-top:10px;">
+      ${pairs.map(([h,n])=>`<div style="flex:1;min-width:0;text-align:center;padding:0 2px;">
+        <span style="font-family:var(--mono);font-size:8.5px;color:var(--ink-faint);display:block;letter-spacing:0.02em;">${(h||'').replace('#','').toUpperCase()}</span>
+        <span style="font-size:10px;color:var(--ink-soft);display:block;margin-top:3px;line-height:1.25;">${n}</span>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
+/* 氣色核心色 — 03 定稿主色卡（含標題列） */
+function signatureCard(pairs){
+  return `<div style="background:#fff;border:1px solid var(--ink);padding:18px 18px 6px;margin-bottom:18px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;">
+      <div style="font-family:var(--serif);font-size:14px;font-weight:700;color:var(--ink);">氣色核心色</div>
+      <span style="font-family:var(--mono);font-size:9px;color:var(--ink-faint);letter-spacing:0.1em;">SIGNATURE / ${pairs.length}</span>
+    </div>
+    <div style="font-size:11px;color:var(--ink-faint);margin-bottom:14px;">放在領口、耳環、圍巾等靠近臉部的位置</div>
+    <div style="display:flex;gap:0;box-shadow:inset 0 0 0 1px rgba(79,46,39,0.08);">
+      ${pairs.map(([h,n])=>`<span style="flex:1;display:block;height:60px;background:${h};"></span>`).join('')}
+    </div>
+    <div style="display:flex;gap:0;margin-top:8px;">
+      ${pairs.map(([h,n])=>`<div style="flex:1;min-width:0;text-align:center;padding:0 2px;">
+        <span style="font-family:var(--mono);font-size:8px;color:var(--ink-faint);display:block;">${(h||'').replace('#','').toUpperCase()}</span>
+        <span style="font-size:9.5px;color:var(--ink-soft);display:block;margin-top:2px;line-height:1.25;">${n}</span>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
 /* 雙欄小卡（色塊＋名稱＋色號），用於層次色／小點綴／降低面積色／金屬色 */
 function dualCards(pairs, cross){
-  const cell = ([h,n])=>`<div style="display:flex;align-items:center;gap:8px;background:var(--card-soft,#FAF7FB);border-radius:10px;padding:7px 9px;">
+  const cell = ([h,n])=>`<div style="display:flex;align-items:center;gap:8px;background:var(--card-soft,#F6F1E8);border-radius:10px;padding:7px 9px;">
     <span style="position:relative;width:26px;height:26px;border-radius:50%;background:${h};border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.12);flex-shrink:0;">${cross?'<svg style="position:absolute;inset:0;width:100%;height:100%;padding:6px;" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg>':''}</span>
     <div style="min-width:0;"><div style="font-size:11.5px;color:var(--ink);font-weight:600;line-height:1.2;">${n}</div><div style="font-size:9px;color:var(--ink-faint);">${h.toUpperCase()}</div></div>
   </div>`;
@@ -1582,22 +1701,20 @@ function expandBasicsBlock(type, season, swatches, metal){
   return `
     <div class="expand" onclick="this.classList.toggle('open')">
       <button class="expand-head" onclick="event.stopPropagation(); this.parentElement.classList.toggle('open')">
-        <span class="et"><span class="num">01</span>我的命定色彩檔案</span>
+        <span class="et"><span class="num">01</span>命定色彩完整檔案</span>
         <svg class="expand-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="expand-body"><div class="expand-body-inner">
-        ${fileSectionHead('最襯臉部的氣色核心','適合放在上衣、圍巾、耳環等靠近臉部的位置，讓氣色更乾淨明亮。')}
-        ${rowDotsHex(p.faceColors)}
         ${fileSectionHead('最安心的大面積基本色','適合做為衣櫥主力色，可用在外套、下身、鞋包與大面積單品，耐看且不容易出錯。')}
-        ${rowDotsHex(p.baseColors)}
+        ${swatchStrip(p.baseColors)}
         ${fileSectionHead('增加質感的層次色','用來拉出深淺變化，讓穿搭更有層次，不會只有單一色塊。')}
-        ${dualCards(p.layerColors,false)}
+        ${swatchStrip(p.layerColors)}
         ${fileSectionHead('讓造型有亮點的小點綴','適合用在包包、鞋子、飾品、髮飾或局部細節，增加精緻感。')}
-        ${dualCards(p.accentColors,false)}
+        ${swatchStrip(p.accentColors)}
         ${fileSectionHead('建議降低面積色','不是不能穿，而是不建議大面積靠近臉部。放在下身、鞋包或小配件會更安全。')}
-        ${dualCards(p.reduceAreaColors,true)}
+        ${swatchStrip(p.reduceAreaColors,true)}
         ${fileSectionHead('命定金屬色','適合用在飾品、眼鏡金屬、包包五金、鞋扣等細節，讓整體更協調。')}
-        ${dualCards(p.metals,false)}
+        ${swatchStrip(p.metals)}
       </div></div>
     </div>`;
 }
@@ -1611,14 +1728,14 @@ function buildSeasonPalettes(type){
 function expandSeasonBlock(p){
   const seasons = ['spring','summer','autumn','winter'];
   const meta = {
-    spring:{icon:'🌸', name:'春季選色', use:'明亮輕盈時穿'},
-    summer:{icon:'☀️', name:'夏季選色', use:'你的日常主力色'},
-    autumn:{icon:'🍂', name:'秋季選色', use:'沉穩深色時穿'},
-    winter:{icon:'❄️', name:'冬季選色', use:'想強調對比、有氣場時'},
+    spring:{icon:'<svg width="26" height="26" viewBox="0 0 32 32" style="display:block"><g fill="none" stroke="#4F332B" stroke-width="2.2" stroke-linejoin="round"><circle cx="16.0" cy="9.2" r="4.3"/><circle cx="22.5" cy="13.9" r="4.3"/><circle cx="20.0" cy="21.5" r="4.3"/><circle cx="12.0" cy="21.5" r="4.3"/><circle cx="9.5" cy="13.9" r="4.3"/></g></svg>', name:'春季選色', use:'明亮輕盈時穿'},
+    summer:{icon:'<svg width="26" height="26" viewBox="0 0 32 32" style="display:block"><g fill="none" stroke="#4F332B" stroke-width="2.2" stroke-linecap="round"><line x1="24.0" y1="16.0" x2="27.5" y2="16.0"/><line x1="21.7" y1="21.7" x2="24.1" y2="24.1"/><line x1="16.0" y1="24.0" x2="16.0" y2="27.5"/><line x1="10.3" y1="21.7" x2="7.9" y2="24.1"/><line x1="8.0" y1="16.0" x2="4.5" y2="16.0"/><line x1="10.3" y1="10.3" x2="7.9" y2="7.9"/><line x1="16.0" y1="8.0" x2="16.0" y2="4.5"/><line x1="21.7" y1="10.3" x2="24.1" y2="7.9"/><circle cx="16" cy="16" r="5.4"/></g></svg>', name:'夏季選色', use:'你的日常主力色'},
+    autumn:{icon:'<svg width="26" height="26" viewBox="0 0 32 32" style="display:block"><g fill="none" stroke="#4F332B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5.5 C 23.5 11.5, 22.5 22, 16 26 C 9.5 22, 8.5 11.5, 16 5.5 Z"/><path d="M16 8 L16 24.5"/><path d="M16 13 L20.2 11.5 M16 17 L21 16.5 M16 21 L19.8 20.5"/><path d="M16 13 L11.8 11.5 M16 17 L11 16.5 M16 21 L12.2 20.5"/><path d="M16 26 L16 28.5"/></g></svg>', name:'秋季選色', use:'沉穩深色時穿'},
+    winter:{icon:'<svg width="26" height="26" viewBox="0 0 32 32" style="display:block"><g fill="none" stroke="#4F332B" stroke-width="2.2" stroke-linecap="round"><line x1="16" y1="16" x2="27.0" y2="16.0"/><line x1="22.6" y1="16.0" x2="25.4" y2="18.3"/><line x1="22.6" y1="16.0" x2="25.4" y2="13.7"/><line x1="16" y1="16" x2="21.5" y2="25.5"/><line x1="19.3" y1="21.7" x2="18.7" y2="25.3"/><line x1="19.3" y1="21.7" x2="22.7" y2="22.9"/><line x1="16" y1="16" x2="10.5" y2="25.5"/><line x1="12.7" y1="21.7" x2="9.3" y2="22.9"/><line x1="12.7" y1="21.7" x2="13.3" y2="25.3"/><line x1="16" y1="16" x2="5.0" y2="16.0"/><line x1="9.4" y1="16.0" x2="6.6" y2="13.7"/><line x1="9.4" y1="16.0" x2="6.6" y2="18.3"/><line x1="16" y1="16" x2="10.5" y2="6.5"/><line x1="12.7" y1="10.3" x2="13.3" y2="6.7"/><line x1="12.7" y1="10.3" x2="9.3" y2="9.1"/><line x1="16" y1="16" x2="21.5" y2="6.5"/><line x1="19.3" y1="10.3" x2="22.7" y2="9.1"/><line x1="19.3" y1="10.3" x2="18.7" y2="6.7"/></g></svg>', name:'冬季選色', use:'想強調對比、有氣場時'},
   };
   return seasons.map(s=>{
     const d = p[s], m = meta[s];
-    const sw = d.colors.map(c=>`<span style="display:inline-block;width:26px;height:26px;border-radius:50%;background:${c};border:2px solid white;box-shadow:0 1px 3px rgba(0,0,0,0.15);margin-right:4px;"></span>`).join('');
+    const sw = d.colors.map(c=>`<span style="display:inline-block;width:26px;height:26px;background:${c};box-shadow:inset 0 0 0 1px rgba(79,46,39,0.12);margin-right:4px;"></span>`).join('');
     return `
       <div class="expand" onclick="this.classList.toggle('open')">
         <button class="expand-head" onclick="event.stopPropagation(); this.parentElement.classList.toggle('open')">
@@ -1638,7 +1755,7 @@ function expandSeasonBlock(p){
 function expandMakeupLibrary(type){
   const p = colorProfiles[type] || colorProfiles['neutral-natural'];
   const mk = p.makeup;
-  const mini = pairs => `<div style="display:flex;gap:10px;margin-bottom:6px;flex-wrap:wrap;">${pairs.map(([h,n])=>namedDot(h,n)).join('')}</div>`;
+  const mini = pairs => `<div style="display:flex;gap:10px;margin-bottom:6px;flex-wrap:wrap;">${pairs.map(([h,n])=>`<div style="display:flex;flex-direction:column;align-items:center;gap:5px;width:54px;"><span style="display:inline-block;width:36px;height:36px;background:${h};box-shadow:inset 0 0 0 1px rgba(79,46,39,0.12);"></span><span style="font-size:10px;color:var(--ink-soft);text-align:center;line-height:1.3;">${n}</span></div>`).join('')}</div>`;
   return `
     <div class="expand" onclick="this.classList.toggle('open')">
       <button class="expand-head" onclick="event.stopPropagation(); this.parentElement.classList.toggle('open')">
@@ -1689,7 +1806,7 @@ function finishColorQuiz(){
     if(isVivid){
       type='winter-contrast'; label='冬日高對比型'; season='cool'; metal='銀 / 白K金';
       sub='你撐得起純黑、純白與高飽和色，黑白撞色特別俐落有氣場。金屬色選銀或白K金。';
-      swatches=['#FFFFFF','#8090A8','#1F1B2E','#931F5C','#3A4A78'];
+      swatches=['#FFFFFF','#8090A8','#1F1B2E','#9A3D22','#3A4A78'];
     } else {
       type='summer-misty'; label='夏日柔霧型'; season='cool'; metal='銀 / 白金';
       sub='你適合帶霧感、輕盈優雅的冷色，像霧灰藍、薰衣草紫。避免過於鮮豔的暖色，金屬色選銀或白金。';
@@ -1714,11 +1831,11 @@ function finishColorQuiz(){
   resWrap.style.display='block';
   resWrap.innerHTML = `
     <div class="result-hero">
-      <div class="eyebrow">命定色彩</div>
+      <div class="eyebrow">The Colour Story</div>
       <div class="result-name">${label}</div>
       <div class="result-tag">${sub}</div>
-      <div class="swatches">${heroSwatches.map(c=>`<div class="swatch" style="background:${c}"></div>`).join('')}</div>
     </div>
+    ${signatureCard(cp.faceColors)}
     <div class="card" style="padding-top:6px;">
       ${expandBasicsBlock(type, season, heroSwatches, metal)}
       <div style="font-size:13px;font-weight:700;color:var(--ink);margin:18px 0 4px;">四季選色</div>
@@ -1731,6 +1848,10 @@ function finishColorQuiz(){
   document.getElementById('hubcard-color').classList.add('done');
   document.getElementById('hubsub-color').textContent = label;
   document.getElementById('navdot-color').style.display='block';
+  // 若臉型已測完，重建臉型結果頁，讓「02 彩妝幾何與用色」帶入剛測出的膚色色票
+  if(profile.face && typeof finishFaceQuiz==='function'){
+    try{ finishFaceQuiz(); }catch(e){}
+  }
   refreshGateCount();
 }
 
@@ -1749,7 +1870,7 @@ function figureSVG(shape){
   const cx = 49;
   const {sh, wa, hip, leg} = cfg;
   const skin = '#E8CDBD', hair = '#5A4A40', rose = 'var(--magenta)';
-  const fill = '#F6E2EC';
+  const fill = '#F3E4D6';
   return `<svg viewBox="0 0 98 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <path d="M${cx-13} 20 q-3 14 1 24 q2 5 5 6 q-9-12 -6-30z M${cx+13} 20 q3 14 -1 24 q-2 5 -5 6 q9-12 6-30z" fill="${hair}"/>
     <ellipse cx="${cx}" cy="20" rx="9.5" ry="11" fill="${skin}"/>
@@ -1763,9 +1884,12 @@ function figureSVG(shape){
     <path d="M${cx+sh-2} 40 q7 14 5 30" stroke="${rose}" stroke-width="1.4" fill="none" stroke-linecap="round"/>
   </svg>`;
 }
+function figureIMG(shape, h){
+  return `<img src="assets/shape-${shape}.png" alt="" style="height:${h||92}px;width:auto;display:block;margin:0 auto;">`;
+}
 function injectShapeFigures(){
   document.querySelectorAll('.sc-fig').forEach(el=>{
-    el.innerHTML = figureSVG(el.dataset.shape);
+    el.innerHTML = figureIMG(el.dataset.shape, 90);
   });
 }
 document.addEventListener('DOMContentLoaded', injectShapeFigures);
@@ -1890,8 +2014,8 @@ function finishShapeQuiz(){
 
   resWrap.innerHTML = `
     <div class="result-hero">
-      <div class="eyebrow">身形公式</div>
-      <div style="margin:6px auto 2px;width:74px;">${figureSVG(body)}</div>
+      <div class="eyebrow">The Silhouette</div>
+      <div style="margin:6px auto 2px;">${figureIMG(body, 132)}</div>
       <div class="result-name">${d.label}</div>
       <div class="result-tag">${d.core}</div>
       ${conflictNote}
@@ -1916,10 +2040,10 @@ function finishShapeQuiz(){
       <div style="font-weight:700;margin-bottom:4px;">想讓褲、裙、鞋的建議更準？</div>
       <div class="result-tag" style="margin-bottom:12px;">補答 1 題腿型，我們可以給更細的下身與鞋款建議（選填）。</div>
       <div class="quiz-options" id="legtype-opts">
-        <button class="quiz-option leg-opt" onclick="answerLegType('straight')"><span class="opt-bullet">A</span><span class="leg-opt-fig"><svg viewBox="0 0 30 40" fill="none" stroke="var(--violet)" stroke-width="2.2" stroke-linecap="round"><path d="M7 4 L7 36"/><path d="M23 4 L23 36"/><path d="M4 4 H26"/></svg></span><span class="opt-text-wrap">直腿</span></button>
-        <button class="quiz-option leg-opt" onclick="answerLegType('o')"><span class="opt-bullet">B</span><span class="leg-opt-fig"><svg viewBox="0 0 30 40" fill="none" stroke="var(--violet)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4 Q3 20 11 36"/><path d="M19 4 Q27 20 19 36"/><path d="M4 4 H26"/></svg></span><span class="opt-text-wrap">O 型腿</span></button>
-        <button class="quiz-option leg-opt" onclick="answerLegType('x')"><span class="opt-bullet">C</span><span class="leg-opt-fig"><svg viewBox="0 0 30 40" fill="none" stroke="var(--violet)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 Q15 18 6 36"/><path d="M21 4 Q15 18 24 36"/><path d="M4 4 H26"/></svg></span><span class="opt-text-wrap">X 型腿</span></button>
-        <button class="quiz-option leg-opt" onclick="answerLegType('xo')"><span class="opt-bullet">D</span><span class="leg-opt-fig"><svg viewBox="0 0 30 40" fill="none" stroke="var(--violet)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4 Q16 14 14 22 Q12 30 7 36"/><path d="M20 4 Q14 14 16 22 Q18 30 23 36"/><path d="M4 4 H26"/></svg></span><span class="opt-text-wrap">XO 型腿</span></button>
+        <button class="quiz-option leg-opt" onclick="answerLegType('straight')"><span class="opt-bullet">A</span><span class="leg-opt-fig"><img src="assets/leg-straight.png" alt="" style="width:100%;height:100%;object-fit:contain;display:block;"></span><span class="opt-text-wrap">直腿</span></button>
+        <button class="quiz-option leg-opt" onclick="answerLegType('o')"><span class="opt-bullet">B</span><span class="leg-opt-fig"><img src="assets/leg-o.png" alt="" style="width:100%;height:100%;object-fit:contain;display:block;"></span><span class="opt-text-wrap">O 型腿</span></button>
+        <button class="quiz-option leg-opt" onclick="answerLegType('x')"><span class="opt-bullet">C</span><span class="leg-opt-fig"><img src="assets/leg-x.png" alt="" style="width:100%;height:100%;object-fit:contain;display:block;"></span><span class="opt-text-wrap">X 型腿</span></button>
+        <button class="quiz-option leg-opt" onclick="answerLegType('xo')"><span class="opt-bullet">D</span><span class="leg-opt-fig"><img src="assets/leg-xo.png" alt="" style="width:100%;height:100%;object-fit:contain;display:block;"></span><span class="opt-text-wrap">XO 型腿</span></button>
         <button class="quiz-option" onclick="answerLegType(null)"><span class="opt-bullet">E</span><span class="opt-text-wrap">不確定／略過</span></button>
       </div>
     </div>
@@ -2182,7 +2306,7 @@ function finishFaceQuiz(){
   resWrap.innerHTML = `
     <div class="result-hero">
       <div style="margin:2px auto 8px;width:64px;">${faceSVG(shape)}</div>
-      <div class="eyebrow">臉型公式</div>
+      <div class="eyebrow">The Face</div>
       <div class="result-name">${s.label} × ${fw.label}</div>
       <div class="result-tag">${s.core} ${fw.desc}</div>
     </div>
@@ -2192,7 +2316,7 @@ function finishFaceQuiz(){
          `<b>線條呼應：</b>${ln.hair}`])}
       ${(()=>{
         const mk = profile.color && profile.color.makeup;
-        const swRow = pairs => pairs ? `<div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;">${pairs.map(([h,n])=>`<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--ink-soft);"><span style="width:18px;height:18px;border-radius:50%;background:${h};border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.12);"></span>${n}</span>`).join('')}</div>` : '';
+        const swRow = pairs => pairs ? `<div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;">${pairs.map(([h,n])=>`<span style="display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--ink-soft);"><span style="width:16px;height:16px;background:${h};box-shadow:inset 0 0 0 1px rgba(79,46,39,0.16);"></span>${n}</span>`).join('')}</div>` : '';
         const mkSteps = FACE_MAKEUP_STEPS[shape] || FACE_MAKEUP_STEPS['oval'];
         // 合併色票＋畫法：有色票則色票在上、說明在下；無色票則只顯示說明
         const mergedLine = (label, step, swatches) => {
@@ -2200,7 +2324,13 @@ function finishFaceQuiz(){
           const stepHtml = step ? `<div style="font-size:12.5px;color:var(--ink-soft);margin-top:${swHtml?'4px':'0'};">${step}</div>` : '';
           return `<b>${label}：</b>${swHtml}${stepHtml}`;
         };
+        const mkFaceKey = ({oval:'oval',round:'round',square:'square',long:'long',heart:'heart',diamond:'diamond',unsure:'oval'})[shape] || 'oval';
+        const faceFigure = `<div style="text-align:center;padding:2px 0;">
+          <img src="assets/mk-face-${mkFaceKey}.png" alt="${s.label}彩妝示意" style="width:152px;max-width:62%;height:auto;display:block;margin:0 auto;">
+          <div style="font-size:11px;letter-spacing:.04em;color:var(--ink-faint);margin-top:6px;">${s.label} · 彩妝幾何示意（腮紅／修容方向）</div>
+        </div>`;
         const lines = [
+          faceFigure,
           mergedLine('眉', mkSteps.brow, mk ? mk.brow : null),
           mergedLine('眼', mkSteps.eye, mk ? mk.eye : null),
           mergedLine('腮紅', mkSteps.blush, mk ? mk.blush : null),
@@ -2238,7 +2368,7 @@ function finishFaceQuiz(){
         <button class="quiz-option focus-opt" data-val="lengthen" onclick="toggleHairFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">想拉長臉部比例</span></button>
         <button class="quiz-option focus-opt" data-val="shorten" onclick="toggleHairFocus(this)"><span class="opt-bullet">＋</span><span class="opt-text-wrap">想縮短臉部比例</span></button>
       </div>
-      <button class="btn btn-block" id="hairfocus-go" onclick="applyHairFocus()" style="margin-top:14px;">看針對性建議</button>
+      <button class="btn btn-primary btn-block" id="hairfocus-go" onclick="applyHairFocus()" style="margin-top:14px;">看針對性建議</button>
       <div id="hairfocus-result"></div>
     </div>
 
@@ -2292,39 +2422,9 @@ const HAIR_TACTIC_LABEL = {
 
 // 臉型外輪廓插畫（洋紅色系，與身型插畫一致風格）
 function faceSVG(shape){
-  // 用上(額)中(顴)下(下顎)三段寬度描出輪廓
-  const cfg = {
-    oval:    {fw:26, cw:30, jw:24, chin:'round', ay:30},
-    round:   {fw:30, cw:34, jw:30, chin:'round', ay:26},
-    square:  {fw:31, cw:33, jw:32, chin:'flat',  ay:24},
-    long:    {fw:25, cw:28, jw:24, chin:'round', ay:40},
-    heart:   {fw:33, cw:31, jw:18, chin:'point', ay:28},
-    diamond: {fw:20, cw:35, jw:20, chin:'point', ay:30},
-    unsure:  {fw:27, cw:30, jw:26, chin:'round', ay:30}
-  }[shape] || {fw:27, cw:30, jw:26, chin:'round', ay:30};
-  const cx = 49, top = 14;
-  const {fw, cw, jw, chin, ay} = cfg;
-  const cheekY = top + ay;          // 顴骨高度
-  const jawY = cheekY + 30;         // 下顎高度
-  const chinY = jawY + (chin==='round'?16:(chin==='point'?20:12));
-  const skin = '#F3DCD0', stroke = 'var(--magenta)', hair = 'var(--magenta-deep)';
-  let chinPath;
-  if(chin==='point')      chinPath = `Q${cx+jw*0.5} ${jawY+6} ${cx} ${chinY} Q${cx-jw*0.5} ${jawY+6} ${cx-jw} ${jawY}`;
-  else if(chin==='flat')  chinPath = `L${cx+jw*0.6} ${chinY} Q${cx} ${chinY+3} ${cx-jw*0.6} ${chinY} L${cx-jw} ${jawY}`;
-  else                    chinPath = `Q${cx+jw*0.7} ${chinY-2} ${cx} ${chinY} Q${cx-jw*0.7} ${chinY-2} ${cx-jw} ${jawY}`;
-  return `<svg viewBox="0 0 98 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M${cx-fw} ${top+8} Q${cx} ${top-4} ${cx+fw} ${top+8}
-             Q${cx+cw} ${top+18} ${cx+cw} ${cheekY}
-             Q${cx+cw} ${jawY-6} ${cx+jw} ${jawY}
-             ${chinPath}
-             Q${cx-cw} ${jawY-6} ${cx-cw} ${cheekY}
-             Q${cx-cw} ${top+18} ${cx-fw} ${top+8} Z"
-          fill="${skin}" stroke="${stroke}" stroke-width="1.8" stroke-linejoin="round"/>
-    <path d="M${cx-fw-1} ${top+9} Q${cx} ${top-8} ${cx+fw+1} ${top+9} Q${cx+cw*0.6} ${top+2} ${cx} ${top+3} Q${cx-cw*0.6} ${top+2} ${cx-fw-1} ${top+9} Z" fill="${hair}"/>
-    <circle cx="${cx-9}" cy="${cheekY-2}" r="1.7" fill="${stroke}"/>
-    <circle cx="${cx+9}" cy="${cheekY-2}" r="1.7" fill="${stroke}"/>
-    <path d="M${cx-4} ${cheekY+12} Q${cx} ${cheekY+15} ${cx+4} ${cheekY+12}" stroke="${stroke}" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-  </svg>`;
+  // 改用手繪臉型插圖（去背 PNG）；unsure 用標準臉代替
+  const key = ({oval:'oval',round:'round',square:'square',long:'long',heart:'heart',diamond:'diamond',unsure:'oval'})[shape] || 'oval';
+  return `<img src="assets/face-${key}.png" alt="" style="width:100%;height:100%;object-fit:contain;display:block;">`;
 }
 function injectFaceFigures(){
   document.querySelectorAll('.face-opt-fig').forEach(el=>{
@@ -2584,7 +2684,7 @@ function viewDay(k){
   out.style.display = 'block';
   out.innerHTML = rec.html;
   renderCalendar();
-  banner.scrollIntoView({behavior:'smooth', block:'start'});
+  try{window.scrollTo(0, window.scrollY + banner.getBoundingClientRect().top - 72);}catch(e){}
 }
 function backToToday(){
   viewingDate = null;
@@ -2684,27 +2784,27 @@ function generateFormula(){
   const havePct = totalItems ? Math.round(haveItems.length/totalItems*100) : 0;
   const noOwned = ownedItems.length===0;
   const closetBanner = noOwned
-    ? `<div style="background:var(--violet-pale);border-radius:var(--radius-m);padding:13px 15px;margin-bottom:14px;font-size:12.5px;color:#4A3E7A;line-height:1.7;">
+    ? `<div style="background:var(--violet-pale);border-radius:var(--radius-m);padding:13px 15px;margin-bottom:14px;font-size:12.5px;color:#544E44;line-height:1.7;">
          <b>想知道今天這套你有幾件？</b><br>到「我的 → 我的衣櫥」標記已有單品，這裡就會顯示「今天用你衣櫥能完成多少」，缺的才提醒補。
        </div>`
     : `<div style="background:var(--mint-pale);border-radius:var(--radius-m);padding:14px 15px;margin-bottom:14px;">
          <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:9px;">
-           <span style="font-size:13px;font-weight:800;color:#1A6B52;">今天這套，你衣櫥已有 ${haveItems.length} / ${totalItems} 件</span>
-           <span style="font-size:11px;color:#1A6B52;">${missItems.length?`還缺 ${missItems.length} 件`:'全部都有 🎉'}</span>
+           <span style="font-size:13px;font-weight:800;color:#4F2E27;">今天這套，你衣櫥已有 ${haveItems.length} / ${totalItems} 件</span>
+           <span style="font-size:11px;color:#4F2E27;">${missItems.length?`還缺 ${missItems.length} 件`:'全部都有 🎉'}</span>
          </div>
          <div style="height:7px;background:rgba(255,255,255,.7);border-radius:99px;overflow:hidden;">
            <div style="height:100%;width:${havePct}%;background:var(--mint);border-radius:99px;transition:width .3s;"></div>
          </div>
-         ${haveItems.length?`<div style="font-size:11.5px;color:#1A6B52;margin-top:9px;line-height:1.6;">可直接用：${haveItems.map(i=>i.name).join('、')}</div>`:''}
+         ${haveItems.length?`<div style="font-size:11.5px;color:#4F2E27;margin-top:9px;line-height:1.6;">可直接用：${haveItems.map(i=>i.name).join('、')}</div>`:''}
        </div>`;
 
   const out = document.getElementById('formulaOutput');
   out.style.display = 'block';
-  const dot = hex=>`<span style="display:inline-block;width:30px;height:30px;border-radius:50%;background:${hex};border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,.12);"></span>`;
+  const dot = hex=>`<span style="display:inline-block;width:26px;height:26px;background:${hex};box-shadow:inset 0 0 0 1px rgba(79,46,39,0.14);"></span>`;
 
   out.innerHTML = `
     <div class="today-formula">
-      <div class="tf-eyebrow">今日風格</div>
+      <div class="tf-eyebrow">Today&#39;s Look</div>
       <div class="tf-text">${todaySentence}</div>
     </div>
 
@@ -2717,7 +2817,7 @@ function generateFormula(){
          `<b>包：</b>${od.bag}`, `<b>版型語氣：</b>${toneText}`])}
 
       ${expandBlock('03','今日色彩搭配','主色45%＋輔色25%＋層次色15%＋小點綴10%＋金屬5%，已依今天天氣從你的色庫挑選。',
-        [`<div style="display:flex;border-radius:10px;overflow:hidden;height:34px;margin:4px 0 12px;">${five.map(x=>`<div style="flex:${parseInt(x.pct)};background:${x.hex};"></div>`).join('')}</div>`,
+        [`<div style="display:flex;gap:0;height:34px;margin:4px 0 14px;border:1px solid var(--ink);">${five.map(x=>`<div style="flex:${parseInt(x.pct)};background:${x.hex};"></div>`).join('')}</div>`,
          ...five.map(x=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:7px;">${dot(x.hex)}<div style="flex:1;"><b>${x.role}（${x.pct}）</b>　<span style="color:var(--ink-soft);font-size:12.5px;">${x.use}</span></div></div>`)])}
 
       ${expandBlock('04','今日身型修飾','強調哪裡、修飾哪裡，已結合你的身型與今天的需求。',
@@ -2731,7 +2831,7 @@ function generateFormula(){
 
       ${(()=>{
         const mk = (c.makeup) || (colorProfiles[c.type] && colorProfiles[c.type].makeup);
-        const swRow = pairs => pairs ? `<div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;">${pairs.map(([h,n])=>`<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--ink-soft);"><span style="width:18px;height:18px;border-radius:50%;background:${h};border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.12);"></span>${n}</span>`).join('')}</div>` : '';
+        const swRow = pairs => pairs ? `<div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;">${pairs.map(([h,n])=>`<span style="display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--ink-soft);"><span style="width:16px;height:16px;background:${h};box-shadow:inset 0 0 0 1px rgba(79,46,39,0.16);"></span>${n}</span>`).join('')}</div>` : '';
         const brow = mk ? swRow(mk.brow) : '';
         const eye = mk ? swRow(mk.eye) : '';
         const blush = mk ? swRow(mk.blush) : '';
@@ -2762,7 +2862,7 @@ function generateFormula(){
              <div style="display:flex;flex-wrap:wrap;gap:8px;" id="recItemsWrap">${missItems.map(it=>`<button class="rec-item-chip" data-name="${it.name}" data-cat="${it.cat}" onclick="event.stopPropagation(); addRecItem(this)">＋ ${it.name}</button>`).join('')}</div>`
           : `<div style="font-size:12px;color:var(--mint);font-weight:700;">今天這套你全都有了，不用再買 🎉</div>`;
         const haveLine = haveItems.length
-          ? `<div style="font-size:11.5px;color:#1A6B52;background:var(--mint-pale);border-radius:var(--radius-s);padding:9px 12px;margin-bottom:10px;line-height:1.6;">已有：${haveItems.map(i=>i.name).join('、')}</div>`
+          ? `<div style="font-size:11.5px;color:#4F2E27;background:var(--mint-pale);border-radius:var(--radius-s);padding:9px 12px;margin-bottom:10px;line-height:1.6;">已有：${haveItems.map(i=>i.name).join('、')}</div>`
           : '';
         return expandBlock('09','缺少單品 × 加入待購','上面對照過你的衣櫥，這裡把還缺的整理出來，想補再加。',
           [haveLine, missHtml,
@@ -2790,6 +2890,8 @@ function generateFormula(){
     colors: five.map(x=>({role:x.role, pct:x.pct, hex:x.hex})),
     items: recItems.map(i=>i.name),
     typeLabel: c.label,
+    // 分享卡標頭漸層：依六型取深色；過深（近黑）時改用該型深彩色，避免黑底
+    bannerColors: pickBannerColors(c),
     // 04 今日身型修飾
     body: bodyNotes.map((n,i)=>({label:i===0?'基本方向':'今日加強', text:n})),
     // 05 今日臉型加分
@@ -2826,30 +2928,60 @@ function generateFormula(){
     summary: `${moodText}・${occasionLabel[occ]}`
   };
   renderCalendar();
-  out.scrollIntoView({behavior:'smooth', block:'start'});
+  try{window.scrollTo(0, window.scrollY + out.getBoundingClientRect().top - 72);}catch(e){}
 }
 
 /* ===== 今日推薦：匯出 / 分享（demo 跳出視窗）=====
    這是分享卡的版面與內容組裝。實際分享串接（系統分享面板 / 存圖）
    留給後續：可改用 navigator.share 或把 #share-card 用 html2canvas 轉成圖片。 */
+// 依六型挑分享卡標頭漸層色；避免純黑底（冬型最深底色是黑→改用深彩色 layerColors）
+function pickBannerColors(c){
+  const fb = ['#9A3D22','#B85636'];
+  if(!c || !c.baseColors || c.baseColors.length<5) return fb;
+  const lum = hex => { const n=hex.replace('#',''); return 0.2126*parseInt(n.slice(0,2),16)+0.7152*parseInt(n.slice(2,4),16)+0.0722*parseInt(n.slice(4,6),16); };
+  let a = c.baseColors[3][0], b = c.baseColors[4][0];
+  if(lum(a) < 30 || lum(b) < 30){
+    if(c.layerColors && c.layerColors.length>=2){
+      const deep = c.layerColors.map(p=>p[0]).slice().sort((x,y)=>lum(x)-lum(y));
+      return [deep[1], deep[0]];
+    }
+    const floor = h => lum(h)<30 ? '#2E2A33' : h;
+    return [floor(a), floor(b)];
+  }
+  return [a, b];
+}
+
 function showShareDemo(){
   if(!todayShareData){ alert('請先生成今日造型建議'); return; }
   const d = todayShareData;
+  // 依六型代表色決定整張分享卡的強調色（標題、邊框、按鈕）
+  const _bc = (d.bannerColors && d.bannerColors.length>=2) ? d.bannerColors : ['#9A3D22','#B85636'];
+  let accent = _bc[1];
+  // 分享橫幅：用今日色彩主角色單一色；過深／過淺則改用調色盤中明度最接近適中者（白字仍清楚）
+  const _lum = hex => { const m=(hex||'').replace('#',''); if(m.length<6) return 0.5; const r=parseInt(m.slice(0,2),16)/255,g=parseInt(m.slice(2,4),16)/255,b=parseInt(m.slice(4,6),16)/255; const f=c=>c<=0.03928?c/12.92:Math.pow((c+0.055)/1.055,2.4); return 0.2126*f(r)+0.7152*f(g)+0.0722*f(b); };
+  const _hero = (d.colors && d.colors[0] && d.colors[0].hex) || accent;
+  let bannerColor = _hero;
+  if(_lum(_hero) < 0.06 || _lum(_hero) > 0.42){
+    const cands = (d.colors||[]).map(x=>x.hex).filter(Boolean);
+    if(cands.length){ bannerColor = cands.reduce((best,h)=> Math.abs(_lum(h)-0.24) < Math.abs(_lum(best)-0.24) ? h : best, cands[0]); }
+  }
+  accent = bannerColor;   // 整張分享卡（標題、外框、按鈕）都跟橫幅用同一個今日主角色
+  const accentGrad = `linear-gradient(135deg,${_bc[0]},${_bc[1]})`;
   const colorBar = d.colors.map(x=>`<div style="flex:${parseInt(x.pct)};background:${x.hex};"></div>`).join('');
-  const colorLegend = d.colors.map(x=>`<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#6b5a66;"><span style="width:14px;height:14px;border-radius:50%;background:${x.hex};border:1.5px solid #fff;box-shadow:0 1px 2px rgba(0,0,0,.15);"></span>${x.role} ${x.pct}</span>`).join('');
-  const itemChips = d.items.map(n=>`<span style="font-size:12px;background:#fff;color:#931F5C;border:1px solid #F6CADD;padding:3px 10px;border-radius:14px;">${n}</span>`).join('');
+  const colorLegend = d.colors.map(x=>`<span style="display:inline-flex;align-items:center;gap:5px;font-size:11px;color:#7A6E5E;"><span style="width:14px;height:14px;background:${x.hex};box-shadow:inset 0 0 0 1px rgba(79,46,39,0.18);"></span>${x.role} ${x.pct}</span>`).join('');
+  const itemChips = d.items.map(n=>`<span style="font-size:12px;background:#fff;color:${accent};border:1px solid ${accent};padding:3px 10px;border-radius:2px;">${n}</span>`).join('');
   const splitFirst = str => str.split(/[、，,]/)[0].trim();
 
   // 分享卡內共用：區塊標題、條列、彩妝色點
-  const secTitle = t => `<div style="font-size:12px;font-weight:800;color:#931F5C;margin:16px 0 8px;">${t}</div>`;
-  const rows = arr => `<div style="font-size:12.5px;color:#3a2b36;line-height:1.9;">${arr.map(o=>`<b>${o.label}：</b>${o.text}`).join('<br>')}</div>`;
-  const swatchRow = (label, pairs) => pairs && pairs.length ? `<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:5px;"><b style="font-size:12.5px;color:#3a2b36;">${label}：</b>${pairs.map(([h,n])=>`<span style="display:inline-flex;align-items:center;gap:3px;font-size:11px;color:#6b5a66;"><span style="width:14px;height:14px;border-radius:50%;background:${h};border:1.5px solid #fff;box-shadow:0 1px 2px rgba(0,0,0,.15);"></span>${n}</span>`).join('')}</div>` : '';
+  const secTitle = t => `<div style="font-size:12px;font-weight:800;color:${accent};margin:16px 0 8px;">${t}</div>`;
+  const rows = arr => `<div style="font-size:12.5px;color:#4F2E27;line-height:1.9;">${arr.map(o=>`<b>${o.label}：</b>${o.text}`).join('<br>')}</div>`;
+  const swatchRow = (label, pairs) => pairs && pairs.length ? `<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:5px;"><b style="font-size:12.5px;color:#4F2E27;">${label}：</b>${pairs.map(([h,n])=>`<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#7A6E5E;"><span style="width:14px;height:14px;background:${h};box-shadow:inset 0 0 0 1px rgba(79,46,39,0.18);"></span>${n}</span>`).join('')}</div>` : '';
 
   // 04 身型 / 05 臉型 / 06 彩妝 / 07 天氣 / 08 避免
   const bodyHtml = d.body ? secTitle('今日身型修飾') + rows(d.body) : '';
   const faceHtml = d.face ? secTitle('今日臉型加分') + rows(d.face) : '';
   const makeupHtml = d.makeup ? secTitle('今日彩妝建議')
-    + `<div style="font-size:12.5px;color:#3a2b36;line-height:1.9;margin-bottom:6px;"><b>底妝：</b>${d.makeup.base}</div>`
+    + `<div style="font-size:12.5px;color:#4F2E27;line-height:1.9;margin-bottom:6px;"><b>底妝：</b>${d.makeup.base}</div>`
     + swatchRow('眉色', d.makeup.brow) + swatchRow('眼妝', d.makeup.eye)
     + swatchRow('腮紅', d.makeup.blush) + swatchRow('唇色', d.makeup.lip) : '';
   const weatherHtml = d.weatherAdj ? secTitle('今日天氣調整') + rows(d.weatherAdj) : '';
@@ -2897,28 +3029,28 @@ ${d.avoid.map(o=>`${o.label}：${o.text}`).join('\n')}`:''}
   modal.id = 'share-modal';
   modal.style.cssText = 'position:fixed;inset:0;background:rgba(30,15,30,0.55);z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px;';
   modal.innerHTML = `
-    <div style="background:#fff;border-radius:20px;max-width:340px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 12px 40px rgba(0,0,0,.3);">
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #f0e6ee;position:sticky;top:0;background:#fff;border-radius:20px 20px 0 0;">
-        <div style="font-weight:800;font-size:15px;color:#2b1b28;">分享預覽</div>
-        <button onclick="document.getElementById('share-modal').remove()" style="border:none;background:none;font-size:22px;color:#9a8a96;cursor:pointer;line-height:1;">×</button>
+    <div style="background:#fff;border-radius:4px;max-width:340px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 12px 40px rgba(0,0,0,.3);">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #E5DED0;position:sticky;top:0;background:#fff;border-radius:4px 4px 0 0;">
+        <div style="font-weight:800;font-size:15px;color:#4F2E27;">分享預覽</div>
+        <button onclick="document.getElementById('share-modal').remove()" style="border:none;background:none;font-size:22px;color:#9A9286;cursor:pointer;line-height:1;">×</button>
       </div>
 
-      <div id="share-card" style="margin:16px;border-radius:16px;overflow:hidden;border:1px solid #f0e6ee;">
-        <div style="background:linear-gradient(135deg,#931F5C,#7C5CC4);color:#fff;padding:18px 18px 16px;">
+      <div id="share-card" style="margin:16px;border:1px solid var(--ink);overflow:hidden;">
+        <div style="background:${bannerColor};color:#fff;padding:18px 18px 16px;">
           <div style="font-size:11px;letter-spacing:2px;opacity:.85;">命定造型・今日推薦</div>
           <div style="font-size:12px;opacity:.9;margin-top:2px;">${d.date}</div>
           <div style="font-size:14px;line-height:1.6;margin-top:10px;font-weight:600;">${d.style}</div>
           <div style="font-size:11px;opacity:.9;margin-top:8px;">${d.occasion}　${d.weather}　${d.moods}</div>
         </div>
         <div style="padding:16px 18px;background:#fff;">
-          <div style="font-size:12px;font-weight:800;color:#931F5C;margin-bottom:8px;">今日穿搭</div>
-          <div style="font-size:12.5px;color:#3a2b36;line-height:1.9;">
+          <div style="font-size:12px;font-weight:800;color:${accent};margin-bottom:8px;">今日穿搭</div>
+          <div style="font-size:12.5px;color:#4F2E27;line-height:1.9;">
             上衣：${splitFirst(d.outfit.top)}　下身：${splitFirst(d.outfit.bottom)}<br>
             外層：${splitFirst(d.outfit.coat)}　鞋：${splitFirst(d.outfit.shoes)}　包：${splitFirst(d.outfit.bag)}
           </div>
 
-          <div style="font-size:12px;font-weight:800;color:#931F5C;margin:16px 0 8px;">今日色彩（${d.typeLabel}）</div>
-          <div style="display:flex;height:24px;border-radius:8px;overflow:hidden;margin-bottom:8px;">${colorBar}</div>
+          <div style="font-size:12px;font-weight:800;color:${accent};margin:16px 0 8px;">今日色彩（${d.typeLabel}）</div>
+          <div style="display:flex;height:24px;overflow:hidden;margin-bottom:8px;border:1px solid var(--ink);">${colorBar}</div>
           <div style="display:flex;flex-wrap:wrap;gap:10px;">${colorLegend}</div>
 
           ${bodyHtml}
@@ -2927,16 +3059,16 @@ ${d.avoid.map(o=>`${o.label}：${o.text}`).join('\n')}`:''}
           ${weatherHtml}
           ${avoidHtml}
 
-          <div style="font-size:12px;font-weight:800;color:#931F5C;margin:16px 0 8px;">推薦單品</div>
+          <div style="font-size:12px;font-weight:800;color:${accent};margin:16px 0 8px;">推薦單品</div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;">${itemChips}</div>
 
-          <div style="text-align:center;font-size:10px;color:#b0a0aa;margin-top:16px;">命定造型 APP</div>
+          <div style="text-align:center;font-size:10px;color:#9A9286;margin-top:16px;">命定造型 APP</div>
         </div>
       </div>
 
       <div style="padding:0 16px 16px;display:flex;gap:8px;">
-        <button onclick="copyShareText()" style="flex:1;border:1px solid #931F5C;background:#fff;color:#931F5C;border-radius:12px;padding:11px;font-weight:700;cursor:pointer;font-size:13px;">複製文字</button>
-        <button onclick="document.getElementById('share-modal').remove()" style="flex:1;border:none;background:linear-gradient(135deg,#931F5C,#7C5CC4);color:#fff;border-radius:12px;padding:11px;font-weight:700;cursor:pointer;font-size:13px;">完成</button>
+        <button onclick="copyShareText()" style="flex:1;border:1px solid ${accent};background:#fff;color:${accent};border-radius:2px;padding:11px;font-weight:700;cursor:pointer;font-size:13px;">複製文字</button>
+        <button onclick="document.getElementById('share-modal').remove()" style="flex:1;border:none;background:${accent};color:#fff;border-radius:2px;padding:11px;font-weight:700;cursor:pointer;font-size:13px;">完成</button>
       </div>
     </div>`;
   modal._shareText = shareText;
@@ -2961,7 +3093,7 @@ function refreshMinePage(){
   if(allDone){
     wrap.innerHTML = `
       <div class="memcard">
-        <div class="eyebrow">心法記憶卡</div>
+        <div class="eyebrow">My Style Mantra</div>
         <div class="mc-name">我的風格密碼</div>
         <div class="mc-formula">${c.label} ✕ ${s.label} ✕ ${f.volLabel}</div>
         <div class="swatches" style="margin-bottom:16px;">${c.swatches.slice(0,5).map(x=>`<div class="swatch" style="background:${x}"></div>`).join('')}</div>
@@ -2971,7 +3103,7 @@ function refreshMinePage(){
   } else {
     wrap.innerHTML = `
       <div class="memcard">
-        <div class="eyebrow">心法記憶卡</div>
+        <div class="eyebrow">My Style Mantra</div>
         <p style="font-size:13px;color:var(--ink-soft);line-height:1.8;margin:12px 0 16px;">完成色彩、身形、臉型三項測驗後，這裡會自動生成你的專屬風格密碼卡。</p>
         <button class="btn btn-primary btn-sm" onclick="goPage('color-hub')">前往測驗</button>
       </div>
@@ -2994,32 +3126,109 @@ function refreshMinePage(){
 
 /* ======== 靈感看板 ======== */
 const TAG_OPTIONS = ['低飽和直線條','柔和曲線感','俐落現代','溫柔古典','自然休閒','高級質感','大膽色彩'];
-const moodItems = [
-  {emoji:'🧥', label:'深色長版外套', tags:['低飽和直線條','俐落現代']},
-  {emoji:'👗', label:'碎花連身裙', tags:['柔和曲線感','溫柔古典']},
-  {emoji:'👜', label:'棕色托特包', tags:['低飽和直線條','自然休閒']},
-  {emoji:'🧣', label:'格紋圍巾', tags:[]},
+
+// 沒有照片時可用的插畫圖示（assets/gm-*.png）
+const ICON_CATALOG = [
+  {key:'top',   name:'上身'},
+  {key:'pants', name:'下身'},
+  {key:'dress', name:'洋裝／連身裙'},
+  {key:'coat',  name:'外套'},
+  {key:'bag',   name:'包款'},
+  {key:'shoe',  name:'鞋'},
+  {key:'scarf', name:'圍巾／配件'},
+  {key:'hat',   name:'帽'},
 ];
+
+const MOOD_DEFAULTS = [
+  {icon:'coat', label:'深色長版外套', tags:['低飽和直線條','俐落現代']},
+  {icon:'dress', label:'碎花連身裙', tags:['柔和曲線感','溫柔古典']},
+  {icon:'bag', label:'棕色托特包', tags:['低飽和直線條','自然休閒']},
+  {icon:'scarf', label:'格紋圍巾', tags:[]},
+];
+let moodItems = JSON.parse(JSON.stringify(MOOD_DEFAULTS));
+function saveMoodItems(){ store.set('mt_mood', moodItems); }
+function loadMoodItems(){ const saved = store.get('mt_mood', null); if(saved && Array.isArray(saved)) moodItems = saved; }
+
+// 上傳照片自動用 canvas 縮小成縮圖（預設長邊 480px、JPEG 0.72），大幅省容量
+function compressImage(file, maxSize, quality){
+  return new Promise((resolve, reject)=>{
+    const reader = new FileReader();
+    reader.onload = e=>{
+      const img = new Image();
+      img.onload = ()=>{
+        let w = img.naturalWidth, h = img.naturalHeight;
+        const scale = Math.min(1, maxSize/Math.max(w,h));
+        w = Math.max(1, Math.round(w*scale)); h = Math.max(1, Math.round(h*scale));
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        try{ resolve(canvas.toDataURL('image/jpeg', quality)); }
+        catch(err){ reject(err); }
+      };
+      img.onerror = reject;
+      img.src = e.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function gIcon(key, sz){
+  // 改用手繪單品插圖（去背 PNG）
+  const k = ['coat','dress','bag','scarf','shoe','hat','top','pants'].includes(key) ? key : 'dress';
+  const s = sz||40;
+  return `<img src="assets/gm-${k}.png" alt="" style="width:${s}px;height:${s}px;object-fit:contain;display:block;">`;
+}
+
+// 讓橫向捲動列（捲軸隱藏）在筆電上可用滑鼠拖曳 / 直向滾輪左右捲
+function enableDragScroll(el){
+  if(!el || el._dragScrollBound) return;
+  el._dragScrollBound = true;
+  let down=false, startX=0, startLeft=0, moved=false;
+  el.style.cursor='grab';
+  el.addEventListener('pointerdown', e=>{
+    if(e.pointerType==='mouse' && e.button!==0) return;
+    down=true; moved=false; startX=e.clientX; startLeft=el.scrollLeft;
+    el.style.cursor='grabbing';
+  });
+  el.addEventListener('pointermove', e=>{
+    if(!down) return;
+    const dx=e.clientX-startX;
+    if(Math.abs(dx)>4) moved=true;
+    el.scrollLeft = startLeft - dx;
+  });
+  const end=()=>{ down=false; el.style.cursor='grab'; };
+  el.addEventListener('pointerup', end);
+  el.addEventListener('pointercancel', end);
+  // 拖曳後抑制誤觸卡片的 click
+  el.addEventListener('click', e=>{ if(moved){ e.stopPropagation(); e.preventDefault(); moved=false; } }, true);
+  // 直向滾輪轉成左右捲
+  el.addEventListener('wheel', e=>{
+    if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){ el.scrollLeft += e.deltaY; e.preventDefault(); }
+  }, {passive:false});
+}
 
 function renderMoodboard(){
   const row = document.getElementById('moodboardRow');
   row.innerHTML = moodItems.map((m,i)=>`
     <div style="flex-shrink:0;width:108px;">
-      <div style="position:relative;width:108px;height:108px;background:var(--violet-pale);border-radius:var(--radius-m);display:flex;align-items:center;justify-content:center;font-size:36px;cursor:pointer;border:2px solid ${m.tags.length?'var(--violet)':'var(--line-strong)'};" onclick="openTagModal(${i})">
-        ${m.emoji}
+      <div style="position:relative;width:108px;height:108px;background:var(--violet-pale);border-radius:var(--radius-m);display:flex;align-items:center;justify-content:center;cursor:pointer;border:2px solid ${m.tags.length?'var(--violet)':'var(--line-strong)'};overflow:hidden;" onclick="openTagModal(${i})">
+        ${m.img ? `<img src="${m.img}" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">` : gIcon(m.icon,46)}
         ${m.tags.length ? `<div style="position:absolute;bottom:6px;right:6px;width:16px;height:16px;border-radius:50%;background:var(--mint);display:flex;align-items:center;justify-content:center;">
           <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
         </div>` : ''}
+        <div onclick="event.stopPropagation();removeMoodItem(${i})" title="移除" style="position:absolute;top:5px;right:5px;width:20px;height:20px;border-radius:50%;background:rgba(31,27,46,0.55);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;line-height:1;cursor:pointer;">×</div>
       </div>
       <div style="font-size:11px;font-weight:600;color:var(--ink);margin-top:7px;text-align:center;line-height:1.4;">${m.label}</div>
       <div style="font-size:10px;color:var(--ink-faint);text-align:center;margin-top:2px;">${m.tags.length ? m.tags[0] : '尚未標記'}</div>
     </div>
   `).join('') + `
-    <div style="flex-shrink:0;width:108px;height:108px;border:2px dashed var(--line-strong);border-radius:var(--radius-m);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink-faint);font-size:22px;cursor:pointer;gap:4px;" onclick="addMoodItem()">
+    <div style="flex-shrink:0;width:108px;height:108px;border:2px dashed var(--line-strong);border-radius:var(--radius-m);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink-faint);font-size:22px;cursor:pointer;gap:4px;" onclick="openAddMoodModal()">
       <span>+</span>
       <span style="font-size:10px;font-weight:600;">加入圖片</span>
     </div>
   `;
+  document.querySelectorAll('.scroll-x').forEach(enableDragScroll);
   updateMoodTrend();
 }
 
@@ -3037,15 +3246,16 @@ function openTagModal(i){
   modal.style.cssText = `position:fixed;inset:0;background:rgba(31,27,46,0.45);z-index:200;display:flex;align-items:flex-end;`;
   modal.innerHTML = `
     <div style="width:100%;max-width:480px;margin:0 auto;background:var(--surface);border-radius:var(--radius-xl) var(--radius-xl) 0 0;padding:24px 22px 36px;">
-      <div style="font-size:15px;font-weight:800;margin-bottom:6px;">${m.emoji} ${m.label}</div>
+      <div style="font-size:15px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:7px;"><span style="display:inline-flex;width:24px;height:24px;border-radius:6px;overflow:hidden;align-items:center;justify-content:center;">${m.img?`<img src="${m.img}" alt="" style="width:100%;height:100%;object-fit:cover;">`:gIcon(m.icon,22)}</span>${m.label}</div>
       <div style="font-size:13px;color:var(--ink-soft);margin-bottom:18px;line-height:1.6;">這張圖吸引你的地方是什麼？可以選多個標籤。</div>
       <div class="chip-row" id="tagChips" style="margin-bottom:20px;">
         ${TAG_OPTIONS.map(t=>`
           <button class="chip ${m.tags.includes(t)?'selected':''}" onclick="toggleTagChip(this,'${t}')">${t}</button>
         `).join('')}
       </div>
-      <div style="display:flex;gap:8px;">
+      <div style="display:flex;gap:8px;align-items:center;">
         <button class="btn btn-ghost btn-sm" onclick="closeTagModal()">取消</button>
+        ${m.tags.length?`<button class="btn btn-ghost btn-sm" style="color:var(--magenta-deep);" onclick="clearTagModal()">清除標記</button>`:''}
         <button class="btn btn-primary" style="flex:1;" onclick="saveTagModal()">儲存標籤</button>
       </div>
     </div>
@@ -3060,17 +3270,82 @@ function closeTagModal(){
   const m = document.getElementById('tagModal');
   if(m) m.remove();
 }
-function saveTagModal(){
-  const selected = [...document.querySelectorAll('#tagChips .chip.selected')].map(c=>c.textContent);
-  moodItems[tagModalTarget].tags = selected;
+function clearTagModal(){
+  moodItems[tagModalTarget].tags = [];
+  saveMoodItems();
   closeTagModal();
   renderMoodboard();
 }
-function addMoodItem(){
-  const label = prompt('這張收藏的圖是什麼？（幫它取個簡單的名稱）','');
-  if(!label) return;
-  const emojis = ['👗','👠','💍','🧤','🧢','👒','🥿','👚'];
-  moodItems.push({emoji: emojis[moodItems.length % emojis.length], label, tags:[]});
+function saveTagModal(){
+  const selected = [...document.querySelectorAll('#tagChips .chip.selected')].map(c=>c.textContent);
+  moodItems[tagModalTarget].tags = selected;
+  saveMoodItems();
+  closeTagModal();
+  renderMoodboard();
+}
+
+function removeMoodItem(i){
+  if(!confirm('確定要移除這張靈感圖嗎？')) return;
+  moodItems.splice(i,1);
+  saveMoodItems();
+  renderMoodboard();
+}
+
+// 加入圖片：上傳照片（canvas 自動縮小）或選一個插畫圖示
+function openAddMoodModal(){
+  const old = document.getElementById('addMoodModal');
+  if(old) old.remove();
+  const modal = document.createElement('div');
+  modal.id = 'addMoodModal';
+  modal.style.cssText = `position:fixed;inset:0;background:rgba(31,27,46,0.45);z-index:200;display:flex;align-items:flex-end;`;
+  modal.innerHTML = `
+    <div style="width:100%;max-width:480px;margin:0 auto;background:var(--surface);border-radius:var(--radius-xl) var(--radius-xl) 0 0;padding:24px 22px 36px;">
+      <div style="font-size:15px;font-weight:800;margin-bottom:4px;">加入一張靈感圖</div>
+      <div style="font-size:12.5px;color:var(--ink-soft);margin-bottom:16px;line-height:1.6;">上傳照片會自動縮小成縮圖（省容量）；沒有照片就先選一個插畫圖示代表。</div>
+
+      <label style="display:flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--violet);background:var(--violet-pale);color:var(--violet);border-radius:var(--radius-m);padding:14px;font-size:13.5px;font-weight:700;cursor:pointer;margin-bottom:18px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>
+        上傳照片
+        <input type="file" accept="image/*" style="display:none;" onchange="handleMoodUpload(this)">
+      </label>
+
+      <div style="font-size:12px;font-weight:700;color:var(--ink-soft);margin-bottom:10px;">或選一個插畫圖示</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+        ${ICON_CATALOG.map(ic=>`
+          <button onclick="addMoodIcon('${ic.key}','${ic.name}')" style="display:flex;flex-direction:column;align-items:center;gap:6px;border:1.5px solid var(--line-strong);background:var(--surface);border-radius:var(--radius-m);padding:12px 6px;cursor:pointer;font-family:var(--sans);">
+            <span style="display:inline-flex;">${gIcon(ic.key,38)}</span>
+            <span style="font-size:11px;font-weight:600;color:var(--ink);">${ic.name}</span>
+          </button>`).join('')}
+      </div>
+
+      <button class="btn btn-ghost btn-sm" style="margin-top:18px;width:100%;" onclick="closeAddMoodModal()">取消</button>
+    </div>
+  `;
+  modal.addEventListener('click', e=>{ if(e.target===modal) closeAddMoodModal(); });
+  document.body.appendChild(modal);
+}
+function closeAddMoodModal(){ const m=document.getElementById('addMoodModal'); if(m) m.remove(); }
+
+async function handleMoodUpload(input){
+  const file = input.files && input.files[0];
+  if(!file) return;
+  try{
+    const dataUrl = await compressImage(file, 480, 0.72);
+    moodItems.push({ img:dataUrl, icon:'dress', label:'我的靈感照片', tags:[] });
+    try{ saveMoodItems(); }
+    catch(e){ showToast('容量已滿，照片未能儲存'); }
+    closeAddMoodModal();
+    renderMoodboard();
+    setTimeout(()=>openTagModal(moodItems.length-1), 50);
+  }catch(e){
+    showToast('讀取照片失敗，請換一張試試');
+  }
+}
+
+function addMoodIcon(key, name){
+  moodItems.push({ icon:key, label:name, tags:[] });
+  saveMoodItems();
+  closeAddMoodModal();
   renderMoodboard();
   setTimeout(()=>openTagModal(moodItems.length-1), 50);
 }
@@ -3090,7 +3365,7 @@ function updateMoodTrend(){
   barsEl.innerHTML = sorted.map(([tag,count])=>`
     <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px;"><span>${tag}</span><span style="color:var(--ink-faint)">${Math.round(count/total*100)}%</span></div>
     <div style="height:5px;background:var(--line);border-radius:4px;overflow:hidden;margin-bottom:12px;">
-      <div style="height:100%;width:${Math.round(count/total*100)}%;background:linear-gradient(90deg,var(--magenta),var(--violet));border-radius:4px;"></div>
+      <div style="height:100%;width:${Math.round(count/total*100)}%;background:var(--magenta);border-radius:4px;"></div>
     </div>
   `).join('');
 
@@ -3430,7 +3705,8 @@ function renderWardrobe(){
 
   let body = '';
 
-  if(!allDone){
+  // 「適合我的」需要先完成三項測驗才能生成；「我已有」（含手動新增與上傳照片）任何時候都能用。
+  if(!allDone && wardrobeTab !== 'owned'){
     body = `<p style="font-size:13px;color:var(--ink-faint);text-align:center;padding:24px 8px;line-height:1.8;">完成色彩、身型、臉型三項測驗後，<br>這裡會生成<b>只適合你的</b>經典衣櫥地圖。</p>`;
     wrap.innerHTML = tabs + body;
     return;
@@ -3477,12 +3753,16 @@ function renderWardrobe(){
   }
 
   else if(wardrobeTab==='owned'){
-    body = summary;
+    body = allDone ? summary : '';
+    body += `<button onclick="openPhotoWall()" style="width:100%;display:flex;align-items:center;justify-content:center;gap:7px;border:1.5px solid var(--magenta);background:var(--magenta-pale);color:var(--magenta-deep);font-family:var(--sans);font-size:12.5px;font-weight:700;padding:11px;border-radius:var(--radius-m);cursor:pointer;margin-bottom:14px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      我的單品照片牆（依分類看）</button>`;
     if(ownedItems.length===0){
       body += `<p style="font-size:13px;color:var(--ink-faint);text-align:center;padding:20px 8px;line-height:1.8;">還沒有已擁有的單品。<br>到「適合我的」點選你已經有的，<br>或手動新增。</p>`;
     } else {
       body += ownedItems.map(o=>`
-        <div style="display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:var(--radius-m);padding:12px 15px;margin-bottom:9px;background:var(--surface);">
+        <div style="display:flex;align-items:center;gap:11px;border:1.5px solid var(--line);border-radius:var(--radius-m);padding:10px 14px;margin-bottom:9px;background:var(--surface);">
+          ${o.img?`<img src="${o.img}" alt="" style="width:44px;height:44px;border-radius:var(--radius-s);object-fit:cover;flex-shrink:0;">`:''}
           <div style="flex:1;">
             <div style="font-size:13.5px;font-weight:700;color:var(--ink);">${o.name}${o.isClassic?'<span style="font-size:10px;font-weight:700;color:var(--magenta-deep);background:var(--magenta-pale);padding:2px 6px;border-radius:999px;margin-left:6px;">經典</span>':''}</div>
             <div style="font-size:11px;color:var(--ink-faint);margin-top:2px;">${o.cat} · ${o.status||'常穿'}</div>
@@ -3497,6 +3777,11 @@ function renderWardrobe(){
         <div class="chip-row" id="ownedCatChips" style="margin-bottom:12px;">
           ${['上衣','下身','洋裝','外套','鞋','包','配飾'].map(c=>`<button class="chip" data-cat="${c}" onclick="selectOwnedCat(this)">${c}</button>`).join('')}
         </div>
+        <label style="display:flex;align-items:center;gap:10px;margin-bottom:12px;cursor:pointer;">
+          <div id="ownedPhotoPreview" style="width:48px;height:48px;border-radius:var(--radius-s);border:1.5px dashed var(--line-strong);display:flex;align-items:center;justify-content:center;color:var(--ink-faint);font-size:18px;overflow:hidden;flex-shrink:0;">＋</div>
+          <span style="font-size:12.5px;font-weight:700;color:var(--magenta-deep);">上傳單品照片（選填，自動縮小）</span>
+          <input type="file" accept="image/*" style="display:none;" onchange="handleOwnedUpload(this)">
+        </label>
         <div style="display:flex;gap:8px;">
           <button class="btn btn-ghost btn-sm" onclick="closeAddOwned()">取消</button>
           <button class="btn btn-primary btn-sm" onclick="confirmAddOwned()">確認新增</button>
@@ -3521,16 +3806,79 @@ function toggleOwnedChip(catalogId){
 
 /* 手動新增已有單品的表單控制 */
 let ownedCatSelected='';
-function openAddOwned(){ const f=document.getElementById('addOwnedForm'); if(f){ f.style.display='block'; document.getElementById('ownedName').focus(); } ownedCatSelected=''; }
-function closeAddOwned(){ const f=document.getElementById('addOwnedForm'); if(f) f.style.display='none'; }
+let ownedPhotoTemp=null;
+function openAddOwned(){ const f=document.getElementById('addOwnedForm'); if(f){ f.style.display='block'; document.getElementById('ownedName').focus(); } ownedCatSelected=''; ownedPhotoTemp=null; }
+function closeAddOwned(){ const f=document.getElementById('addOwnedForm'); if(f) f.style.display='none'; ownedPhotoTemp=null; }
 function selectOwnedCat(el){ document.querySelectorAll('#ownedCatChips .chip').forEach(c=>c.classList.remove('selected')); el.classList.add('selected'); ownedCatSelected=el.dataset.cat; }
+async function handleOwnedUpload(input){
+  const file = input.files && input.files[0];
+  if(!file) return;
+  try{
+    ownedPhotoTemp = await compressImage(file, 480, 0.72);
+    const pv = document.getElementById('ownedPhotoPreview');
+    if(pv) pv.innerHTML = `<img src="${ownedPhotoTemp}" alt="" style="width:100%;height:100%;object-fit:cover;">`;
+  }catch(e){ showToast('讀取照片失敗，請換一張試試'); }
+}
 function confirmAddOwned(){
   const name = document.getElementById('ownedName').value.trim();
   if(!name){ alert('請輸入單品名稱'); return; }
-  addOwned({ catalogId:null, name, cat:ownedCatSelected||'其他', isClassic:false });
+  addOwned({ catalogId:null, name, cat:ownedCatSelected||'其他', isClassic:false, img:ownedPhotoTemp||null });
+  ownedPhotoTemp=null;
   renderWardrobe();
   showToast('已新增到你的衣櫥');
 }
+
+/* ======== 我的單品照片牆：依分類檢視已上傳照片的單品 ======== */
+function openPhotoWall(){
+  const old = document.getElementById('photoWall');
+  if(old) old.remove();
+  const withPhoto = ownedItems.filter(o=>o.img);
+  const GROUPS = [
+    {key:'上半身', cats:['上衣','外套']},
+    {key:'下身', cats:['下身']},
+    {key:'洋裝', cats:['洋裝']},
+    {key:'鞋', cats:['鞋']},
+    {key:'包', cats:['包']},
+    {key:'配飾', cats:['配飾']},
+    {key:'其他', cats:['其他']},
+  ];
+  let inner;
+  if(withPhoto.length===0){
+    inner = `<p style="font-size:13px;color:var(--ink-faint);text-align:center;padding:30px 8px;line-height:1.9;">還沒有單品照片。<br>到「我已有 → 手動新增已有單品」上傳照片，<br>這裡就會依分類整理給你看。</p>`;
+  } else {
+    inner = GROUPS.map(g=>{
+      const items = withPhoto.filter(o=>g.cats.includes(o.cat));
+      if(!items.length) return '';
+      return `<div style="margin-bottom:20px;">
+        <div style="font-size:12px;font-weight:800;color:var(--magenta-deep);margin-bottom:10px;letter-spacing:.04em;">${g.key}　<span style="color:var(--ink-faint);font-weight:600;">${items.length}</span></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+          ${items.map(o=>`
+            <div>
+              <div style="width:100%;aspect-ratio:1;border-radius:var(--radius-m);overflow:hidden;border:1.5px solid var(--line);background:var(--bg);">
+                <img src="${o.img}" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+              </div>
+              <div style="font-size:11px;font-weight:600;color:var(--ink);margin-top:6px;line-height:1.4;text-wrap:pretty;">${o.name}</div>
+            </div>`).join('')}
+        </div>
+      </div>`;
+    }).join('');
+  }
+  const modal = document.createElement('div');
+  modal.id = 'photoWall';
+  modal.style.cssText = `position:fixed;inset:0;background:rgba(31,27,46,0.5);z-index:200;display:flex;align-items:flex-end;`;
+  modal.innerHTML = `
+    <div style="width:100%;max-width:480px;margin:0 auto;background:var(--surface);border-radius:var(--radius-xl) var(--radius-xl) 0 0;padding:22px 20px 32px;max-height:86vh;overflow:auto;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+        <div style="font-size:15px;font-weight:800;">我的單品照片牆</div>
+        <button onclick="closePhotoWall()" style="border:none;background:none;font-size:22px;color:var(--ink-faint);cursor:pointer;line-height:1;">×</button>
+      </div>
+      <div style="font-size:12.5px;color:var(--ink-soft);margin-bottom:18px;line-height:1.6;">你上傳的單品照片，依分類整理在這裡。</div>
+      ${inner}
+    </div>`;
+  modal.addEventListener('click', e=>{ if(e.target===modal) closePhotoWall(); });
+  document.body.appendChild(modal);
+}
+function closePhotoWall(){ const m=document.getElementById('photoWall'); if(m) m.remove(); }
 
 /* ======== 待購清單 ======== */
 // wishlist 格式：{ id, name, cat, checks:[{q, done}], expanded, catalogId?, reason? }
@@ -3686,6 +4034,7 @@ function generateChecks(name, cat){
 }
 
 restoreProfile();
+loadMoodItems();
 renderMoodboard();
 renderWardrobe();
 renderWishlist();
